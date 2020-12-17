@@ -14,10 +14,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
 from django.contrib.auth import views as auth_views
 
-from server.application import views
+from application import views
 
 
 urlpatterns = [
