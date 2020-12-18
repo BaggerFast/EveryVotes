@@ -1,12 +1,6 @@
-.navbar {
-  padding-left: 20px;
+p {
+  margin: 0;
 }
-footer {
-  margin-left: 20px;
-}
-main {
-  padding: 20px;
-}
-footer {
-  margin-left: 20px;
+.badge {
+  margin-right: 5px;
 }

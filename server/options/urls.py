@@ -1,4 +1,4 @@
-"""database URL Configuration
+"""options URL Configuration
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
 Examples:
@@ -16,10 +16,12 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
 
-from server.application import views
+from application import views
 
 urlpatterns = [
     path('', views.index_page, name='index'),
     path('admin/', admin.site.urls),
+    path('login/', auth_views.LoginView.as_view()),
+    path('logout/', auth_views.LogoutView.as_view()),
     path('add_post/', views.add_post)
 ]

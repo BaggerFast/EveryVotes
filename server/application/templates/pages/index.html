@@ -1,13 +1,24 @@
 {% extends 'base/base.html' %}
-
 {% block content %}
-    <div>
-        <h1>Wellcome to the club body!</h1>
-        <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading">Полезная информация</h4>
-            <p>Моллюски — двусторонне-симметричные мягкотелые животные (у брюхоногих тело асимметричное), имеющие раковину, мантию, мантийную полость, незамкнутую кровеносную систему.</p>
-            <hr>
-            <p class="mb-0">В популярной культуре моллюскам класса головоногих отведена роль морских чудовищ.</p>
+  <div>
+    <h1>Server</h1>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <span class="badge bg-secondary">POST</span>
+            <p>add_post</p>
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p>Add a new post to the database. At the moment, only one parameter is being passed:</p>
+            <ul class="list">
+              <li>title</li>
+            </ul>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 {% endblock %}

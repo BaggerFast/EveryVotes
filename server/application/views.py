@@ -20,13 +20,13 @@ def base_page(url, title):
 
 
 def index_page(request):
-    context = base_page('index', 'Главная')
+    context = base_page('index', 'home')
     return render(request, 'pages/index.html', context)
 
 
 @csrf_exempt
 def add_post(request):
-    decryp = request.GET
-    post = Post(title=decryp['title'])
+    data = request.GET
+    post = Post(title=data['title'])
     post.save()
     return render(request, 'pages/index.html')
