@@ -1,0 +1,10 @@
+{% extends 'app.html' %}
+{% block content %}
+  <div>
+    {% if request.user.is_authenticated %}
+      <h1>Welcome to the club, {{ request.user }}!</h1>
+    {% else %}
+      <h1>Welcome to the club, buddy!</h1>
+    {% endif %}
+  </div>
+{% endblock %}

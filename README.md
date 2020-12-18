@@ -7,7 +7,6 @@
 ## Технологический стек:
 
 - Python 3.6+
-- Node.js 14.15.3
 - Vue.js 2.x
 - Django 3.1+
 
@@ -31,28 +30,4 @@
    pip install -r requirements.txt
    ```
 
-### Backend:
-
-7. Перейдите в папку `server`: 
-   ```bash
-   cd server
-   ```
-
-8. Синхронизировать структуру базы данных с моделями: 
-   ```bash
-   python manage.py migrate
-   ```
-
-9. Создать конфигурацию запуска в PyCharm (файл `manage.py`, опция `runserver 3000`)
-
-### Frontend:
-
-7. Перейдите в папку `client`: 
-   ```bash
-   cd client
-   ```
-
-10. Для сборки проекта используйте:
-   ```bash
-   npm run serve
-   ```
+7. Создать конфигурацию запуска в PyCharm (файл `manage.py`, опция `runserver 3000`)

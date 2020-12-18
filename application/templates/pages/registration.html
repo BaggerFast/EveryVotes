@@ -1,0 +1,52 @@
+{% extends 'app.html' %}
+{% block content %}
+  <h1>Registration</h1>
+  <form id="app" ref="form" @submit="checkForm" method="post" action="">
+    {% csrf_token %}
+    <div style="margin-top: 20px;">
+      {% if reg_success == False %}
+        <div class="alert alert-danger" role="alert">
+          A user with this username already exists.
+        </div>
+      {% endif %}
+      <div v-for="error in errors" class="alert alert-danger" role="alert">
+        [[ error ]]
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputUsername1" class="form-label">Username</label>
+      <input type="text" class="form-control" id="exampleInputUsername1" name="username" v-model="username" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" name="password" v-model="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      delimiters: ['[[', ']]'],
+      data: {
+        errors: [],
+        username: null,
+        password: null
+      },
+      methods: {
+        checkForm: function (e) {
+          if (this.username && this.password) {
+            return true;
+          }
+          this.errors = [];
+          if (!this.username) {
+            this.errors.push('Username required.');
+          }
+          if (!this.password) {
+            this.errors.push('Password required.');
+          }
+          e.preventDefault();
+        }
+      }
+    })
+  </script>
+{% endblock %}
