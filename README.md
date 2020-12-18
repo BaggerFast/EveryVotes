@@ -30,4 +30,4 @@
    pip install -r requirements.txt
    ```
 
-7. Создать конфигурацию запуска в PyCharm (файл `manage.py`, опция `runserver 3000`)
+7. Создать конфигурацию запуска в PyCharm (файл `manage.py`, опция `runserver`)
