@@ -41,13 +41,13 @@ def login_view(request):
         )
         if user:
             login(request, user)
-            current_page['context']['auth_success'] = True
             context = get_base_context('Home')
             current_page = {
                 'request': request,
                 'url': 'pages/index.html',
                 'context': context
             }
+            current_page['context']['auth_success'] = True
         else:
             current_page['context']['auth_success'] = False
     elif request.method == 'GET':
@@ -76,12 +76,8 @@ def registration_view(request):
     global current_page
     if request.method == 'POST':
         data = request.POST
-        user = authenticate(
-            username=data['username'],
-            password=data['password']
-        )
-        if user is None:
-            current_page['context']['reg_success'] = True
+        user = User.objects.filter(username=data['username']).exists()
+        if not user:
             user = User.objects.create_user(
                 username=data['username'],
                 password=data['password']
@@ -93,6 +89,7 @@ def registration_view(request):
                 'url': 'pages/index.html',
                 'context': context
             }
+            current_page['context']['reg_success'] = True
         else:
             current_page['context']['reg_success'] = False
     elif request.method == 'GET':
