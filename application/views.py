@@ -115,7 +115,8 @@ def create_post_view(request):
         if request.user.is_authenticated:
             post = Post(
                 author=request.user.id,
-                title=data['description'],
+                title=data['title'],
+                description=data['description'],
                 created_at=datetime.now(),
             )
             post.save()
