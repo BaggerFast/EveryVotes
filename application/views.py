@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
-
+from django.utils.timezone import now
+from application.models import Post
 
 current_page = dict()
 
@@ -26,7 +27,7 @@ def index_page(request):
     current_page = {
         'request': request,
         'url': 'pages/index.html',
-        'context': context
+        'context': context,
     }
     return get_page(current_page)
 
@@ -37,7 +38,7 @@ def login_view(request):
         data = request.POST
         user = authenticate(
             username=data['username'],
-            password=data['password']
+            password=data['password'],
         )
         if user:
             login(request, user)
@@ -67,7 +68,7 @@ def logout_view(request):
     current_page = {
         'request': request,
         'url': 'pages/index.html',
-        'context': context
+        'context': context,
     }
     return get_page(current_page)
 
@@ -87,7 +88,7 @@ def registration_view(request):
             current_page = {
                 'request': request,
                 'url': 'pages/index.html',
-                'context': context
+                'context': context,
             }
             current_page['context']['reg_success'] = True
         else:
@@ -97,6 +98,33 @@ def registration_view(request):
         current_page = {
             'request': request,
             'url': 'pages/registration.html',
-            'context': context
+            'context': context,
+        }
+    return get_page(current_page)
+
+
+def create_post_view(request):
+    global current_page
+    if request.method == 'POST':
+        data = request.POST
+        post = Post(
+            author=request.user.id,
+            title=data['description'],
+            visible=False,
+            created_at=now(),
+        )
+        post.save()
+        context = get_base_context('Home')
+        current_page = {
+            'request': request,
+            'url': 'pages/index.html',
+            'context': context,
+        }
+    elif request.method == 'GET':
+        context = get_base_context('Create')
+        current_page = {
+            'request': request,
+            'url': 'pages/create_post.html',
+            'context': context,
         }
     return get_page(current_page)
