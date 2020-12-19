@@ -1,8 +1,10 @@
+from datetime import datetime
+
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
-from django.utils.timezone import now
 from application.models import Post
+
 
 current_page = dict()
 
@@ -14,6 +16,7 @@ def get_base_context(title):
     context = dict()
     context['navbar'] = navbar
     context['title'] = title
+    context['messages'] = []
     return context
 
 
@@ -84,6 +87,7 @@ def registration_view(request):
                 password=data['password']
             )
             user.save()
+            login(request, user)
             context = get_base_context('Home')
             current_page = {
                 'request': request,
@@ -107,21 +111,24 @@ def create_post_view(request):
     global current_page
     if request.method == 'POST':
         data = request.POST
-        post = Post(
-            author=request.user.id,
-            title=data['description'],
-            visible=False,
-            created_at=now(),
-        )
-        post.save()
         context = get_base_context('Home')
+        if request.user.is_authenticated:
+            post = Post(
+                author=request.user.id,
+                title=data['description'],
+                created_at=datetime.now(),
+            )
+            post.save()
+            context['messages'] = [{'alert': 'success', 'message': 'A new post has been created!'}]
+        else:
+            context['messages'] = [{'alert': 'danger', 'message': 'Oops, you are not logged in!'}]
         current_page = {
             'request': request,
             'url': 'pages/index.html',
             'context': context,
         }
     elif request.method == 'GET':
-        context = get_base_context('Create')
+        context = get_base_context('Create post')
         current_page = {
             'request': request,
             'url': 'pages/create_post.html',

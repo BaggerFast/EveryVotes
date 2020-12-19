@@ -14,7 +14,7 @@
         {% endfor %}
         {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'create_post' %}">Post</a>
+            <a class="nav-link" href="{% url 'create_post' %}">Create post</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">Logout</a>

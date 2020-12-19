@@ -1,6 +1,6 @@
 {% extends 'app.html' %}
 {% block content %}
-  <h1>Post</h1>
+  <h1>Create post</h1>
   <form id="app" ref="form" @submit="checkForm" method="post" action="">
     {% csrf_token %}
     <div style="margin-top: 20px;">
@@ -14,7 +14,7 @@
     </div>
     <div class="mb-3">
       <label for="exampleInputDescription" class="form-label">Description</label>
-       <textarea rows="8" class="form-control" id="exampleInputDescription" name="description" v-model="description"></textarea>
+       <textarea rows="4" class="form-control" id="exampleInputDescription" name="description" v-model="description"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
   </form>
@@ -24,28 +24,27 @@
       delimiters: ['[[', ']]'],
       data: {
         errors: [],
-        title: null,
-        description: null
+        title: '',
+        description: ''
       },
       methods: {
         checkForm: function (e) {
-          if (this.title.length < 25 && this.title.length > 5 &&
-              this.description.length < 255 && this.description.length > 5 ){
+          if (this.title.length > 4 && this.title.length < 25 && this.description.length > 7 && this.description.length < 255) {
             return true;
           }
           this.errors = [];
-          if (this.title.length < 5) {
-            this.errors.push('Title is very short');
+          if (this.title.length <= 4) {
+            this.errors.push('Title length must be greater than 4.');
+          } else {
+            if (this.title.length >= 25) {
+              this.errors.push('Title length must be less than 25.');
+            }
           }
-          if (this.title.length > 25) {
-            this.errors.push('Title is very long');
-          }
-          if (this.description.length < 5) {
-            this.errors.push('Description is very short.');
-          }
-          else {
-            if (this.description.length > 255) {
-              this.errors.push('Length of description is over 255.');
+          if (this.description.length <= 7) {
+            this.errors.push('Description length must be greater than 7.');
+          } else {
+            if (this.description.length >= 255) {
+              this.errors.push('Description length must be less than 255.');
             }
           }
           e.preventDefault();
