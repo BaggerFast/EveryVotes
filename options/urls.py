@@ -14,14 +14,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from application import views
+from application.modules import *
 
 
 urlpatterns = [
-    path('', views.index_page, name='index'),
+    path('', index_page, name='index'),
     path('admin/', admin.site.urls, name='admin'),
-    path('login/', views.login_view, name='login'),
-    path('logout/', views.logout_view, name='logout'),
-    path('registration/', views.registration_view, name='registration'),
-    path('create_post/', views.create_post_view, name='create_post'),
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
+    path('registration/', registration_view, name='registration'),
+    path('create_post/', create_post_view, name='create_post'),
 ]

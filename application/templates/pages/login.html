@@ -1,14 +1,9 @@
 {% extends 'app.html' %}
 {% block content %}
   <h1>Login</h1>
-  <form id="app" ref="form" @submit="checkForm" method="post" action="">
+  <form id="app" ref="form" @submit="checkForm" method="post">
     {% csrf_token %}
     <div style="margin-top: 20px;">
-      {% if auth_success == False %}
-        <div class="alert alert-danger" role="alert">
-          Invalid username and password pair.
-        </div>
-      {% endif %}
       <div v-for="error in errors" class="alert alert-danger" role="alert">
         [[ error ]]
       </div>
@@ -20,6 +15,12 @@
     <div class="mb-3">
       <label for="exampleInputPassword" class="form-label">Password</label>
       <input type="password" class="form-control" id="exampleInputPassword" name="password" v-model="password">
+    </div>
+    <div class="mb-3 form-check">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled" checked disabled>
+      <label class="form-check-label" for="flexCheckCheckedDisabled">
+        Remember me
+      </label>
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
   </form>

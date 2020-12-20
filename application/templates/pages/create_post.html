@@ -1,7 +1,7 @@
 {% extends 'app.html' %}
 {% block content %}
   <h1>Create post</h1>
-  <form id="app" ref="form" @submit="checkForm" method="post" action="">
+  <form id="app" ref="form" @submit="checkForm" method="post">
     {% csrf_token %}
     <div style="margin-top: 20px;">
       <div v-for="error in errors" class="alert alert-danger" role="alert">
@@ -29,7 +29,8 @@
       },
       methods: {
         checkForm: function (e) {
-          if (this.title.length > 4 && this.title.length < 25 && this.description.length > 7 && this.description.length < 255) {
+          if (this.title.length > 4 && this.title.length < 25 &&
+          this.description.length > 7 && this.description.length < 255) {
             return true;
           }
           this.errors = [];
