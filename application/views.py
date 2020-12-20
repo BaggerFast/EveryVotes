@@ -17,7 +17,6 @@ class View:
         self.title = title
         self.url = url
         self.context = dict()
-        self.page = dict()
         self.get_base_context()
         self.get_messages()
         View.current = self
@@ -44,14 +43,5 @@ class View:
                 if self.context['messages'][i]['message'] == message['message']:
                     self.context['messages'][i]['viewed'] = False
 
-    def get_page(self):
-        self.page = {
-            'request': self.request,
-            'url': self.url,
-            'context': self.context,
-        }
-        return self.page
-
     def get_render_page(self):
-        self.get_page()
-        return render(self.page['request'], self.page['url'], self.page['context'])
+        return render(self.request, self.url, self.context)
