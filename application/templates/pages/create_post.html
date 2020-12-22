@@ -1,6 +1,6 @@
 {% extends 'app.html' %}
 {% block content %}
-  <h1>Create post</h1>
+  <h1>Create voting</h1>
   <form id="app" ref="form" @submit="checkForm" method="post">
     {% csrf_token %}
     <div style="margin-top: 20px;">
@@ -8,15 +8,18 @@
         [[ error ]]
       </div>
     </div>
-    <div class="mb-3">
-      <label for="exampleInputTitle" class="form-label">Title</label>
-      <input type="text" class="form-control" id="exampleInputTitle" name="title" v-model="title">
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputDescription" class="form-label">Description</label>
-       <textarea rows="4" class="form-control" id="exampleInputDescription" name="description" v-model="description"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Create</button>
+
+    {% for field in form %}
+      <div class="mb-3">
+        <label class="form-label">{{ field.label }}</label>
+        {{ field }}
+      </div>
+    {% endfor %}
+
+    {% if form.errors %}
+      {{ form.errors }}
+    {% endif %}
+    <button type="submit" class="btn btn-primary">Создать</button>
   </form>
   <script>
     const app = new Vue({
