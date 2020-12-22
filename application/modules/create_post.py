@@ -5,11 +5,10 @@ def create_post_view(request):
     if request.method == 'POST':
         data = request.POST
         if request.user.is_authenticated:
-            post = Post(
-                author=request.user.id,
+            post = Voting(
+                author=request.user,
                 title=data['title'],
                 description=data['description'],
-                created_at=datetime.now(),
             )
             post.save()
             View.current.push_message({'alert': 'success', 'message': 'A new post has been created!'})

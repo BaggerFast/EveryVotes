@@ -84,7 +84,8 @@ DATABASES = {
             'port': 27017,
             'username': 'h_rl',
             'password': 'vovochka2004'
-        }
+        },
+        # 'ENFORCE_SCHEMA': True
     }
 }
 

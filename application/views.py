@@ -3,7 +3,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from application.models import Post
+from application.models import Voting
 
 
 class View:
