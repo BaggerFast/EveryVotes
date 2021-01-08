@@ -19,6 +19,7 @@ from application.modules import *
 
 urlpatterns = [
     path('', index_page, name='index'),
+    path('vote/', vote_page, name='index'),
     path('admin/', admin.site.urls, name='admin'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
