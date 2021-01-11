@@ -7,7 +7,7 @@ from application.views import *
 
 def create_post_view(request):
     if not request.user.is_authenticated:
-        return redirect(reverse('main'))
+        return redirect(reverse('index'))
     if request.method == 'POST':
         data = request.POST
         if request.user.is_authenticated:
