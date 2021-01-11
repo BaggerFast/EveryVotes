@@ -20,6 +20,8 @@ class View:
         navbar = [{'url': 'index', 'label': 'Home'}]
         if self.request.user.is_authenticated:
             navbar.append({'url': 'create_post', 'label': 'Create post'})
+            navbar.append({'url': 'votings_list', 'label': "GlobalVote"})
+            navbar.append({'url': 'own_votings_list', 'label': "OwnVote"})
             navbar.append({'url': 'logout', 'label': "Logout"})
         else:
             navbar.append({'url': 'login', 'label': 'Login'})
