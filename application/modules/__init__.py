@@ -3,3 +3,4 @@ from application.modules.login import login_view
 from application.modules.logout import logout_view
 from application.modules.registration import registration_view
 from application.modules.create_post import create_post_view
+from application.modules.votings_list import votings_list_view

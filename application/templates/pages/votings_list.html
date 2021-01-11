@@ -1,0 +1,19 @@
+{% extends 'app.html' %}
+{% block content %}
+    <table border="1px">
+      <tr>
+        <td>Афтар</td>
+        <td>Название</td>
+        <td>Дата публикации</td>
+        <td>Дата окончания</td>
+      </tr>
+    {% for voting in votings %}
+      <tr>
+        <td>{{ voting.author }}</td>
+        <td>{{ voting.title }}</td>
+        <td>{{ voting.publish_at }}</td>
+        <td>{{ voting.finish_at }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
