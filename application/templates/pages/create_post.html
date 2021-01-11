@@ -3,12 +3,6 @@
   <h1>Create voting</h1>
   <form id="app" ref="form" @submit="checkForm" method="post">
     {% csrf_token %}
-    <div style="margin-top: 20px;">
-      <div v-for="error in errors" class="alert alert-danger" role="alert">
-        [[ error ]]
-      </div>
-    </div>
-
     {% for field in form %}
       <div class="mb-3">
         <label class="form-label">{{ field.label }}</label>
