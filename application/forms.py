@@ -4,7 +4,7 @@ from django import forms
 class CreateVotingForm(forms.Form):
     title = forms.CharField(
         label='Название',
-        max_length=255,
+        max_length=50,
         min_length=5,
         widget=forms.TextInput(
             attrs={
