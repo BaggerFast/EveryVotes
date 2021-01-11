@@ -15,7 +15,9 @@ class Voting(models.Model):
     closed = models.BooleanField(default=False)
 
     def check_closed(self):
-        return self.finish_at > timezone.now()
+        if self.finish_at < timezone.now():
+            self.closed = True
+            self.save()
 
     def __repr__(self):
         return self.finish_at
