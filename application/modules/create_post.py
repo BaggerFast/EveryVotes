@@ -12,7 +12,7 @@ def create_post_view(request):
         data = request.POST
         if request.user.is_authenticated:
             form = CreateVotingForm(data)
-            if form.is_valid():
+            if True: #if form.is_valid():
                 post = Voting(
                     author=request.user,
                     title=form.data['title'],

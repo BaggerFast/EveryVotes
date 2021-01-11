@@ -1,7 +1,8 @@
 {% extends 'app.html' %}
 {% block content %}
-    <table border="1px">
+    <table border="1px" class="table table-striped">
       <tr>
+        <td>ИД</td>
         <td>Афтар</td>
         <td>Название</td>
         <td>Дата публикации</td>
@@ -9,6 +10,7 @@
       </tr>
     {% for voting in votings %}
       <tr>
+        <td>{{ voting.id }}</td>
         <td>{{ voting.author }}</td>
         <td>{{ voting.title }}</td>
         <td>{{ voting.publish_at }}</td>
