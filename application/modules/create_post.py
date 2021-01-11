@@ -9,9 +9,8 @@ def create_post_view(request):
     if not request.user.is_authenticated:
         return redirect(reverse('index'))
     if request.method == 'POST':
-        data = request.POST
         if request.user.is_authenticated:
-            form = CreateVotingForm(data)
+            form = CreateVotingForm(request.POST)
             if form.is_valid():
                 post = Voting(
                     author=request.user,

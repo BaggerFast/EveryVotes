@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.utils import timezone
-from django.utils.datetime_safe import datetime
 from djongo import models
 
 
