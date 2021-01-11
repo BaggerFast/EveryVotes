@@ -1,7 +1,11 @@
 from application.views import *
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 
 def registration_view(request):
+    if request.user.is_authenticated:
+        return redirect(reverse('index'))
     if request.method == 'POST':
         data = request.POST
         user = User.objects.filter(username=data['username']).exists()
@@ -20,5 +24,5 @@ def registration_view(request):
             View.current.push_message({'alert': 'danger', 'message': 'A user with this username already exists.'})
             return redirect('/registration')
     elif request.method == 'GET':
-        View.current = View(request, 'Registration', 'pages/registration.html')
+        View.current = View(request, 'registration', 'pages/registration.html')
     return View.current.get_render_page()

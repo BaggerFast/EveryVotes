@@ -2,15 +2,29 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
-from application.models import Voting
+#from application.models import Voting
+
+
+def check_authenticated(request, page):
+    if not request.user.is_authenticated:
+        return redirect(reverse(page))
+    return True
 
 
 class View:
-    navbar = list()
-    navbar.append({'link': 'index', 'title': 'Home'})
-
     current = None
+
+    def get_navbar(self):
+        navbar = [{'url': 'index', 'label': 'Home'}]
+        if self.request.user.is_authenticated:
+            navbar.append({'url': 'create_post', 'label': 'Create post'})
+            navbar.append({'url': 'logout', 'label': "Logout"})
+        else:
+            navbar.append({'url': 'login', 'label': 'Login'})
+            navbar.append({'url': 'registration', 'label': 'Registration'})
+        return navbar
 
     def __init__(self, request, title, url):
         self.request = request
@@ -22,7 +36,7 @@ class View:
         View.current = self
 
     def get_base_context(self):
-        self.context['navbar'] = self.navbar
+        self.context['navbar'] = self.get_navbar()
         self.context['title'] = self.title
         self.context['messages'] = []
 

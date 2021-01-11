@@ -1,10 +1,13 @@
 from django.urls import reverse
 
 from application.forms import CreateVotingForm
+from application.models import Voting
 from application.views import *
 
 
 def create_post_view(request):
+    if not request.user.is_authenticated:
+        return redirect(reverse('main'))
     if request.method == 'POST':
         data = request.POST
         if request.user.is_authenticated:
@@ -14,6 +17,8 @@ def create_post_view(request):
                     author=request.user,
                     title=form.data['title'],
                     description=form.data['description'],
+                    publish_at=form.data['start_time'],
+                    finish_at=form.data['end_time']
                 )
                 post.save()
                 View.current.push_message({'alert': 'success', 'message': 'A new post has been created!'})
