@@ -3,12 +3,6 @@
   <h1>Create voting</h1>
   <form id="app" ref="form" @submit="checkForm" method="post">
     {% csrf_token %}
-    <div style="margin-top: 20px;">
-      <div v-for="error in errors" class="alert alert-danger" role="alert">
-        [[ error ]]
-      </div>
-    </div>
-
     {% for field in form %}
       <div class="mb-3">
         <label class="form-label">{{ field.label }}</label>
@@ -21,39 +15,4 @@
     {% endif %}
     <button type="submit" class="btn btn-primary">Создать</button>
   </form>
-  <script>
-    const app = new Vue({
-      el: '#app',
-      delimiters: ['[[', ']]'],
-      data: {
-        errors: [],
-        title: '',
-        description: ''
-      },
-      methods: {
-        checkForm: function (e) {
-          if (this.title.length > 4 && this.title.length < 25 &&
-          this.description.length > 7 && this.description.length < 255) {
-            return true;
-          }
-          this.errors = [];
-          if (this.title.length <= 4) {
-            this.errors.push('Title length must be greater than 4.');
-          } else {
-            if (this.title.length >= 25) {
-              this.errors.push('Title length must be less than 25.');
-            }
-          }
-          if (this.description.length <= 7) {
-            this.errors.push('Description length must be greater than 7.');
-          } else {
-            if (this.description.length >= 255) {
-              this.errors.push('Description length must be less than 255.');
-            }
-          }
-          e.preventDefault();
-        }
-      }
-    })
-  </script>
 {% endblock %}

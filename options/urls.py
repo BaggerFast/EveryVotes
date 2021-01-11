@@ -15,7 +15,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from application.modules import *
-
+from application.modules.own_python_list import own_votings_list_view
 
 urlpatterns = [
     path('', index_page, name='index'),
@@ -25,4 +25,6 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('registration/', registration_view, name='registration'),
     path('create_post/', create_post_view, name='create_post'),
+    path('votings_list/', votings_list_view, name='votings_list'),
+    path('own_votings_list/', own_votings_list_view, name='own_votings_list'),
 ]
