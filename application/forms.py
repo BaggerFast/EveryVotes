@@ -4,7 +4,7 @@ from django import forms
 class CreateVotingForm(forms.Form):
     title = forms.CharField(
         label='Название',
-        max_length=50,
+        max_length=255,
         min_length=5,
         widget=forms.TextInput(
             attrs={
@@ -31,6 +31,7 @@ class CreateVotingForm(forms.Form):
         widget=forms.DateInput(
             attrs={
                 'type': 'datetime-local',
+                'max': "2021-01-15T23:59",
                 'class': 'form-control',
                 'id': 'InputDateStart',
                 'v-model': 'date_start'
@@ -42,6 +43,7 @@ class CreateVotingForm(forms.Form):
         widget=forms.DateInput(
             attrs={
                 'type': 'datetime-local',
+                'max': "2021-01-15T23:59",
                 'class': 'form-control',
                 'id': 'InputDateEnd',
                 'v-model': 'date_end'

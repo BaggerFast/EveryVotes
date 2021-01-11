@@ -77,18 +77,10 @@ WSGI_APPLICATION = 'options.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'votings',
-        'CLIENT': {
-            'host': 'mongodb+srv://h_rl:vovochka2004@cluster0.udvcs.mongodb.net/votings',
-            'port': 27017,
-            'username': 'h_rl',
-            'password': 'vovochka2004'
-        },
-        # 'ENFORCE_SCHEMA': True
-    }
+     'ENGINE': 'django.db.backends.sqlite3',
+     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 }
-
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

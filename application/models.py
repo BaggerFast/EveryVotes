@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
+from django.db import models
 from django.utils import timezone
-from djongo import models
 
 
 class Voting(models.Model):
