@@ -72,6 +72,16 @@ h3 {
   -webkit-text-fill-color: transparent;
 }
 
+.gradient-text {
+  background: linear-gradient(to right, rgba(6, 99, 132, 0.8) 0%, rgb(67, 133, 151) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-background {
+  background: linear-gradient(to right, rgba(6, 99, 132, 0.8) 0%, rgb(67, 133, 151) 100%);
+}
+
 .main_text_block {
   margin: auto;
   text-align: center;
