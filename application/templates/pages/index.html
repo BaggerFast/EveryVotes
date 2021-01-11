@@ -1,10 +1,41 @@
 {% extends 'app.html' %}
 {% block content %}
+  <div id="'title" class="container title">
+    <h1>Принципиально новый</h1>
+    <h2>Опросник</h2>
+    <div class="logo">
+      <div class="logo-field"></div>
+      <div class="logo-field logo-2"></div>
+      <div class="logo-field logo-3"></div>
+    </div>
+
+  </div>
+  <h3>Красочное оформление</h3>
+  <div class="main_text_block">
+    <p>Повседневная практика показывает, что новая модель организационной деятельности представляет
+      собой интересный эксперимент проверки модели развития.</p>
+  </div>
+  <h3>Тонкие настройки</h3>
+  <div class="main_text_block">
+    <p>Повседневная практика показывает, что новая модель организационной деятельности представляет
+      собой интересный эксперимент проверки модели развития.</p>
+  </div>
+  <h3>Результаты и статистика</h3>
+  <div class="main_text_block">
+    <p>Повседневная практика показывает, что новая модель организационной деятельности представляет
+      собой интересный эксперимент проверки модели развития.</p>
+  </div>
+  <div class="container-sm m-auto mt-4">
+    <button type="button" class="btn btn-outline-light center-btn mt-4">Начать творить</button>
+  </div>
+
+{#  <div class="authorization">#}
+{#    {% if not request.user.is_authenticated %}#}
+{#      {% include 'registration.html' %}#}
+{#      {% include 'login.html' %}#}
+{#    {% endif %}#}
+{#  </div>#}
   <div>
-    {% if request.user.is_authenticated %}
-      <h1>Welcome to the club, <mark>{{ request.user }}</mark>!</h1>
-    {% else %}
-      <h1>Welcome to the club, buddy!</h1>
-    {% endif %}
+
   </div>
 {% endblock %}
