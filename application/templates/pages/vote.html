@@ -9,14 +9,19 @@
         {{ vote.description }}
       </p>
 
-      {% for variant in variants %}
-        <a class="btn btn-primary w-100 gradient-background"
-           style="margin-bottom: 16px; font-size: 20px; border: none;"
-           href=".?vid={{variant.id}}"
-        >
-          {{ variant.description }}
-        </a>
-      {% endfor %}
+      {% if not facts %}
+
+        {% for variant in variants %}
+          <a class="btn btn-primary w-100 gradient-background"
+             style="margin-bottom: 16px; font-size: 20px; border: none;"
+             href=".?vid={{variant.id}}">
+            {{ variant.description }}
+          </a>
+        {% endfor %}
+
+      {% else %}
+        <p>Вы уже проголосовали. Ваш ответ: "{{facts.0.variant.description}}"</p>
+      {% endif %}
 
       <div class="row">
 
