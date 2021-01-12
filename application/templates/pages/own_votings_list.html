@@ -10,6 +10,7 @@
         <td>Дата публикации</td>
         <td>Дата окончания</td>
         <td>Статус</td>
+        <td>Видимость</td>
       </tr>
     {% for voting in active_votings %}
       <tr>
@@ -19,6 +20,8 @@
         <td>{{ voting.publish_at }}</td>
         <td>{{ voting.finish_at }}</td>
         <td>{% if voting.closed == True%} Закрыт {%else%} Открыт {%endif%}</td>
+        <td>{{voting.visible</td>
+
       </tr>
     {% endfor %}
     </table>
@@ -34,6 +37,7 @@
         <td>Дата публикации</td>
         <td>Дата окончания</td>
         <td>Статус</td>
+        <td>Видимость</td>
       </tr>
     {% for voting in closed_votings %}
       <tr>
@@ -43,6 +47,7 @@
         <td>{{ voting.publish_at }}</td>
         <td>{{ voting.finish_at }}</td>
         <td>{% if voting.closed == True%} Закрыт {%else%} Открыт {%endif%}</td>
+        <td>{{voting.visible</td>
       </tr>
     {% endfor %}
     </table>
