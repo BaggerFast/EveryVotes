@@ -1,15 +1,15 @@
 {% extends 'app.html' %}
 {% block content %}
-  <h1>Global vote</h1>
-    <table border="1px" class="table table-striped">
-      <tr>
-        <td>ИД</td>
-        <td>Афтар</td>
-        <td>Название</td>
-        <td>Дата публикации</td>
-        <td>Дата окончания</td>
-        <td>Статус</td>
-      </tr>
+  <h1 class="gradient-text">Global vote</h1>
+  <table border="1px" class="table table-striped table-dark table-bordered">
+    <tr>
+      <th>ИД</th>
+      <th>Афтар</th>
+      <th>Название</th>
+      <th>Дата публикации</th>
+      <th>Дата окончания</th>
+      <th>Статус</th>
+    </tr>
     {% for voting in votings %}
       <tr>
         <td>{{ voting.id }}</td>
@@ -21,5 +21,5 @@
         <td>{% if voting.closed == True%} Закрыт {%else%} Открыт {%endif%}</td>
       </tr>
     {% endfor %}
-    </table>
+  </table>
 {% endblock %}
