@@ -10,13 +10,13 @@ main {
   margin-top: 80px;
   margin-left: auto;
   margin-right: auto;
-  padding: 10px;
+  /*padding: 10px;*/
 }
 
 @media screen and (min-width: 721px) {
   main {
     font-size: 16px;
-    /*min-width: 691px;*/
+    min-width: 691px;
     width: 60%;
   }
   body {
@@ -27,6 +27,7 @@ main {
   }
   .main_text_block {
     width: 74%;
+    padding: 10px;
   }
 }
 
@@ -39,7 +40,8 @@ main {
     /*width: 100%;*/
   }
   .title {
-    width: 80%;
+    width: 90%;
+    min-width: 300px;
   }
 }
 
