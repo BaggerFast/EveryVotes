@@ -14,13 +14,16 @@ class Voting(models.Model):
     visible = models.BooleanField(default=True)
     closed = models.BooleanField(default=False)
 
-    def check_closed(self):
-        if self.finish_at < timezone.now():
+    def check_settings(self):
+        if self.publish_at < timezone.now() < self.finish_at:
+            self.visible = True
+            self.save()
+        elif timezone.now() < self.publish_at:
+            self.visible = False
+            self.save()
+        elif self.finish_at < timezone.now():
             self.closed = True
             self.save()
-
-    def __repr__(self):
-        return self.finish_at
 
 
 class VoteVariant(models.Model):
