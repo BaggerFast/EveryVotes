@@ -2,31 +2,44 @@
 {% load static %}
 {% block content %}
     <div class="mx-auto" style="width: 591px; padding: 24px; background-color: black;">
-      <h1 class="text-center text-primary gradient-text" style="margin-bottom: 32px; font-size: 48px;">Название</h1>
 
-      <p class="text-center" style="margin-bottom: 32px; font-size: 20px; color: white;">Повседневная практика показывает, что новая модель организационной деятельности представляет собой интересный эксперимент проверки модели развития.</p>
+      <h1 class="text-center text-primary gradient-text" style="margin-bottom: 32px; font-size: 48px;">{{ vote.title }}</h1>
 
-      <button type="button" class="btn btn-primary w-100 gradient-background" style="margin-bottom: 16px; font-size: 20px; border: none;">Вариант 1</button>
-      <button type="button" class="btn btn-primary w-100 gradient-background" style="margin-bottom: 32px; font-size: 20px; border: none;">Вариант 2</button>
+      <p class="text-center" style="margin-bottom: 32px; font-size: 20px; color: white;">
+        {{ vote.description }}
+      </p>
+
+      {% for variant in variants %}
+        <a class="btn btn-primary w-100 gradient-background"
+           style="margin-bottom: 16px; font-size: 20px; border: none;"
+           href=".?vid={{variant.id}}"
+        >
+          {{ variant.description }}
+        </a>
+      {% endfor %}
 
       <div class="row">
+
         <div class="col">
           <div class="row justify-content-start m-0">
             <img class="col-auto p-0" src="{% static 'svg/thumbs-up.svg' %}" width="24" height="24" style="margin-right: 20px; cursor: pointer;">
             <img class="col-auto p-0" src="{% static 'svg/thumbs-down.svg' %}" width="24" height="24" style="cursor: pointer;">
           </div>
         </div>
+
         <div class="col">
           <div class="row justify-content-center m-0">
             <img class="col-auto p-0" src="{% static 'svg/globe.svg' %}" width="24" height="24" style="margin-right: 20px; cursor: pointer;">
             <img class="col-auto p-0" src="{% static 'svg/trash.svg' %}" width="24" height="24" style="cursor: pointer;">
           </div>
         </div>
+
         <div class="col">
           <div class="row justify-content-end m-0">
             <img class="col-auto p-0" src="{% static 'svg/flag.svg' %}" width="24" height="24" style="cursor: pointer;">
           </div>
         </div>
+
       </div>
     </div>
 {% endblock %}

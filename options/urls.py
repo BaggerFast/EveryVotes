@@ -19,7 +19,7 @@ from application.modules.own_python_list import own_votings_list_view
 
 urlpatterns = [
     path('', index_page, name='index'),
-    path('vote/', vote_page, name='index'),
+    path('vote/<int:id>/', vote_page, name='vote'),
     path('admin/', admin.site.urls, name='admin'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),

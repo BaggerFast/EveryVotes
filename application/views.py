@@ -7,22 +7,18 @@ from django.contrib.auth import authenticate, login, logout
 #from application.models import Voting
 
 
-def check_authenticated(request, page):
-    if not request.user.is_authenticated:
-        return redirect(reverse(page))
-    return True
-
-
 class View:
     current = None
 
     def get_navbar(self):
         navbar = [{'url': 'index', 'label': 'Home'}]
         if self.request.user.is_authenticated:
-            navbar.append({'url': 'create_post', 'label': 'Create post'})
-            navbar.append({'url': 'votings_list', 'label': "GlobalVote"})
-            navbar.append({'url': 'own_votings_list', 'label': "OwnVote"})
-            navbar.append({'url': 'logout', 'label': "Logout"})
+            navbar += [
+                {'url': 'create_post', 'label': 'Create post'},
+                {'url': 'votings_list', 'label': "GlobalVote"},
+                {'url': 'own_votings_list', 'label': "OwnVote"},
+                {'url': 'logout', 'label': "Logout"},
+            ]
         else:
             navbar.append({'url': 'login', 'label': 'Login'})
             navbar.append({'url': 'registration', 'label': 'Registration'})
