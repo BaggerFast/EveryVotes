@@ -1,3 +1,6 @@
+from django.shortcuts import redirect
+from django.urls import reverse
+
 from application.views import *
 from application.models import Voting
 

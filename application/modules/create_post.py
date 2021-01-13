@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.urls import reverse
 
 from application.forms import CreateVotingForm
