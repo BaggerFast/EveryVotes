@@ -7,48 +7,119 @@
 {% block content %}
     <div class="mx-auto" style="width: 591px; padding: 24px; background-color: black;">
 
-      <h1 class="text-center text-primary gradient-text" style="margin-bottom: 32px; font-size: 48px;">{{ vote.title }}</h1>
+      <h1
+              class="text-center text-primary gradient-text"
+              style="margin-bottom: 32px; font-size: 48px;"
+      >{{ vote.title }}</h1>
 
-      <p class="text-center" style="margin-bottom: 32px; font-size: 20px; color: white;">
-        {{ vote.description }}
-      </p>
+      <p
+              class="text-center"
+              style="margin-bottom: 32px; font-size: 20px; color: white;"
+      >{{ vote.description }}</p>
+
 
       {% if not facts %}
-
-        {% for variant in variants %}
-          <a class="btn btn-primary w-100 gradient-background"
-             style="margin-bottom: 16px; font-size: 20px; border: none;"
-             href=".?vid={{variant.id}}">
-            {{ variant.description }}
-          </a>
-        {% endfor %}
-
+        <form method="post" action="{% url 'vote' vote.id %}">
+          {% csrf_token %}
+          {% for variant in variants %}
+            <button type="submit"
+                    class="btn btn-primary w-100 gradient-background"
+                    style="margin-bottom: 16px; font-size: 20px; border: none;"
+                    name="action"
+                    value="{{variant.id}}"
+            >
+              {{ variant.description }}
+            </button>
+          {% endfor %}
+        </form>
       {% else %}
         <p>Вы уже проголосовали. Ваш ответ: "{{facts.0.variant.description}}"</p>
       {% endif %}
 
-      <div class="row">
+      {% if errors %}
+        <ul>
+          {% for error in errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
 
+      <div class="row">
         <div class="col">
           <div class="row justify-content-start m-0">
-            <img class="col-auto p-0" src="{% static 'svg/thumbs-up.svg' %}" width="24" height="24" style="margin-right: 20px; cursor: pointer;">
-            <img class="col-auto p-0" src="{% static 'svg/thumbs-down.svg' %}" width="24" height="24" style="cursor: pointer;">
+            <img
+                    class="col-auto p-0"
+                    src="{% static 'svg/thumbs-up.svg' %}"
+                    width="24"
+                    height="24"
+                    style="margin-right: 20px; cursor: pointer;"
+                    alt="Нравится"
+                    title="Нравится"
+                    data-bs-toggle="tooltip" data-bs-placement="top"
+            >
+            <img
+                    class="col-auto p-0"
+                    src="{% static 'svg/thumbs-down.svg' %}"
+                    width="24"
+                    height="24"
+                    style="cursor: pointer;"
+                    alt="Не нравится"
+                    title="Не нравится"
+                    data-bs-toggle="tooltip" data-bs-placement="top"
+            >
           </div>
         </div>
 
         <div class="col">
           <div class="row justify-content-center m-0">
-            <img class="col-auto p-0" src="{% static 'svg/globe.svg' %}" width="24" height="24" style="margin-right: 20px; cursor: pointer;">
-            <img class="col-auto p-0" src="{% static 'svg/trash.svg' %}" width="24" height="24" style="cursor: pointer;">
+            <img
+                    class="col-auto p-0"
+                    src="{% static 'svg/globe.svg' %}"
+                    width="24"
+                    height="24"
+                    style="margin-right: 20px; cursor: pointer;"
+                    alt="Поделиться"
+                    title="Поделиться"
+                    data-bs-toggle="tooltip" data-bs-placement="top"
+            >
+            <img
+                    class="col-auto p-0"
+                    src="{% static 'svg/trash.svg' %}"
+                    width="24"
+                    height="24"
+                    style="cursor: pointer;"
+                    alt="Пожаловаться"
+                    title="Пожаловаться"
+                    data-bs-toggle="tooltip" data-bs-placement="top"
+            >
           </div>
         </div>
 
         <div class="col">
           <div class="row justify-content-end m-0">
-            <img class="col-auto p-0" src="{% static 'svg/flag.svg' %}" width="24" height="24" style="cursor: pointer;">
+            <img
+                    class="col-auto p-0"
+                    src="{% static 'svg/flag.svg' %}"
+                    width="24"
+                    height="24"
+                    style="cursor: pointer;"
+                    alt="Добавить в избранное"
+                    title="Добавить в избранное"
+                    data-bs-toggle="tooltip" data-bs-placement="top"
+            >
           </div>
         </div>
 
       </div>
     </div>
+{% endblock %}
+
+
+{% block extra_js %}
+  <script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+  </script>
 {% endblock %}
