@@ -1,3 +1,6 @@
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
 from application.views import *
 
 

@@ -1,11 +1,10 @@
+from django.contrib.auth import login
+from django.contrib.auth.models import User
 from application.views import *
-from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.shortcuts import redirect
 
 
 def registration_view(request):
-    if request.user.is_authenticated:
-        return redirect(reverse('index'))
     if request.method == 'POST':
         data = request.POST
         user = User.objects.filter(username=data['username']).exists()

@@ -1,13 +1,13 @@
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 from django.urls import reverse
-
 from application.forms import CreateVotingForm
 from application.models import Voting
 from application.views import *
 
 
+@login_required
 def create_post_view(request):
-    if not request.user.is_authenticated:
-        return redirect(reverse('index'))
     if request.method == 'POST':
         data = request.POST
         if request.user.is_authenticated:

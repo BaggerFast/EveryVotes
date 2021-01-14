@@ -1,9 +1,10 @@
+from django.contrib.auth import login, authenticate
+from django.shortcuts import redirect
+
 from application.views import *
 
 
 def login_view(request):
-    if request.user.is_authenticated:
-        return redirect(reverse('index'))
     if request.method == 'POST':
         data = request.POST
         user = authenticate(

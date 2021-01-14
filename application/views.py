@@ -14,8 +14,8 @@ class View:
                 {'url': 'logout', 'label': "Logout"},
             ]
         else:
-            navbar.append({'url': 'login', 'label': 'Login'})
-            navbar.append({'url': 'registration', 'label': 'Registration'})
+            navbar += [{'url': 'login', 'label': 'Login'},
+                       {'url': 'registration', 'label': 'Registration'}]
         return navbar
 
     def __init__(self, request, title, url):
