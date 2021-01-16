@@ -4,9 +4,11 @@
   <form id="app" ref="form" @submit="checkForm" method="post">
     {% csrf_token %}
     <div style="margin-top: 20px;">
+      {% if error %}
       <div v-for="error in errors" class="alert alert-danger" role="alert">
         [[ error ]]
       </div>
+      {% endif %}
     </div>
     <div class="mb-3">
       <label for="exampleInputFirstName" class="form-label">First name</label>
