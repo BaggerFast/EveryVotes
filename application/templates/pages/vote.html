@@ -24,7 +24,11 @@
         {% endfor %}
 
       {% else %}
-        <p>Вы уже проголосовали. Ваш ответ: "{{facts.0.variant.description}}"</p>
+        <p>
+          You already voted. You have chosed: "{{facts.0.variant.description}}".
+          For that variant have voted {{ variant_votes }} people.
+          Total votes {{ total_votes }}.
+        </p>
       {% endif %}
 
       <div class="row">

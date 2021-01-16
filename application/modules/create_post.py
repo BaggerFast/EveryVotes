@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.urls import reverse
 from application.forms import VotingForm
-from application.models import Voting
+from application.models import Voting, VoteVariant
 from application.views import *
 
 
@@ -18,9 +18,20 @@ def create_post_view(request):
                     title=form.data['title'],
                     description=form.data['description'],
                     publish_at=form.data['start_time'],
-                    finish_at=form.data['end_time']
+                    finish_at=form.data['end_time'],
+
+                )
+                post_variants = VoteVariant(
+                    voting=post,
+                    description=form.data['description1']
                 )
                 post.save()
+                post_variants.save()
+                post_variants = VoteVariant(
+                    voting=post,
+                    description=form.data['description2']
+                )
+                post_variants.save()
                 View.current.push_message({'alert': 'success', 'message': 'A new post has been created!'})
                 View.current.context['form'] = form
                 return redirect(reverse('index'))
