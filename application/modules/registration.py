@@ -6,34 +6,34 @@ from application.views import *
 from django.shortcuts import redirect
 
 
+def make_message(alert: str, message: str, page: str):
+    View.current.push_message({'alert': alert, 'message': message})
+    return redirect(page)
+
+
 def registration_view(request):
     if request.method == 'POST':
         data = request.POST
-        form = RegistrationForm()
+        form = RegistrationForm(data)
         if form.is_valid():
-            user = User.objects.filter(username=data['username']).exists()
-            if request.POST.password == request.POST.repeat_password:
-                if not user :
+            if data['password'] == data['repeat_password']:
+                user = User.objects.filter(username=data['username']).exists()
+                if not user:
                     user = User.objects.create_user(
                         first_name=data['first_name'],
                         last_name=data['last_name'],
                         username=data['username'],
                         password=data['password'],
-
                     )
                     user.save()
                     login(request, user)
-                    View.current.push_message({'alert': 'success', 'message': 'New user has been registered successfully!'})
-                    return redirect('/')
+                    make_message(alert='success', message='New user has been registered successfully!', page='/')
                 else:
-                    View.current.push_message({'alert': 'danger', 'message': 'A user with this username already exists.'})
-                    return redirect('/registration')
+                    make_message(alert='danger', message= 'A user with this username already exists.', page='/registration')
             else:
-                View.current.push_message({'alert': 'danger', 'message': 'Passwords don\'t match'})
-                return redirect('/registration')
+                make_message(alert='danger', message='Passwords don\'t same', page='/registration')
         else:
-            View.current.push_message({'alert': 'danger', 'message': 'Form is not valid'})
-            return redirect('/registration')
+            make_message(alert='danger', message='Form is not valid', page='/registration')
     elif request.method == 'GET':
         View.current = View(request, 'registration', 'pages/registration.html')
         View.current.context['form'] = RegistrationForm()

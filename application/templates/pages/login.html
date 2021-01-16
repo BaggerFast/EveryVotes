@@ -4,18 +4,18 @@
   <form id="app" ref="form" @submit="checkForm" method="post">
     {% csrf_token %}
     <div style="margin-top: 20px;">
+     {% if error %}
       <div v-for="error in errors" class="alert alert-danger" role="alert">
         [[ error ]]
       </div>
+      {% endif %}
     </div>
-    <div class="mb-3">
-      <label for="exampleInputUsername" class="form-label">Username</label>
-      <input type="text" class="form-control" id="exampleInputUsername" name="username" v-model="username">
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword" name="password" v-model="password">
-    </div>
+   {% for field in form %}
+      <div class="mb-3">
+        <label class="form-label">{{ field.label }}</label>
+        {{ field }}
+      </div>
+    {% endfor %}
     <div class="mb-3 form-check">
       <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled" checked disabled>
       <label class="form-check-label" for="flexCheckCheckedDisabled">
@@ -24,30 +24,4 @@
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
   </form>
-  <script>
-    const app = new Vue({
-      el: '#app',
-      delimiters: ['[[', ']]'],
-      data: {
-        errors: [],
-        username: null,
-        password: null
-      },
-      methods: {
-        checkForm: function (e) {
-          if (this.username && this.password) {
-            return true;
-          }
-          this.errors = [];
-          if (!this.username) {
-            this.errors.push('Username required.');
-          }
-          if (!this.password) {
-            this.errors.push('Password required.');
-          }
-          e.preventDefault();
-        }
-      }
-    })
-  </script>
 {% endblock %}
