@@ -1,0 +1,47 @@
+footer {
+  margin: auto;
+  margin-top: 93px;
+  color: #7f7f7f;
+}
+
+@media screen and (min-width: 721px) {
+  footer {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  footer {
+    width: 100%;
+  }
+}
+
+.vote-card {
+  border-width: 2px;
+  border-color: #2e2e2e;
+  background-color: black;
+}
+
+.vote-card-with-margin {
+  margin-bottom: 38px;
+}
+
+.vote-title {
+  font-size: 28px;
+}
+
+.vote-description {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.vote-label {
+  font-size: 16px;
+  color: #bfbfbf;
+}
+
+.vote-submit-wrapper {
+  text-align: right;
+  margin-top: 19px;
+  font-size: 16px;
+}

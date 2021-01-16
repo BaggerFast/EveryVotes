@@ -1,18 +1,66 @@
 {% extends 'app.html' %}
-{% block content %}
-  <h1 class="gradient-text">Create voting</h1>
-  <form id="app" ref="form" @submit="checkForm" method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      <div class="mb-3">
-        <label class="form-label">{{ field.label }}</label>
-        {{ field }}
-      </div>
-    {% endfor %}
 
-    {% if form.errors %}
-      {{ form.errors }}
-    {% endif %}
-    <button type="submit" class="btn btn-primary gradient-background" style="border: none;">Создать</button>
-  </form>
+
+{% load static %}
+
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/create_post.css' %}" />
+{% endblock %}
+
+
+{% block content %}
+    <form id="app" ref="form" @submit="checkForm" method="post">
+      {% csrf_token %}
+
+      <div class="card vote-card vote-card-with-margin">
+        <div class="card-body">
+          <p class="vote-title">Тестирование для котиков</p>
+          <div class="gradient-background" style="height: 2px;"></div>
+          <p class="vote-description">Не следует, однако забывать, что сложившаяся структура организации представляет собой интересный эксперимент проверки форм развития.</p>
+          <div class="gradient-background" style="height: 2px; opacity: 50%;"></div>
+        </div>
+      </div>
+
+      <div class="card vote-card vote-card-with-margin">
+        <div class="card-body">
+          <input type="text" class="form-control" id="InputDateStart" v-model="date_start" value="Где находится морская черепашка по имени Наташка?" required="">
+          <div class="vote-radio-div">
+            <input class="vote-radio" type="radio" name="1-radio" aria-label="Radio button for following text input">
+          </div>
+        </div>
+      </div>
+
+      <div class="card vote-card">
+        <div class="card-body">
+          <div class="mb-3">
+              <label class="form-label vote-label">{{ form.start_time.label }}</label>
+              {{ form.start_time }}
+          </div>
+          <div class="mb-3">
+              <label class="form-label vote-label">{{ form.end_time.label }}</label>
+              {{ form.end_time }}
+          </div>
+        </div>
+      </div>
+
+      <div class="vote-submit-wrapper">
+        <button type="submit" class="btn btn-primary gradient-background" style="border: none;">Опубликовать</button>
+      </div>
+    </form>
+<!--  <h1 class="gradient-text">Create voting</h1>-->
+<!--  <form id="app" ref="form" @submit="checkForm" method="post">-->
+<!--    {% csrf_token %}-->
+<!--    {% for field in form %}-->
+<!--      <div class="mb-3">-->
+<!--        <label class="form-label">{{ field.label }}</label>-->
+<!--        {{ field }}-->
+<!--      </div>-->
+<!--    {% endfor %}-->
+
+<!--    {% if form.errors %}-->
+<!--      {{ form.errors }}-->
+<!--    {% endif %}-->
+<!--    <button type="submit" class="btn btn-primary gradient-background" style="border: none;">Создать</button>-->
+<!--  </form>-->
 {% endblock %}
