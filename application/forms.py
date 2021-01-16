@@ -51,3 +51,65 @@ class CreateVotingForm(forms.Form):
         )
     )
 
+
+class RegistrationForm(forms.Form):
+    first_name = forms.CharField(
+        label='First name',
+        max_length=15,
+        min_length=4,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'id': 'InputFirstName',
+                'v-model': 'first_name',
+            }
+        )
+    )
+    last_name = forms.CharField(
+        label='Last name',
+        max_length=15,
+        min_length=4,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'id': 'InputLastName',
+                'v-model': 'last_name'
+            }
+        )
+    )
+    username = forms.CharField(
+        label='Username',
+        max_length=15,
+        min_length=3,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'id': 'InputUserName',
+                'v-model': 'username'
+            }
+        )
+    )
+    password = forms.CharField(
+        label='Password',
+        max_length=20,
+        min_length=6,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'id': 'InputPassword',
+                'v-model': 'password'
+            }
+        )
+    )
+    repeat_password = forms.CharField(
+        label='Repeat password',
+        max_length=20,
+        min_length=6,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'id': 'InputRepeatPassword',
+                'v-model': 'repeat_password'
+            }
+        )
+    )

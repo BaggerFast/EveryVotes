@@ -1,0 +1,35 @@
+{% extends 'app.html' %}
+{% block content %}
+  <h1>Registration</h1>
+  <form id="app" ref="form" @submit="checkForm" method="post">
+    {% csrf_token %}
+    <div style="margin-top: 20px;">
+      {% if error %}
+      <div v-for="error in errors" class="alert alert-danger" role="alert">
+        [[ error ]]
+      </div>
+      {% endif %}
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputFirstName" class="form-label">First name</label>
+      <input type="text" class="form-control" id="exampleInputFirstName" name="first_name" v-model="first_name">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputLastName" class="form-label">Last name</label>
+      <input type="text" class="form-control" id="exampleInputLastName" name="last_name" v-model="last_name">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputUsername" class="form-label">Username</label>
+      <input type="text" class="form-control" id="exampleInputUsername" name="username" v-model="username">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword" name="password" v-model="password">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputRepeatPassword" class="form-label">Repeat password</label>
+      <input type="password" class="form-control" id="exampleInputRepeatPassword" v-model="repeat_password">
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+{% endblock %}
