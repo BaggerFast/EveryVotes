@@ -135,4 +135,14 @@ h3 {
   top: -13.5em;
   left: -1em;
   height: 3em;
-}r
+}
+
+.grey-text {
+  color: #bfbfbf;
+}
+
+.registration-top-text {
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+}

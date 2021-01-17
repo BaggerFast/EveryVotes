@@ -1,0 +1,12 @@
+{% block login %}
+  <form id="app" ref="form" @submit="checkForm" method="post">
+    {% csrf_token %}
+    <p class="grey-text registration-top-text">Новый пользователь?<br>Зарегистрируетесь!</p>
+    <input type="text" placeholder="Ваше имя" name="first_name" class="form-control" id="InputFirstName" v-model="first_name" maxlength="15" minlength="3" required="" autocomplete="off" style="margin-bottom: 16px;">
+    <input type="text" placeholder="Ваша фамилия" name="last_name" class="form-control" id="InputLastName" v-model="last_name" maxlength="15" minlength="3" required="" autocomplete="off" style="margin-bottom: 16px;">
+    <input type="text" placeholder="Имя пользователя" name="username" class="form-control" id="InputUserName" v-model="username" maxlength="15" minlength="3" required="" autocomplete="off" style="margin-bottom: 16px;">
+    <input type="password" placeholder="Пароль" name="password" class="form-control" id="InputPassword" v-model="password" maxlength="20" minlength="6" required="" autocomplete="off" style="margin-bottom: 16px;">
+    <input type="password" placeholder="Повторите пароль" name="repeat_password" class="form-control" id="InputRepeatPassword" v-model="repeat_password" maxlength="20" minlength="6" required="" autocomplete="off" style="margin-bottom: 16px;">
+    <button type="submit" class="btn btn-primary gradient-background" style="border: none; width: 100%;">Зарегистрироваться</button>
+  </form>
+{% endblock %}

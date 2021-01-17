@@ -1,0 +1,9 @@
+{% block login %}
+  <form id="app" ref="form" @submit="checkForm" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Имя пользователя" name="username" class="form-control" id="InputUserName" v-model="username" maxlength="15" minlength="3" required="" autocomplete="off" style="margin-bottom: 16px;">
+    <input type="password" placeholder="Пароль" name="password" class="form-control" id="InputPassword" v-model="password" maxlength="20" minlength="5" required="" autocomplete="off" style="margin-bottom: 16px;">
+    <button type="submit" class="btn btn-primary gradient-background" style="border: none;">Войти</button>
+    <p class="grey-text" style="float: right; margin-top: 6px;">Забыли пароль?</p>
+  </form>
+{% endblock %}
