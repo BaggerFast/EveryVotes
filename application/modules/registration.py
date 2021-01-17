@@ -22,13 +22,13 @@ def registration_view(request):
                     )
                     user.save()
                     login(request, user)
-                    return View.push_message(alert='success', message='New user has been registered successfully!', page='/')
+                    return View.push_message(alert='success', message='New user has been registered successfully!', page='/' + Url.main)
                 else:
-                    return View.push_message(alert='danger', message= 'A user with this username already exists.', page='/registration')
+                    return View.push_message(alert='danger', message= 'A user with this username already exists.', page='/' + Url.registration)
             else:
-                return View.push_message(alert='danger', message='Passwords don\'t same', page='/registration')
+                return View.push_message(alert='danger', message='Passwords don\'t same', page='/' + Url.registration)
         else:
-            return View.push_message(alert='danger', message='Form is not valid', page='/registration')
+            return View.push_message(alert='danger', message='Form is not valid', page='/' + Url.registration)
     elif request.method == 'GET':
         View.current = View(request, 'registration', 'pages/registration.html')
         View.current.context['form'] = RegistrationForm()

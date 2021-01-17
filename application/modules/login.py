@@ -14,11 +14,11 @@ def login_view(request):
             )
             if user:
                 login(request, user)
-                return View.push_message(alert='success', message='You have successfully logged in!', page='/')
+                return View.push_message(alert='success', message='You have successfully logged in!', page='/' + Url.main)
             else:
-                return View.push_message(alert='danger', message='Invalid username and password pair.', page='/login')
+                return View.push_message(alert='danger', message='Invalid username and password pair.', page='/' + Url.login)
         else:
-            return View.push_message(alert='danger', message='Invalid username and password pair.', page='/login')
+            return View.push_message(alert='danger', message='Invalid username and password pair.', page='/' + Url.login)
     elif request.method == 'GET':
         View.current = View(request, 'Login', 'pages/login.html')
         View.current.context['form'] = AuthenticateForm()

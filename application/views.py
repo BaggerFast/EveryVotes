@@ -1,21 +1,33 @@
 from django.shortcuts import render, redirect
 
 
+class Url:
+    admin = 'admin'
+    main = ''
+    vote = 'vote/<int:id>'
+    login = 'login'
+    logout = 'logout'
+    registration = 'registration'
+    create_vote = 'create_vote'
+    votings_list = 'votings_list'
+    own_votings_list = 'own_votings_list'
+
+
 class View:
     current = None
 
     def get_navbar(self):
-        navbar = [{'url': 'index', 'label': 'Home'}]
+        navbar = [{'url': Url.main, 'label': 'Home'}]
         if self.request.user.is_authenticated:
             navbar += [
-                {'url': 'create_post', 'label': 'Create post'},
-                {'url': 'votings_list', 'label': "GlobalVote"},
-                {'url': 'own_votings_list', 'label': "OwnVote"},
-                {'url': 'logout', 'label': "Logout"},
+                {'url': Url.create_vote, 'label': 'Create post'},
+                {'url': Url.votings_list, 'label': "GlobalVote"},
+                {'url': Url.own_votings_list, 'label': "OwnVote"},
+                {'url': Url.logout, 'label': "Logout"},
             ]
         else:
-            navbar += [{'url': 'login', 'label': 'Login'},
-                       {'url': 'registration', 'label': 'Registration'}]
+            navbar += [{'url': Url.login, 'label': 'Login'},
+                       {'url': Url.registration, 'label': 'Registration'}]
         return navbar
 
     def __init__(self, request, title, url):
