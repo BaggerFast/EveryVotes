@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 class View:
@@ -40,7 +40,11 @@ class View:
                     self.context['messages'].append(message)
                 message['viewed'] = True
 
-    def push_message(self, message):
+    def push_message(alert: str, message: str, page: str):
+        View.current.message({'alert': alert, 'message': message})
+        return redirect(page)
+
+    def message(self, message):
         message['viewed'] = False
         if not any(i['message'] == message['message'] for i in self.context['messages']):
             self.context['messages'].append(message)

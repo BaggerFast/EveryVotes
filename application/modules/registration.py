@@ -6,11 +6,6 @@ from application.views import *
 from django.shortcuts import redirect
 
 
-def make_message(alert: str, message: str, page: str):
-    View.current.push_message({'alert': alert, 'message': message})
-    return redirect(page)
-
-
 def registration_view(request):
     if request.method == 'POST':
         data = request.POST
@@ -27,13 +22,13 @@ def registration_view(request):
                     )
                     user.save()
                     login(request, user)
-                    make_message(alert='success', message='New user has been registered successfully!', page='/')
+                    return View.push_message(alert='success', message='New user has been registered successfully!', page='/')
                 else:
-                    make_message(alert='danger', message= 'A user with this username already exists.', page='/registration')
+                    return View.push_message(alert='danger', message= 'A user with this username already exists.', page='/registration')
             else:
-                make_message(alert='danger', message='Passwords don\'t same', page='/registration')
+                return View.push_message(alert='danger', message='Passwords don\'t same', page='/registration')
         else:
-            make_message(alert='danger', message='Form is not valid', page='/registration')
+            return View.push_message(alert='danger', message='Form is not valid', page='/registration')
     elif request.method == 'GET':
         View.current = View(request, 'registration', 'pages/registration.html')
         View.current.context['form'] = RegistrationForm()
