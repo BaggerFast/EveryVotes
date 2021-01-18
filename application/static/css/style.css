@@ -59,6 +59,10 @@ h1 {
   position: relative;
 }
 
+.title-with-padding {
+  padding: 20px 0;
+}
+
 h2 {
   /*text-transform: capitalize;*/
   margin: auto;
