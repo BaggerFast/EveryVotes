@@ -1,5 +1,7 @@
-from django import forms
+from datetime import datetime
 
+from django import forms
+from django.utils import timezone
 
 class VotingForm(forms.Form):
     title = forms.CharField(
@@ -28,12 +30,38 @@ class VotingForm(forms.Form):
             }
         )
     )
+    description1 = forms.CharField(
+        label='Vote variant 1',
+        max_length=20,
+        widget=forms.Textarea(
+            attrs={
+                'type': "text",
+                'rows': '1',
+                'class': 'form-control',
+                'id': 'InputDescription1',
+                'v-model': 'description1'
+            }
+        )
+    )
+    description2 = forms.CharField(
+        label='Vote variant 2',
+        max_length=20,
+        widget=forms.Textarea(
+            attrs={
+                'type': "text",
+                'rows': '1',
+                'class': 'form-control',
+                'id': 'InputDescription2',
+                'v-model': 'description2'
+            }
+        )
+    )
     start_time = forms.DateTimeField(
-        label="Дата начала",
+        label="Start at",
         widget=forms.DateInput(
             attrs={
                 'type': 'datetime-local',
-                'max': "2021-01-15T23:59",
+                'max': "2021-01-30T23:59",
                 'class': 'form-control',
                 'id': 'InputDateStart',
                 'v-model': 'date_start'
@@ -41,11 +69,11 @@ class VotingForm(forms.Form):
         )
     )
     end_time = forms.DateTimeField(
-        label="Дата Окончания",
+        label="Finish at",
         widget=forms.DateInput(
             attrs={
                 'type': 'datetime-local',
-                'max': "2021-01-15T23:59",
+                'max': "2021-01-30T23:59",
                 'class': 'form-control',
                 'id': 'InputDateEnd',
                 'v-model': 'date_end'

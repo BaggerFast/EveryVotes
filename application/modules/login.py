@@ -1,6 +1,4 @@
 from django.contrib.auth import login, authenticate
-from django.shortcuts import redirect
-
 from application.forms import AuthenticateForm
 from application.views import *
 
@@ -16,14 +14,11 @@ def login_view(request):
             )
             if user:
                 login(request, user)
-                View.current.push_message({'alert': 'success', 'message': 'You have successfully logged in!'})
-                return redirect('/')
+                return View.push_message(alert='success', message='You have successfully logged in!', page='/' + Url.main)
             else:
-                View.current.push_message({'alert': 'danger', 'message': 'Invalid username and password pair.'})
-                return redirect('/login')
+                return View.push_message(alert='danger', message='Invalid username and password pair.', page='/' + Url.login)
         else:
-            View.current.push_message({'alert': 'danger', 'message': 'Invalid username and password pair.'})
-            return redirect('/login')
+            return View.push_message(alert='danger', message='Invalid username and password pair.', page='/' + Url.login)
     elif request.method == 'GET':
         View.current = View(request, 'Login', 'pages/login.html')
         View.current.context['form'] = AuthenticateForm()

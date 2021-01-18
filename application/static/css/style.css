@@ -1,21 +1,25 @@
 body {
+  padding: 0px;
   font-family: Roboto, sans-serif;
   font-size: medium;
   color: white;
   background-color: black;
-  margin: auto;
 }
 
 main {
-  margin: auto;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  /*padding: 10px;*/
 }
 
 @media screen and (min-width: 721px) {
   main {
     font-size: 16px;
+    min-width: 691px;
+    width: 60%;
   }
   body {
-    width: 691px;
   }
   .title {
     margin-top: 50px;
@@ -23,18 +27,21 @@ main {
   }
   .main_text_block {
     width: 74%;
+    padding: 10px;
   }
 }
 
 @media screen and (max-width: 720px) {
   main {
     font-size: 60%;
-  }
-  body {
     width: 100%;
   }
+  body {
+    /*width: 100%;*/
+  }
   .title {
-    width: 80%;
+    width: 90%;
+    min-width: 300px;
   }
 }
 
@@ -48,12 +55,12 @@ h1 {
   -webkit-text-fill-color: transparent;
   margin: auto;
   font-size: 3.9em;
-  text-transform: capitalize;
+  /*text-transform: capitalize;*/
   position: relative;
 }
 
 h2 {
-  text-transform: capitalize;
+  /*text-transform: capitalize;*/
   margin: auto;
   font-size: 3.9em;
   z-index: 100;
