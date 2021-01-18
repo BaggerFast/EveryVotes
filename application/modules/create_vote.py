@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from application.forms import VotingForm
 from application.models import Voting, VoteVariant
@@ -30,10 +31,12 @@ def create_vote_view(request):
             )
             post_variants.save()
             View.current.context['form'] = form
-            return View.push_message(alert='success', message='A new post has been created!', page='/' + Url.main)
+            messages.success(request, 'A new post has been created!')
+            return redirect('/' + Url.main)
         else:
             View.current.context['form'] = form
-            return View.push_message(alert='danger', message='There is an error in the form!', page='/' + Url.create_vote)
+            messages.error(request, 'There is an error in the form!', extra_tags='danger')
+            return redirect('/' + Url.create_vote)
     elif request.method == 'GET':
         View.current = View(request, 'Create vote', 'pages/create_vote.html')
         View.current.context['form'] = VotingForm()
