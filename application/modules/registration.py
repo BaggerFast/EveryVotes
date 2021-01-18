@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 
@@ -22,13 +23,17 @@ def registration_view(request):
                     )
                     user.save()
                     login(request, user)
-                    return View.push_message(alert='success', message='New user has been registered successfully!', page='/' + Url.main)
+                    messages.success(request, 'New user has been registered successfully!')
+                    return redirect('/' + Url.main)
                 else:
-                    return View.push_message(alert='danger', message= 'A user with this username already exists.', page='/' + Url.registration)
+                    messages.error(request, 'A user with this username already exists.', extra_tags='danger')
+                    return redirect('/' + Url.registration)
             else:
-                return View.push_message(alert='danger', message='Passwords don\'t same', page='/' + Url.registration)
+                messages.error(request, 'Passwords are not the same', extra_tags='danger')
+                return redirect('/' + Url.registration)
         else:
-            return View.push_message(alert='danger', message='Form is not valid', page='/' + Url.registration)
+            messages.error(request, 'Form is not valid', extra_tags='danger')
+            return redirect('/' + Url.registration)
     elif request.method == 'GET':
         View.current = View(request, 'registration', 'pages/registration.html')
         View.current.context['form'] = RegistrationForm()
