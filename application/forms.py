@@ -93,6 +93,7 @@ class RegistrationForm(forms.Form):
                 'class': 'form-control',
                 'id': 'InputFirstName',
                 'v-model': 'first_name',
+                'placeholder': 'Ваше имя'
             }
         )
     )
@@ -105,7 +106,8 @@ class RegistrationForm(forms.Form):
                 'type': "text",
                 'class': 'form-control',
                 'id': 'InputLastName',
-                'v-model': 'last_name'
+                'v-model': 'last_name',
+                'placeholder': 'Ваша фамилия'
             }
         )
     )
@@ -118,7 +120,8 @@ class RegistrationForm(forms.Form):
                 'type': "text",
                 'class': 'form-control',
                 'id': 'InputUserName',
-                'v-model': 'username'
+                'v-model': 'username',
+                'placeholder': 'Имя пользователя'
             }
         )
     )
@@ -131,7 +134,8 @@ class RegistrationForm(forms.Form):
                 'type': "password",
                 'class': 'form-control',
                 'id': 'InputPassword',
-                'v-model': 'password'
+                'v-model': 'password',
+                'placeholder': 'Пароль'
             }
         )
     )
@@ -144,7 +148,8 @@ class RegistrationForm(forms.Form):
                 'type': "password",
                 'class': 'form-control',
                 'id': 'InputRepeatPassword',
-                'v-model': 'repeat_password'
+                'v-model': 'repeat_password',
+                'placeholder': 'Повторите пароль'
             }
         )
     )
@@ -160,7 +165,8 @@ class AuthenticateForm(forms.Form):
                 'type': "text",
                 'class': 'form-control',
                 'id': 'InputUserName',
-                'v-model': 'username'
+                'v-model': 'username',
+                'placeholder': 'Имя пользователя'
             }
         )
     )
@@ -173,7 +179,8 @@ class AuthenticateForm(forms.Form):
                 'type': "password",
                 'class': 'form-control',
                 'id': 'InputPassword',
-                'v-model': 'password'
+                'v-model': 'password',
+                'placeholder': 'Пароль'
             }
         )
     )
