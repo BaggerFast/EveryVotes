@@ -15,18 +15,10 @@ class Voting(models.Model):
     closed = models.BooleanField(default=False)
 
     def check_settings(self):
-        if self.publish_at < timezone.now() < self.finish_at:
-            self.visible = True
-            self.save()
-        elif self.publish_at < timezone.now():
-            self.visible = False
-            self.save()
-        elif self.finish_at < timezone.now():
-            self.closed = True
-            self.save()
-
-    def __repr__(self):
-        return self.author
+        if self.finish_at < timezone.now():
+            return False
+        else:
+            return True
 
 
 class VoteVariant(models.Model):
@@ -42,4 +34,3 @@ class VoteFact(models.Model):
     variant = models.ForeignKey(to=VoteVariant, on_delete=models.CASCADE)
     author = models.ForeignKey(to=User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
-
