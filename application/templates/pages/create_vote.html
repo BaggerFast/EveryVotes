@@ -1,6 +1,8 @@
 {% extends 'app.html' %}
+
 {% block content %}
-  <h1 class="gradient-text">{{title}}</h1>
+
+  <h1 class="gradient-text title-with-padding">{{title}}</h1>
   <form id="app" ref="form" @submit="checkForm" method="post">
     {% csrf_token %}
     {% for field in form %}
@@ -10,5 +12,7 @@
       </div>
     {% endfor %}
     <button type="submit" class="btn btn-primary gradient-background" style="border: none;">{{btn}}</button>
+    {{ form.errors }}
   </form>
+
 {% endblock %}

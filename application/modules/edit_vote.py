@@ -1,5 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from django.urls import reverse
+
 from application.forms import VotingForm
 from application.models import VoteVariant, Voting
 from application.views import *
@@ -26,11 +29,11 @@ def create_edit_vote_view(request, id):
 
             View.current.context['form'] = form
             messages.success(request, 'A vote has been changed!')
-            return redirect('/' + Url.main)
+            return redirect(reverse('main'))
         else:
             View.current.context['form'] = form
             messages.error(request, 'There is an error in the form!', extra_tags='danger')
-            return redirect('/' + Url.create_vote)
+            return redirect(reverse('create_post'))
     elif request.method == 'GET':
         View.current = View(request, 'Create vote', 'pages/create_vote.html')
         View.current.save_info = id

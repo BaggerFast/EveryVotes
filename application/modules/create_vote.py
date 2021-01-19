@@ -1,46 +1,50 @@
+import datetime
+
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.views import View
+
 from application.forms import VotingForm
 from application.models import Voting, VoteVariant
-from application.views import *
 
 
-@login_required
-def create_vote_view(request):
-    if request.method == 'POST':
-        data = request.POST
-        form = VotingForm(data)
+class CreateVoteView(View):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.context = {
+            'title': 'Create vote',
+            'btn': 'Make',
+        }
+
+    def get(self, request):
+        form = VotingForm(
+            initial={
+                'start_time': (datetime.datetime.now() + datetime.timedelta(hours=2)).strftime("%Y-%m-%dT%H:%M"),
+                'end_time': (datetime.datetime.now() + datetime.timedelta(days=2, hours=2)).strftime("%Y-%m-%dT%H:%M")
+            }
+        )
+        form.fields['start_time'].widget.attrs['min'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M")
+        self.context['form'] = form
+        return render(request, 'pages/create_vote.html', self.context)
+
+    def post(self, request):
+        form = VotingForm(request.POST)
         if form.is_valid():
-            post = Voting(
+            post = Voting.objects.create(
                 author=request.user,
                 title=form.data['title'],
                 description=form.data['description'],
                 publish_at=form.data['start_time'],
                 finish_at=form.data['end_time'],
             )
-            post.save()
+            VoteVariant.objects.create(voting=post, description=form.data['description1'])
+            VoteVariant.objects.create(voting=post, description=form.data['description2'])
 
-            post_variants = VoteVariant(
-                voting=post,
-                description=form.data['description1']
-            )
-            post_variants.save()
-
-            post_variants = VoteVariant(
-                voting=post,
-                description=form.data['description2']
-            )
-            post_variants.save()
-            View.current.context['form'] = form
             messages.success(request, 'A new post has been created!')
-            return redirect('/' + Url.main)
+            return redirect(reverse('main'))
         else:
-            View.current.context['form'] = form
             messages.error(request, 'There is an error in the form!', extra_tags='danger')
-            return redirect('/' + Url.create_vote)
-    elif request.method == 'GET':
-        View.current = View(request, 'Create vote', 'pages/create_vote.html')
-        View.current.context['title'] = 'Create vote'
-        View.current.context['btn'] = 'Make'
-        View.current.context['form'] = VotingForm()
-    return View.current.get_render_page()
+        self.context['form'] = form
+        return render(request, 'pages/create_vote.html', self.context)
