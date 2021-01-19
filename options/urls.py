@@ -13,8 +13,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 from django.urls import path
 from application.modules import *
+from application.modules.create_vote import CreateVoteView
 
 urlpatterns = [
     path('', index_page, name='main'),
@@ -24,7 +26,7 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
     path('registration/', registration_view, name='registration'),
-    path('create_vote/', create_vote_view, name='create_vote'),
+    path('create_vote/', login_required(CreateVoteView.as_view()), name='create_vote'),
     path('voting_list/', votings_list_view, name='voting_list'),
     path('own_voting_list/', own_votings_list_view, name='own_voting_list'),
 ]
