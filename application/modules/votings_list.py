@@ -1,10 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from application.views import *
 from application.models import Voting
 
 
+@login_required
 def votings_list_view(request):
-    if not request.user.is_authenticated:
-        return redirect(reverse('index'))
     View.current = View(request, 'Votings', 'pages/votings_list.html')
     item = Voting.objects.all()
     for i in range(len(item)):

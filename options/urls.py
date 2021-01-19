@@ -15,16 +15,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from application.modules import *
-from application.modules.own_python_list import own_votings_list_view
+from application.views import Url
 
 urlpatterns = [
-    path('', index_page, name='index'),
-    path('vote/<int:id>/', vote_page, name='vote'),
-    path('admin/', admin.site.urls, name='admin'),
-    path('login/', login_view, name='login'),
-    path('logout/', logout_view, name='logout'),
-    path('registration/', registration_view, name='registration'),
-    path('create_post/', create_post_view, name='create_post'),
-    path('votings_list/', votings_list_view, name='votings_list'),
-    path('own_votings_list/', own_votings_list_view, name='own_votings_list'),
+    path(Url.main, index_page, name=Url.main),
+    path(Url.vote + '/', vote_page, name='vote'),
+    path(Url.edit_vote + '/',  create_edit_vote_view, name='edit_vote'),
+    path(Url.admin + '/', admin.site.urls, name=Url.admin),
+    path(Url.login + '/', login_view, name=Url.login),
+    path(Url.logout + '/', logout_view, name=Url.logout),
+    path(Url.registration + '/', registration_view, name=Url.registration),
+    path(Url.create_vote + '/', create_vote_view, name=Url.create_vote),
+    path(Url.votings_list + '/', votings_list_view, name=Url.votings_list),
+    path(Url.own_votings_list + '/', own_votings_list_view, name=Url.own_votings_list),
 ]

@@ -1,28 +1,39 @@
+from django.contrib import messages
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+
+from application.forms import RegistrationForm
 from application.views import *
-from django.shortcuts import render, redirect
-from django.urls import reverse
 
 
 def registration_view(request):
-    if request.user.is_authenticated:
-        return redirect(reverse('index'))
     if request.method == 'POST':
         data = request.POST
-        user = User.objects.filter(username=data['username']).exists()
-        if not user:
-            user = User.objects.create_user(
-                first_name=data['first_name'],
-                last_name=data['last_name'],
-                username=data['username'],
-                password=data['password']
-            )
-            user.save()
-            login(request, user)
-            View.current.push_message({'alert': 'success', 'message': 'New user has been registered successfully!'})
-            return redirect('/')
+        form = RegistrationForm(data)
+        if form.is_valid():
+            if data['password'] == data['repeat_password']:
+                user = User.objects.filter(username=data['username']).exists()
+                if not user:
+                    user = User.objects.create_user(
+                        first_name=data['first_name'],
+                        last_name=data['last_name'],
+                        username=data['username'],
+                        password=data['password'],
+                    )
+                    user.save()
+                    login(request, user)
+                    messages.success(request, 'New user has been registered successfully!')
+                    return redirect('/' + Url.main)
+                else:
+                    messages.error(request, 'A user with this username already exists.', extra_tags='danger')
+                    return redirect('/' + Url.registration)
+            else:
+                messages.error(request, 'Passwords are not the same', extra_tags='danger')
+                return redirect('/' + Url.registration)
         else:
-            View.current.push_message({'alert': 'danger', 'message': 'A user with this username already exists.'})
-            return redirect('/registration')
+            messages.error(request, 'Form is not valid', extra_tags='danger')
+            return redirect('/' + Url.registration)
     elif request.method == 'GET':
         View.current = View(request, 'registration', 'pages/registration.html')
+        View.current.context['form'] = RegistrationForm()
     return View.current.get_render_page()
