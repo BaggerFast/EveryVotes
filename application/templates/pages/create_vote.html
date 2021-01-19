@@ -24,9 +24,20 @@
 
       <div class="card vote-card vote-card-with-margin">
         <div class="card-body">
-          <input type="text" class="form-control" id="InputDateStart" v-model="date_start" value="Где находится морская черепашка по имени Наташка?" required="">
-          <div class="vote-radio-div">
-            <input class="vote-radio" type="radio" name="1-radio" aria-label="Radio button for following text input">
+          <input type="text" class="form-control mb-3" id="InputDateStart" v-model="date_start" value="Где находится морская черепашка по имени Наташка?" required="">
+          <div class="input-group mb-3">
+            <div class="input-group-text">
+              <input type="radio" name="test" class="input-group-text">
+            </div>
+            <input type="text" class="form-control">
+            <span class="input-group-text">Текст</span>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-text">
+              <input type="radio" name="test" class="input-group-text">
+            </div>
+            <input type="text" class="form-control">
+            <span class="input-group-text">Текст</span>
           </div>
         </div>
       </div>

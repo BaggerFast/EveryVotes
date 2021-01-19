@@ -1,21 +1,3 @@
-footer {
-  margin: auto;
-  margin-top: 93px;
-  color: #7f7f7f;
-}
-
-@media screen and (min-width: 721px) {
-  footer {
-    width: 75%;
-  }
-}
-
-@media screen and (max-width: 720px) {
-  footer {
-    width: 100%;
-  }
-}
-
 .vote-card {
   border-width: 2px;
   border-color: #2e2e2e;
