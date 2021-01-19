@@ -40,5 +40,7 @@ def create_vote_view(request):
             return redirect('/' + Url.create_vote)
     elif request.method == 'GET':
         View.current = View(request, 'Create vote', 'pages/create_vote.html')
+        View.current.context['title'] = 'Create vote'
+        View.current.context['btn'] = 'Make'
         View.current.context['form'] = VotingForm()
     return View.current.get_render_page()

@@ -1,6 +1,6 @@
 {% extends 'app.html' %}
 {% block content %}
-  <h1 class="gradient-text">Create voting</h1>
+  <h1 class="gradient-text">{{title}}</h1>
   <form id="app" ref="form" @submit="checkForm" method="post">
     {% csrf_token %}
     {% for field in form %}
@@ -9,10 +9,6 @@
         {{ field }}
       </div>
     {% endfor %}
-
-    {% if form.errors %}
-      {{ form.errors }}
-    {% endif %}
-    <button type="submit" class="btn btn-primary gradient-background" style="border: none;">Создать</button>
+    <button type="submit" class="btn btn-primary gradient-background" style="border: none;">{{btn}}</button>
   </form>
 {% endblock %}

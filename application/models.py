@@ -33,8 +33,13 @@ class VoteVariant(models.Model):
     voting = models.ForeignKey(to=Voting, on_delete=models.CASCADE)
     description = models.CharField(max_length=20)
 
+    def remake(self, data):
+        self.description = data
+        self.save()
+
 
 class VoteFact(models.Model):
     variant = models.ForeignKey(to=VoteVariant, on_delete=models.CASCADE)
     author = models.ForeignKey(to=User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
+

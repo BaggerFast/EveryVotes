@@ -3,7 +3,7 @@ from django import forms
 
 class VotingForm(forms.Form):
     title = forms.CharField(
-        label='Название',
+        label='Title',
         max_length=50,
         min_length=5,
         widget=forms.TextInput(
@@ -16,7 +16,7 @@ class VotingForm(forms.Form):
         )
     )
     description = forms.CharField(
-        label='Описание',
+        label='Description',
         max_length=255,
         widget=forms.Textarea(
             attrs={

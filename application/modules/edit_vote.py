@@ -20,11 +20,9 @@ def create_edit_vote_view(request, id):
             current_vote.finish_at = form.data['end_time']
             current_vote.save()
 
-            current_variant[0].description = form.data['description1']
-            current_variant[0].save()
-
-            current_variant[1].description = form.data['description2']
-            current_variant[1].save()
+            for i in range(2):
+                des = 'description' + str(i+1)
+                current_variant[i].remake(form.data[des])
 
             View.current.context['form'] = form
             messages.success(request, 'A vote has been changed!')
@@ -46,5 +44,7 @@ def create_edit_vote_view(request, id):
             'start_time': current_vote.publish_at,
             'end_time': current_vote.finish_at,
         }
+        View.current.context['title'] = 'Edit vote'
+        View.current.context['btn'] = 'Edit'
         View.current.context['form'] = VotingForm(data)
     return View.current.get_render_page()
