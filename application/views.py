@@ -1,7 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.views import View
 
 
-class View:
+def get_navbar(request):
+    navbar = [{'url': 'main', 'label': 'Home'}]
+    if request.user.is_authenticated:
+        navbar += [
+            {'url': 'create_vote', 'label': 'Create post'},
+            {'url': 'voting_list', 'label': "GlobalVote"},
+            {'url': 'own_voting_list', 'label': "OwnVote"},
+            {'url': 'logout', 'label': "Logout"},
+        ]
+    else:
+        navbar += [{'url': 'login', 'label': 'Login'},
+                   {'url': 'registration', 'label': 'Registration'}]
+    return navbar
+
+
+class Diew:
     current = None
 
     def get_navbar(self):
@@ -25,7 +42,7 @@ class View:
         self.save_info = 1
         self.context = dict()
         self.get_base_context()
-        View.current = self
+        Diew.current = self
 
     def get_base_context(self):
         self.context['navbar'] = self.get_navbar()

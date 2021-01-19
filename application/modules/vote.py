@@ -9,14 +9,14 @@ from application.views import *
 
 @login_required
 def vote_page(request, id):
-    View.current = View(request, 'Vote template', 'pages/vote.html')
+    Diew.current = Diew(request, 'Vote template', 'pages/vote.html')
     vote = get_object_or_404(Voting, id=id)
     variants = vote.votevariant_set.all()
     variant_id = request.GET.get('vid', None)
     facts = VoteFact.objects.filter(variant__voting=vote, author=request.user)
-    View.current.context['facts'] = facts
-    View.current.context['vote'] = vote
-    View.current.context['variants'] = variants
+    Diew.current.context['facts'] = facts
+    Diew.current.context['vote'] = vote
+    Diew.current.context['variants'] = variants
     if variant_id:
         fact_variant = get_object_or_404(VoteVariant, id=variant_id)
         fact_count = VoteFact.objects.filter(variant__voting=vote, author=request.user).count()
@@ -32,7 +32,7 @@ def vote_page(request, id):
             variant__voting=vote,
             variant__description=facts[0].variant.description
         ).count()
-        View.current.context['variant_votes'] = fact_variant_count
+        Diew.current.context['variant_votes'] = fact_variant_count
     fact_total_count = VoteFact.objects.filter(variant__voting=vote).count()
-    View.current.context['total_votes'] = fact_total_count
-    return View.current.get_render_page()
+    Diew.current.context['total_votes'] = fact_total_count
+    return Diew.current.get_render_page()

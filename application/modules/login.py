@@ -27,6 +27,6 @@ def login_view(request):
             messages.error(request, 'Invalid username and password pair.', extra_tags='danger')
             return redirect(reverse('login'))
     elif request.method == 'GET':
-        View.current = View(request, 'Login', 'pages/login.html')
-        View.current.context['form'] = AuthenticateForm()
-    return View.current.get_render_page()
+        Diew.current = Diew(request, 'Login', 'pages/login.html')
+        Diew.current.context['form'] = AuthenticateForm()
+    return Diew.current.get_render_page()

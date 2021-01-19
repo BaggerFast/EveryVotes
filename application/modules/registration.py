@@ -22,7 +22,6 @@ def registration_view(request):
                         username=data['username'],
                         password=data['password'],
                     )
-                    user.save()
                     login(request, user)
                     messages.success(request, 'New user has been registered successfully!')
                     return redirect(reverse('main'))
@@ -36,6 +35,6 @@ def registration_view(request):
             messages.error(request, 'Form is not valid', extra_tags='danger')
             return redirect(reverse('registration'))
     elif request.method == 'GET':
-        View.current = View(request, 'registration', 'pages/registration.html')
-        View.current.context['form'] = RegistrationForm()
-    return View.current.get_render_page()
+        Diew.current = Diew(request, 'registration', 'pages/registration.html')
+        Diew.current.context['form'] = RegistrationForm()
+    return Diew.current.get_render_page()

@@ -14,7 +14,7 @@ def create_edit_vote_view(request, id):
         data = request.POST
         form = VotingForm(data)
         if form.is_valid():
-            current_vote = Voting.objects.get(id=View.current.save_info)
+            current_vote = Voting.objects.get(id=Diew.current.save_info)
             current_variant = VoteVariant.objects.filter(voting_id=current_vote)
 
             current_vote.title = form.data['title']
@@ -27,27 +27,27 @@ def create_edit_vote_view(request, id):
                 des = 'description' + str(i+1)
                 current_variant[i].remake(form.data[des])
 
-            View.current.context['form'] = form
+            Diew.current.context['form'] = form
             messages.success(request, 'A vote has been changed!')
             return redirect(reverse('main'))
         else:
-            View.current.context['form'] = form
+            Diew.current.context['form'] = form
             messages.error(request, 'There is an error in the form!', extra_tags='danger')
-            return redirect(reverse('create_post'))
+            return redirect(reverse('create_vote'))
     elif request.method == 'GET':
-        View.current = View(request, 'Create vote', 'pages/create_vote.html')
-        View.current.save_info = id
-        current_vote = Voting.objects.get(id=View.current.save_info)
+        Diew.current = Diew(request, 'Create vote', 'pages/create_vote.html')
+        Diew.current.save_info = id
+        current_vote = Voting.objects.get(id=Diew.current.save_info)
         current_variant = VoteVariant.objects.filter(voting_id=current_vote)
         data = {
             'title': current_vote.title,
             'description': current_vote.description,
             'description1': current_variant[0].description,
             'description2': current_variant[1].description,
-            'start_time': current_vote.publish_at,
-            'end_time': current_vote.finish_at,
+            'start_time': current_vote.publish_at.strftime("%Y-%m-%dT%H:%M"),
+            'end_time': current_vote.finish_at.strftime("%Y-%m-%dT%H:%M"),
         }
-        View.current.context['title'] = 'Edit vote'
-        View.current.context['btn'] = 'Edit'
-        View.current.context['form'] = VotingForm(data)
-    return View.current.get_render_page()
+        Diew.current.context['title'] = 'Edit vote'
+        Diew.current.context['btn'] = 'Edit'
+        Diew.current.context['form'] = VotingForm(data)
+    return Diew.current.get_render_page()

@@ -1,9 +1,16 @@
 from django.contrib.auth import logout
-from django.shortcuts import redirect
-from django.urls import reverse
+from application.views import *
 
 
-def logout_view(request):
-    if request.user.is_authenticated:
+class LogoutView(View):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def get(self, request):
         logout(request)
-    return redirect(reverse('main'))
+        return redirect(reverse('main'))
+
+
+
+
+

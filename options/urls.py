@@ -19,14 +19,16 @@ from application.modules import *
 from application.modules.create_vote import CreateVoteView
 
 urlpatterns = [
-    path('', index_page, name='main'),
-    path('vote/<int:id>/', vote_page, name='vote'),
-    path('edit_vote/<int:id>/',  create_edit_vote_view, name='edit_vote'),
+    path('', MainView.as_view(), name='main'),
     path('admin/', admin.site.urls, name='admin'),
+
     path('login/', login_view, name='login'),
-    path('logout/', logout_view, name='logout'),
+    path('logout/', login_required(LogoutView.as_view()), name='logout'),
     path('registration/', registration_view, name='registration'),
+
     path('create_vote/', login_required(CreateVoteView.as_view()), name='create_vote'),
     path('voting_list/', votings_list_view, name='voting_list'),
+    path('vote/<int:id>/', vote_page, name='vote'),
     path('own_voting_list/', own_votings_list_view, name='own_voting_list'),
+    path('edit_vote/<int:id>/', create_edit_vote_view, name='edit_vote'),
 ]

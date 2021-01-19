@@ -1,6 +1,14 @@
 from application.views import *
 
 
-def index_page(request):
-    View.current = View(request, 'Home', 'pages/index.html')
-    return View.current.get_render_page()
+class MainView(View):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.context = {
+            'navbar': None
+        }
+
+    def get(self, request):
+        self.context['navbar'] = get_navbar(request)
+        return render(request, 'pages/index.html', self.context)
+

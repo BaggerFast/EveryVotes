@@ -7,6 +7,7 @@ from django.views import View
 
 from application.forms import VotingForm
 from application.models import Voting, VoteVariant
+from application.views import get_navbar
 
 
 class CreateVoteView(View):
@@ -16,9 +17,11 @@ class CreateVoteView(View):
         self.context = {
             'title': 'Create vote',
             'btn': 'Make',
+            'navbar': None
         }
 
     def get(self, request):
+        self.context['navbar'] = get_navbar(request)
         form = VotingForm(
             initial={
                 'start_time': (datetime.datetime.now() + datetime.timedelta(hours=2)).strftime("%Y-%m-%dT%H:%M"),
@@ -30,6 +33,7 @@ class CreateVoteView(View):
         return render(request, 'pages/create_vote.html', self.context)
 
     def post(self, request):
+        self.context['navbar'] = get_navbar(request)
         form = VotingForm(request.POST)
         if form.is_valid():
             post = Voting.objects.create(
@@ -41,7 +45,6 @@ class CreateVoteView(View):
             )
             VoteVariant.objects.create(voting=post, description=form.data['description1'])
             VoteVariant.objects.create(voting=post, description=form.data['description2'])
-
             messages.success(request, 'A new post has been created!')
             return redirect(reverse('main'))
         else:
