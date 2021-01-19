@@ -22,14 +22,14 @@ urlpatterns = [
     path('', MainView.as_view(), name='main'),
     path('admin/', admin.site.urls, name='admin'),
 
-    path('login/', login_view, name='login'),
+    path('login/', LoginView.as_view(), name='login'),
     path('logout/', login_required(LogoutView.as_view()), name='logout'),
     path('registration/', RegistrationView.as_view(), name='registration'),
 
     path('create_vote/', login_required(CreateVoteView.as_view()), name='create_vote'),
     path('voting_list/',  login_required(VoteListView.as_view()), name='voting_list'),
     path('own_voting_list/', login_required(OwnVoteListView.as_view()), name='own_voting_list'),
-
-    path('vote/<int:id>/', vote_page, name='vote'),
     path('edit_vote/<int:cur_id>/', login_required(CreateEdiVoteView.as_view()), name='edit_vote'),
+    path('vote/<int:id>/', login_required(VotePage.as_view()), name='vote'),
 ]
+

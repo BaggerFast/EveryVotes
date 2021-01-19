@@ -7,8 +7,18 @@ from application.forms import AuthenticateForm
 from application.views import *
 
 
-def login_view(request):
-    if request.method == 'POST':
+class LoginView(View):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.context = {}
+
+    def get(self, request):
+        self.context['navbar'] = get_navbar(request)
+        self.context['form'] = AuthenticateForm()
+        return render(request, 'pages/login.html', self.context)
+
+    def post(self, request):
+        self.context['navbar'] = get_navbar(request)
         data = request.POST
         form = AuthenticateForm(data)
         if form.is_valid():
@@ -22,11 +32,7 @@ def login_view(request):
                 return redirect(reverse('main'))
             else:
                 messages.error(request, 'Invalid username and password pair.', extra_tags='danger')
-                return redirect(reverse('login'))
         else:
             messages.error(request, 'Invalid username and password pair.', extra_tags='danger')
-            return redirect(reverse('login'))
-    elif request.method == 'GET':
-        Diew.current = Diew(request, 'Login', 'pages/login.html')
-        Diew.current.context['form'] = AuthenticateForm()
-    return Diew.current.get_render_page()
+        self.context['form'] = AuthenticateForm(data)
+        return render(request, 'pages/login.html', self.context)
