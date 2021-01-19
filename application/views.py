@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
+from django.urls import reverse
 
 
 class Url:
     admin = 'admin'
-    main = ''
     vote = 'vote/<int:id>'
     login = 'login'
     logout = 'logout'
@@ -18,7 +18,7 @@ class View:
     current = None
 
     def get_navbar(self):
-        navbar = [{'url': Url.main, 'label': 'Home'}]
+        navbar = [{'url': 'index', 'label': 'Home'}]
         if self.request.user.is_authenticated:
             navbar += [
                 {'url': Url.create_vote, 'label': 'Create post'},

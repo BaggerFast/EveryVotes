@@ -1,4 +1,6 @@
 from django import forms
+from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 
 class VotingForm(forms.Form):
@@ -56,7 +58,7 @@ class VotingForm(forms.Form):
     )
     start_time = forms.DateTimeField(
         label="Start at",
-        widget=forms.DateInput(
+        widget=forms.DateTimeInput(
             attrs={
                 'type': 'datetime-local',
                 'max': "2021-01-30T23:59",
@@ -78,6 +80,11 @@ class VotingForm(forms.Form):
             }
         )
     )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data.get('start_time') < timezone.now():
+            raise ValidationError('Нельзя указывать дату в прошлом')
 
 
 class RegistrationForm(forms.Form):
