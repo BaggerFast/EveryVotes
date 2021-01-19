@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.models import User
+from django.shortcuts import redirect
+from django.urls import reverse
 
 from application.forms import RegistrationForm
 from application.views import *
@@ -23,16 +25,16 @@ def registration_view(request):
                     user.save()
                     login(request, user)
                     messages.success(request, 'New user has been registered successfully!')
-                    return redirect('/' + Url.main)
+                    return redirect(reverse('main'))
                 else:
                     messages.error(request, 'A user with this username already exists.', extra_tags='danger')
-                    return redirect('/' + Url.registration)
+                    return redirect(reverse('registration'))
             else:
                 messages.error(request, 'Passwords are not the same', extra_tags='danger')
-                return redirect('/' + Url.registration)
+                return redirect(reverse('registration'))
         else:
             messages.error(request, 'Form is not valid', extra_tags='danger')
-            return redirect('/' + Url.registration)
+            return redirect(reverse('registration'))
     elif request.method == 'GET':
         View.current = View(request, 'registration', 'pages/registration.html')
         View.current.context['form'] = RegistrationForm()
