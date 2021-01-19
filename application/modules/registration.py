@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 from application.forms import RegistrationForm
 from application.views import *
-from django.shortcuts import redirect
 
 
 def registration_view(request):

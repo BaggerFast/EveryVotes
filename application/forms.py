@@ -1,7 +1,5 @@
-from datetime import datetime
-
 from django import forms
-from django.utils import timezone
+
 
 class VotingForm(forms.Form):
     title = forms.CharField(

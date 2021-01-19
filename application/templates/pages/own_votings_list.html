@@ -15,7 +15,7 @@
 
       {% for voting in active_votings %}
         <tr>
-          <td><form action="" method=”GET”><button type="submit" name="value" class="btn btn-primary gradient-background" style="border: none;" value="test">*</button></form></td>
+          <td><button type="submit" name="value" class="btn btn-primary gradient-background" style="border: none;" value="test"><a href="{% url 'edit_vote' voting.id %}">*</a></form></td>
           <td>{{ voting.id }}</td>
           <td>{{ voting.author }}</td>
           <td><a href="{% url 'vote' voting.id %}">{{ voting.title }}</a></td>

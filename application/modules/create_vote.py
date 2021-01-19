@@ -17,14 +17,15 @@ def create_vote_view(request):
                 description=form.data['description'],
                 publish_at=form.data['start_time'],
                 finish_at=form.data['end_time'],
-
             )
+            post.save()
+
             post_variants = VoteVariant(
                 voting=post,
                 description=form.data['description1']
             )
-            post.save()
             post_variants.save()
+
             post_variants = VoteVariant(
                 voting=post,
                 description=form.data['description2']

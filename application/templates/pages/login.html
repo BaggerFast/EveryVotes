@@ -3,13 +3,6 @@
   <h1>Login</h1>
   <form id="app" ref="form" @submit="checkForm" method="post">
     {% csrf_token %}
-    <div style="margin-top: 20px;">
-     {% if error %}
-      <div v-for="error in errors" class="alert alert-danger" role="alert">
-        [[ error ]]
-      </div>
-      {% endif %}
-    </div>
    {% for field in form %}
       <div class="mb-3">
         <label class="form-label">{{ field.label }}</label>
@@ -18,9 +11,7 @@
     {% endfor %}
     <div class="mb-3 form-check">
       <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled" checked disabled>
-      <label class="form-check-label" for="flexCheckCheckedDisabled">
-        Remember me
-      </label>
+      <label class="form-check-label" for="flexCheckCheckedDisabled">Remember me</label>
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
   </form>

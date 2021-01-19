@@ -20,6 +20,7 @@ from application.views import Url
 urlpatterns = [
     path(Url.main, index_page, name=Url.main),
     path(Url.vote + '/', vote_page, name='vote'),
+    path(Url.edit_vote + '/',  create_edit_vote_view, name='edit_vote'),
     path(Url.admin + '/', admin.site.urls, name=Url.admin),
     path(Url.login + '/', login_view, name=Url.login),
     path(Url.logout + '/', logout_view, name=Url.logout),

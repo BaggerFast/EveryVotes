@@ -25,6 +25,9 @@ class Voting(models.Model):
             self.closed = True
             self.save()
 
+    def __repr__(self):
+        return self.author
+
 
 class VoteVariant(models.Model):
     voting = models.ForeignKey(to=Voting, on_delete=models.CASCADE)

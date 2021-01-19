@@ -25,8 +25,7 @@ def vote_page(request, id):
             raise Http404  # Todo: tell user that wrong variant has passed
         fact = VoteFact(variant=fact_variant, author=request.user)
         fact.save()
-        fact_variant_count = VoteFact.objects.filter(
-            variant__voting=vote, variant__description=facts[0].variant.description).count()
+        fact_variant_count = VoteFact.objects.filter(variant__voting=vote, variant__description=facts[0].variant.description).count()
         View.current.context['variant_votes'] = fact_variant_count
     fact_total_count = VoteFact.objects.filter(variant__voting=vote).count()
     View.current.context['total_votes'] = fact_total_count
