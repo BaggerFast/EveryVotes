@@ -1,17 +1,11 @@
 import datetime
-
 from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.views import View
-
 from application.forms import VotingForm
 from application.models import Voting, VoteVariant
-from application.views import get_navbar
+from application.views import *
 
 
 class CreateVoteView(View):
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.context = {

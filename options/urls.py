@@ -24,11 +24,12 @@ urlpatterns = [
 
     path('login/', login_view, name='login'),
     path('logout/', login_required(LogoutView.as_view()), name='logout'),
-    path('registration/', registration_view, name='registration'),
+    path('registration/', RegistrationView.as_view(), name='registration'),
 
     path('create_vote/', login_required(CreateVoteView.as_view()), name='create_vote'),
-    path('voting_list/', votings_list_view, name='voting_list'),
+    path('voting_list/',  login_required(VoteListView.as_view()), name='voting_list'),
+    path('own_voting_list/', login_required(OwnVoteListView.as_view()), name='own_voting_list'),
+
     path('vote/<int:id>/', vote_page, name='vote'),
-    path('own_voting_list/', own_votings_list_view, name='own_voting_list'),
-    path('edit_vote/<int:id>/', create_edit_vote_view, name='edit_vote'),
+    path('edit_vote/<int:cur_id>/', login_required(CreateEdiVoteView.as_view()), name='edit_vote'),
 ]
