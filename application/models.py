@@ -18,7 +18,7 @@ class Voting(models.Model):
         if self.publish_at < timezone.now() < self.finish_at:
             self.visible = True
             self.save()
-        elif timezone.now() < self.publish_at:
+        elif self.publish_at < timezone.now():
             self.visible = False
             self.save()
         elif self.finish_at < timezone.now():

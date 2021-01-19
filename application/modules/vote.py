@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 
@@ -20,9 +21,11 @@ def vote_page(request, id):
         fact_variant = get_object_or_404(VoteVariant, id=variant_id)
         fact_count = VoteFact.objects.filter(variant=fact_variant, author=request.user).count()
         if fact_count > 0:
-            raise Http404  # Todo: tell user that he has already made a choice
+            messages.error(request, 'User has already made a choice.', extra_tags='danger')
+            return redirect(request.path_info)
         if fact_variant.voting.id != id:
-            raise Http404  # Todo: tell user that wrong variant has passed
+            messages.error(request, 'Wrong variant has passed.', extra_tags='danger')
+            raise redirect(request.path_info)
         fact = VoteFact(variant=fact_variant, author=request.user)
         fact.save()
         fact_variant_count = VoteFact.objects.filter(variant__voting=vote, variant__description=facts[0].variant.description).count()
