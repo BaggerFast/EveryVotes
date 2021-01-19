@@ -1,6 +1,6 @@
 {% extends 'app.html' %}
 {% block content %}
-  <h1>Registration</h1>
+  <h1 class="gradient-text title-with-padding">Registration</h1>
   <form id="app" ref="form" @submit="checkForm" method="post">
     {% csrf_token %}
     <div style="margin-top: 20px;">
