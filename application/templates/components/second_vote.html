@@ -1,0 +1,23 @@
+{% block empty_votes %}
+    <div class="mx-auto" style="width: 591px; padding: 24px; background-color: black;">
+
+      <h1 class="text-center text-primary gradient-text" style="margin-bottom: 32px; font-size: 48px;">It seems like you left your vote already</h1>
+
+      <p class="text-center" style="margin-bottom: 32px; font-size: 20px; color: white;">
+        Try to find another vote to vote
+      </p>
+
+      <a class="btn btn-primary w-100 gradient-background"
+         style="margin-bottom: 16px; font-size: 20px; border: none;"
+         href="{% url 'create_vote'%}">
+         Find other votes
+      </a>
+
+      <a class="btn btn-primary w-100 gradient-background"
+         style="margin-bottom: 16px; font-size: 20px; border: none;"
+         href="{% url 'create_vote'%}">
+         Create Vote
+      </a>
+      </div>
+    </div>
+{% endblock %}
