@@ -7,7 +7,6 @@ class VoteListView(View):
         super().__init__(**kwargs)
         self.context = {
             'title': 'Votings',
-            'navbar': None
         }
 
     def get(self, request):
@@ -15,6 +14,6 @@ class VoteListView(View):
         item = Voting.objects.all()
         for i in range(len(item)):
             item[i].check_settings()
-        self.context['votings'] = Voting.objects.filter(closed=False)
-        return render(request, 'pages/votings_list.html', self.context)
+        self.context['votings'] = Voting.objects.filter(closed=False).order_by("-created_at")
+        return render(request, Page.votings_list, self.context)
 

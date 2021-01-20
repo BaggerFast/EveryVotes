@@ -10,5 +10,5 @@ class MainView(View):
 
     def get(self, request):
         self.context['navbar'] = get_navbar(request)
-        return render(request, 'pages/index.html', self.context)
+        return render(request, Page.main, self.context)
 

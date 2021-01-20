@@ -1,51 +1,36 @@
+from django import forms
 from django.contrib import messages
-from application.forms import VotingForm
+from application.forms import VotingForm, VoteForm
 from application.models import VoteVariant, Voting
 from application.views import *
 
 
-# def create_edit_vote_view(request, id):
-#     if request.method == 'POST':
-#         data = request.POST
-#         form = VotingForm(data)
-#         if form.is_valid():
-#             current_vote = Voting.objects.get(id=Diew.current.save_info)
-#             current_variant = VoteVariant.objects.filter(voting_id=current_vote)
-#
-#             current_vote.title = form.data['title']
-#             current_vote.description = form.data['description']
-#             current_vote.publish_at = form.data['start_time']
-#             current_vote.finish_at = form.data['end_time']
-#             current_vote.save()
-#
-#             for i in range(2):
-#                 des = 'description' + str(i+1)
-#                 current_variant[i].remake(form.data[des])
-#
-#             Diew.current.context['form'] = form
-#             messages.success(request, 'A vote has been changed!')
-#             return redirect(reverse('main'))
-#         else:
-#             Diew.current.context['form'] = form
-#             messages.error(request, 'There is an error in the form!', extra_tags='danger')
-#             return redirect(reverse('create_vote'))
-#     elif request.method == 'GET':
-#         Diew.current = Diew(request, 'Create vote', 'pages/create_vote.html')
-#         Diew.current.save_info = id
-#         current_vote = Voting.objects.get(id=Diew.current.save_info)
-#         current_variant = VoteVariant.objects.filter(voting_id=current_vote)
-#         data = {
-#             'title': current_vote.title,
-#             'description': current_vote.description,
-#             'description1': current_variant[0].description,
-#             'description2': current_variant[1].description,
-#             'start_time': current_vote.publish_at.strftime("%Y-%m-%dT%H:%M"),
-#             'end_time': current_vote.finish_at.strftime("%Y-%m-%dT%H:%M"),
-#         }
-#         Diew.current.context['title'] = 'Edit vote'
-#         Diew.current.context['btn'] = 'Edit'
-#         Diew.current.context['form'] = VotingForm(data)
-#     return Diew.current.get_render_page()
+def create_vote_variant(form, count):
+    for i in range(len(count)):
+        form.fields[f'Vote variant {i+1}'] = forms.CharField(
+            initial=count[i].description,
+            max_length=20,
+            min_length=3,
+            widget=forms.Textarea(
+                attrs={
+                    'rows': '1',
+                    'class': 'form-control',
+                }
+            )
+        )
+
+def add_vote_variant(form, count):
+    for i in range(count):
+        form.fields[f'Vote variant {i+1}'] = forms.CharField(
+            max_length=20,
+            min_length=3,
+            widget=forms.Textarea(
+                attrs={
+                    'rows': '1',
+                    'class': 'form-control',
+                }
+            )
+        )
 
 
 class CreateEdiVoteView(View):
@@ -54,47 +39,49 @@ class CreateEdiVoteView(View):
         self.context = {
             'title': 'Edit vote',
             'btn': 'Edit',
-            'navbar': None
         }
 
     def get(self, request, cur_id):
         self.context['navbar'] = get_navbar(request)
         current_vote = Voting.objects.get(id=cur_id)
-        current_variant = VoteVariant.objects.filter(voting_id=current_vote)
-        data = {
-            'title': current_vote.title,
-            'description': current_vote.description,
-            'description1': current_variant[0].description,
-            'description2': current_variant[1].description,
-            'start_time': current_vote.publish_at.strftime("%Y-%m-%dT%H:%M"),
-            'end_time': current_vote.finish_at.strftime("%Y-%m-%dT%H:%M"),
-        }
+        current_variant = list(VoteVariant.objects.filter(voting_id=current_vote))
         self.context['title'] = 'Edit vote'
         self.context['btn'] = 'Edit'
-        self.context['form'] = VotingForm(data)
-        return render(request, 'pages/create_vote.html', self.context)
+        self.context['form'] = VotingForm(initial={
+            'title': current_vote.title,
+            'description': current_vote.description,
+            'start_time': current_vote.publish_at.strftime("%Y-%m-%dT%H:%M"),
+            'end_time': current_vote.finish_at.strftime("%Y-%m-%dT%H:%M")})
+        form_vote = VoteForm()
+        create_vote_variant(form_vote, current_variant )
+        self.context['vote_variants'] =  form_vote
+        return render(request,  Page.create_vote, self.context)
 
     def post(self, request, cur_id):
         self.context['navbar'] = get_navbar(request)
         data = request.POST
         form = VotingForm(data)
+        form_of_votes = VoteForm(request.POST)
         self.context['form'] = form
-        if form.is_valid():
-            current_vote = Voting.objects.get(id=cur_id)
-            current_variant = VoteVariant.objects.filter(voting_id=current_vote)
 
+        current_vote = Voting.objects.get(id=cur_id)
+        current_variant = list(VoteVariant.objects.filter(voting_id=current_vote))
+
+        if form.is_valid() and form_of_votes.is_valid():
             current_vote.title = form.data['title']
             current_vote.description = form.data['description']
             current_vote.publish_at = form.data['start_time']
             current_vote.finish_at = form.data['end_time']
+
             current_vote.save()
 
-            for i in range(2):
-                des = 'description' + str(i + 1)
-                current_variant[i].remake(form.data[des])
+            for i in range(len(current_variant)):
+                current_variant[i].remake(form_of_votes.data[f'Vote variant {i+1}'])
 
             messages.success(request, 'A vote has been changed!')
             return redirect(reverse('main'))
         else:
             messages.error(request, 'There is an error in the form!', extra_tags='danger')
-        return render(request, 'pages/create_vote.html', self.context)
+        add_vote_variant(form_of_votes, len(current_variant))
+        self.context['vote_variants'] = form_of_votes
+        return render(request,  Page.create_vote, self.context)

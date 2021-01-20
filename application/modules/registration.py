@@ -8,14 +8,12 @@ from application.views import *
 class RegistrationView(View):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.context = {
-            'navbar': None
-        }
+        self.context = {}
 
     def get(self, request):
         self.context['navbar'] = get_navbar(request)
         self.context['form'] = RegistrationForm()
-        return render(request, 'pages/registration.html', self.context)
+        return render(request, Page.registration, self.context)
 
     def post(self, request):
         self.context['navbar'] = get_navbar(request)
@@ -40,4 +38,4 @@ class RegistrationView(View):
         else:
             messages.error(request, 'Form is not valid', extra_tags='danger')
         self.context['form'] = RegistrationForm(data)
-        return render(request, 'pages/registration.html', self.context)
+        return render(request, Page.registration, self.context)

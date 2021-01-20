@@ -16,3 +16,17 @@ def get_navbar(request):
         navbar += [{'url': 'login', 'label': 'Login'},
                    {'url': 'registration', 'label': 'Registration'}]
     return navbar
+
+
+def make(page):
+        return 'pages/' + page + '.html'
+
+
+class Page:
+    create_vote = make('create_vote')
+    main = make('index')
+    login = make('login')
+    own_votings_list = make('own_votings_list')
+    registration = make('registration')
+    vote = make('vote')
+    votings_list = make('votings_list')

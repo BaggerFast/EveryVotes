@@ -5,14 +5,29 @@
   <h1 class="gradient-text title-with-padding">{{title}}</h1>
   <form id="app" ref="form" @submit="checkForm" method="post">
     {% csrf_token %}
-    {% for field in form %}
+        <div class="mb-3">
+        <label class="form-label">{{ form.title.label }}</label>
+              {{ form.title }}
+        </div>
+        <div class="mb-3">
+        <label class="form-label">{{ form.description.label }}</label>
+              {{ form.description  }}
+       </div>
+        {% for vote in vote_variants %}
+         <div class="mb-3">
+        <label class="form-label">{{ vote.label }}</label>
+              {{ vote }}
+         </div>
+       {% endfor %}
+    <div class="mb-3">
+        <label class="form-label">{{ form.start_time.label }}</label>
+              {{ form.start_time }}
+       </div>
       <div class="mb-3">
-        <label class="form-label">{{ field.label }}</label>
-        {{ field }}
+        <label class="form-label">{{ form.end_time.label }}</label>
+              {{ form.end_time }}
       </div>
-    {% endfor %}
     <button type="submit" class="btn btn-primary gradient-background" style="border: none;">{{btn}}</button>
     {{ form.errors }}
   </form>
-
 {% endblock %}

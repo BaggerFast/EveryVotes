@@ -8,7 +8,6 @@ class OwnVoteListView(View):
         self.context = {
             'title': 'OwnVotings',
             'btn': 'Make',
-            'navbar': None
         }
 
     def get(self, request):
@@ -16,8 +15,8 @@ class OwnVoteListView(View):
         item = Voting.objects.all()
         for i in range(len(item)):
             item[i].check_settings()
-        self.context['active_votings'] = Voting.objects.filter(author=request.user, closed=False)
-        self.context['closed_votings'] = Voting.objects.filter(author=request.user, closed=True)
-        return render(request, 'pages/own_votings_list.html', self.context)
+        self.context['active_votings'] = Voting.objects.filter(author=request.user, closed=False).order_by("-created_at")
+        self.context['closed_votings'] = Voting.objects.filter(author=request.user, closed=True).order_by("-created_at")
+        return render(request, Page.own_votings_list, self.context)
 
 

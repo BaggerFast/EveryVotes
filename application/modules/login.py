@@ -1,8 +1,5 @@
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
-from django.shortcuts import redirect
-from django.urls import reverse
-
 from application.forms import AuthenticateForm
 from application.views import *
 
@@ -15,7 +12,7 @@ class LoginView(View):
     def get(self, request):
         self.context['navbar'] = get_navbar(request)
         self.context['form'] = AuthenticateForm()
-        return render(request, 'pages/login.html', self.context)
+        return render(request,  Page.login, self.context)
 
     def post(self, request):
         self.context['navbar'] = get_navbar(request)
@@ -35,4 +32,4 @@ class LoginView(View):
         else:
             messages.error(request, 'Invalid username and password pair.', extra_tags='danger')
         self.context['form'] = AuthenticateForm(data)
-        return render(request, 'pages/login.html', self.context)
+        return render(request, Page.login, self.context)

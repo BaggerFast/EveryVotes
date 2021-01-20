@@ -46,4 +46,4 @@ class VotePage(View):
         fact_total_count = VoteFact.objects.filter(variant__voting=vote).count()
         self.context['total_votes'] = fact_total_count
 
-        return render(request, 'pages/vote.html', self.context)
+        return render(request, Page.vote, self.context)
