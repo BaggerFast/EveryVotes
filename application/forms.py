@@ -14,6 +14,16 @@ class FormTemplate:
             }
         )
     )
+    registration_text = forms.CharField(
+        max_length=15,
+        min_length=3,
+        widget=forms.TextInput(
+            attrs={
+                'type': "text",
+                'class': 'form-control',
+            }
+        )
+    )
 
 
 class VotingForm(forms.Form):
@@ -45,7 +55,7 @@ class VotingForm(forms.Form):
         )
     )
     end_time = forms.DateTimeField(
-        widget=forms.DateInput(
+        widget=forms.DateTimeInput(
             attrs={
                 'type': 'datetime-local',
                 'max': "2021-01-30T23:59",
@@ -61,53 +71,15 @@ class VotingForm(forms.Form):
 
 
 class RegistrationForm(forms.Form):
-    first_name = forms.CharField(
-        max_length=15,
-        min_length=3,
-        widget=forms.TextInput(
-            attrs={
-                'type': "text",
-                'class': 'form-control',
-            }
-        )
-    )
-    last_name = forms.CharField(
-        max_length=15,
-        min_length=3,
-        widget=forms.TextInput(
-            attrs={
-                'type': "text",
-                'class': 'form-control',
-            }
-        )
-    )
-    username = forms.CharField(
-        max_length=15,
-        min_length=3,
-        widget=forms.TextInput(
-            attrs={
-                'type': "text",
-                'class': 'form-control',
-            }
-        )
-    )
+    first_name = FormTemplate.registration_text
+    last_name = FormTemplate.registration_text
+    username = FormTemplate.registration_text
     password = FormTemplate.password
     repeat_password = FormTemplate.password
 
 
 class AuthenticateForm(forms.Form):
-    username = forms.CharField(
-        max_length=15,
-        min_length=3,
-        widget=forms.TextInput(
-            attrs={
-                'type': "text",
-                'class': 'form-control',
-                'id': 'InputUserName',
-                'v-model': 'username'
-            }
-        )
-    )
+    username = FormTemplate.registration_text
     password = FormTemplate.password
 
 

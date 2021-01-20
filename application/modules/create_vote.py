@@ -38,7 +38,7 @@ class CreateVoteView(View):
             }
         )
         form_vote = VoteForm()
-        add_vote_variant(form_vote, 3)
+        add_vote_variant(form_vote, self.context['count'])
         form.fields['start_time'].widget.attrs['min'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M")
 
         self.context['form'] = form
@@ -64,6 +64,6 @@ class CreateVoteView(View):
         else:
             messages.error(request, 'There is an error in the form!', extra_tags='danger')
         self.context['form'] = form
-        add_vote_variant(form_of_votes, 3)
+        add_vote_variant(form_of_votes, self.context['count'])
         self.context['vote_variants'] = form_of_votes
         return render(request, Page.create_vote, self.context)
