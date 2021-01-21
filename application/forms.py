@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone
 
 
-class FormTemplate:
+class FormTemplates:
     password = forms.CharField(
         max_length=20,
         min_length=6,
@@ -71,19 +71,35 @@ class VotingForm(forms.Form):
 
 
 class RegistrationForm(forms.Form):
-    first_name = FormTemplate.registration_text
-    last_name = FormTemplate.registration_text
-    username = FormTemplate.registration_text
-    password = FormTemplate.password
-    repeat_password = FormTemplate.password
+    first_name = FormTemplates.registration_text
+    last_name = FormTemplates.registration_text
+    username = FormTemplates.registration_text
+    password = FormTemplates.password
+    repeat_password = FormTemplates.password
 
 
 class AuthenticateForm(forms.Form):
-    username = FormTemplate.registration_text
-    password = FormTemplate.password
+    username = FormTemplates.registration_text
+    password = FormTemplates.password
 
 
 class VoteForm(forms.Form):
+    @staticmethod
+    def create(form, count, data=[]):
+        for i in range(count):
+            form.fields[f'Vote variant {i + 1}'] = forms.CharField(
+                max_length=20,
+                min_length=3,
+                widget=forms.Textarea(
+                    attrs={
+                        'rows': '1',
+                        'class': 'form-control',
+                    }
+                )
+            )
+        if data:
+            for i in range(len(data)):
+                form.fields[f'Vote variant {i + 1}'].initial=data[i].description
 
     def clean(self):
         fields_keys = [key for key in self.data.keys() if key.startswith('Vote variant')]

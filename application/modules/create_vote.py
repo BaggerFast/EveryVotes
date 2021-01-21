@@ -3,21 +3,6 @@ from django.contrib import messages
 from application.forms import VotingForm, VoteForm
 from application.models import Voting, VoteVariant
 from application.views import *
-from django import forms
-
-
-def add_vote_variant(form, count):
-    for i in range(count):
-        form.fields[f'Vote variant {i+1}'] = forms.CharField(
-            max_length=20,
-            min_length=3,
-            widget=forms.Textarea(
-                attrs={
-                    'rows': '1',
-                    'class': 'form-control',
-                }
-            )
-        )
 
 
 class CreateVoteView(View):
@@ -38,9 +23,8 @@ class CreateVoteView(View):
             }
         )
         form_vote = VoteForm()
-        add_vote_variant(form_vote, self.context['count'])
+        VoteForm.create(form_vote, self.context['count'])
         form.fields['start_time'].widget.attrs['min'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M")
-
         self.context['form'] = form
         self.context['vote_variants'] = form_vote
         return render(request, Page.create_vote, self.context)
@@ -64,6 +48,6 @@ class CreateVoteView(View):
         else:
             messages.error(request, 'There is an error in the form!', extra_tags='danger')
         self.context['form'] = form
-        add_vote_variant(form_of_votes, self.context['count'])
+        VoteForm.create(form_of_votes, self.context['count'])
         self.context['vote_variants'] = form_of_votes
         return render(request, Page.create_vote, self.context)
