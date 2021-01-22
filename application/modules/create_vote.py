@@ -16,15 +16,9 @@ class CreateVoteView(View):
 
     def get(self, request):
         self.context['navbar'] = get_navbar(request)
-        form = VotingForm(
-            initial={
-                'start_time': (datetime.datetime.now() + datetime.timedelta(hours=2)).strftime("%Y-%m-%dT%H:%M"),
-                'end_time': (datetime.datetime.now() + datetime.timedelta(days=2, hours=2)).strftime("%Y-%m-%dT%H:%M")
-            }
-        )
+        form = VotingForm()
         form_vote = VoteForm()
         VoteForm.create(form_vote, self.context['count'])
-        form.fields['start_time'].widget.attrs['min'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M")
         self.context['form'] = form
         self.context['vote_variants'] = form_vote
         return render(request, Page.create_vote, self.context)

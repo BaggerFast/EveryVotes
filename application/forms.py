@@ -1,6 +1,8 @@
+import datetime
+
 from django import forms
 from django.core.exceptions import ValidationError
-from django.utils import timezone
+from django.utils import timezone, dateformat
 
 
 class FormTemplates:
@@ -49,7 +51,9 @@ class VotingForm(forms.Form):
         widget=forms.DateTimeInput(
             attrs={
                 'type': 'datetime-local',
-                'max': "2021-01-30T23:59",
+                'value': (datetime.datetime.now() + datetime.timedelta(minutes=10)).strftime("%Y-%m-%dT%H:%M"),
+                'min': (datetime.datetime.now() + datetime.timedelta(minutes=10)).strftime("%Y-%m-%dT%H:%M"),
+                'max': (datetime.datetime.now() + datetime.timedelta(days=14)).strftime("%Y-%m-%dT%H:%M"),
                 'class': 'form-control',
             }
         )
@@ -58,7 +62,9 @@ class VotingForm(forms.Form):
         widget=forms.DateTimeInput(
             attrs={
                 'type': 'datetime-local',
-                'max': "2021-01-30T23:59",
+                'value': (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M"),
+                'min': (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M"),
+                'max': (datetime.datetime.now() + datetime.timedelta(days=14, minutes=10)).strftime("%Y-%m-%dT%H:%M"),
                 'class': 'form-control',
             }
         )
@@ -68,6 +74,8 @@ class VotingForm(forms.Form):
         cleaned_data = super().clean()
         if cleaned_data.get('start_time') < timezone.now():
             raise ValidationError('Нельзя указывать дату в прошлом')
+        if cleaned_data.get('end_time') < cleaned_data.get('start_time'):
+            raise ValidationError('Start time > End time, trying self-repair...')
 
 
 class RegistrationForm(forms.Form):
