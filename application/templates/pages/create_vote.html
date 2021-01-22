@@ -1,31 +1,16 @@
 {% extends 'app.html' %}
 
 {% block content %}
-
   <h1 class="gradient-text title-with-padding">{{title}}</h1>
   {% if not vote_variants %}
     <form id="app" ref="form" @submit="checkForm" method="post">
       {% csrf_token %}
+      {% for item in form %}
       <div class="mb-3">
-          <label class="form-label">{{ form.title.label }}</label>
-                {{ form.title }}
+          <label class="form-label">{{ item.label }}</label>
+                <div>{{item}}</div>
           </div>
-          <div class="mb-3">
-          <label class="form-label">{{ form.description.label }}</label>
-                {{ form.description  }}
-         </div>
-      <div class="mb-3">
-        <label class="form-label">{{ form.variant_count.label }}</label>
-              {{ form.variant_count }}
-      </div>
-      <div class="mb-3">
-          <label class="form-label">{{ form.start_time.label }}</label>
-                {{ form.start_time }}
-         </div>
-        <div class="mb-3">
-          <label class="form-label">{{ form.end_time.label }}</label>
-                {{ form.end_time }}
-        </div>
+      {% endfor %}
       <button type="submit" class="btn btn-primary gradient-background" style="border: none;">{{btn}}</button>
       {{ form.errors }}
     </form>
@@ -33,6 +18,8 @@
   <form id="app" ref="form" @submit="checkForm" method="post">
     {% csrf_token %}
         {% for vote in vote_variants %}
+      <input type="hidden" value="{{ id }}" name="id">
+      <input type="hidden" value="{{ count }}" name="count">
          <div class="mb-3">
         <label class="form-label">{{ vote.label }}</label>
               {{ vote }}
