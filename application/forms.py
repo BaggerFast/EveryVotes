@@ -47,6 +47,16 @@ class VotingForm(forms.Form):
             }
         )
     )
+    variant_count = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={
+                'type': 'number',
+                'value': 2,
+                'min': 2,
+                'max': 5,
+            }
+        )
+    )
     start_time = forms.DateTimeField(
         widget=forms.DateTimeInput(
             attrs={
