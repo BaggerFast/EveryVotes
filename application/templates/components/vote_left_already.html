@@ -1,0 +1,27 @@
+{% block empty_votes %}
+    <div class="mx-auto" style="width: 591px; padding: 24px; background-color: black;">
+
+      <h1 class="text-center text-primary gradient-text" style="margin-bottom: 32px; font-size: 48px;">You have already vote</h1>
+      <h1 class="text-center text-primary gradient-text" style="margin-bottom: 32px; font-size: 48px;">{{ vote.title }}</h1>
+      <p class="text-center" style="margin-bottom: 32px; font-size: 20px; color: white;">
+        {{ vote.description }}
+      </p>
+      {% for variant in variants %}
+      {% if variant != cur_var.0.variant %}
+      <a class="btn btn-primary w-100 gradient-background"
+         style="
+         margin-bottom: 16px; font-size: 20px; border: none; color: #ff6347"
+         href="">
+        {{variant.description}}
+        {%else%}
+            <a class="btn btn-primary w-100 gradient-background"
+          style="margin-bottom: 16px; font-size: 20px; border: none; color: #33cc33"
+          href="{% url 'create_vote'%}">
+           {{variant.description }}
+            </a>
+        {%endif%}
+      {%endfor%}
+      </a>
+      </div>
+    </div>
+{% endblock %}

@@ -2,15 +2,12 @@
 {% load static %}
 {% block content %}
     <div class="mx-auto" style="width: 591px; padding: 24px; background-color: black;">
-
-      <h1 class="text-center text-primary gradient-text" style="margin-bottom: 32px; font-size: 48px;">{{ vote.title }}</h1>
+      {% if not cur_var %}
+<h1 class="text-center text-primary gradient-text" style="margin-bottom: 32px; font-size: 48px;">{{ vote.title }}</h1>
 
       <p class="text-center" style="margin-bottom: 32px; font-size: 20px; color: white;">
         {{ vote.description }}
       </p>
-
-      {% if not facts %}
-
         {% for variant in variants %}
           <a class="btn btn-primary w-100 gradient-background"
              style="margin-bottom: 16px; font-size: 20px; border: none;"
@@ -20,11 +17,7 @@
         {% endfor %}
 
       {% else %}
-        <p>
-          You already voted. You have chosed: "{{facts.0.variant.description}}".
-          For that variant have voted {{ variant_votes }} people.
-          Total votes {{ total_votes }}.
-        </p>
+        {% include 'components/vote_left_already.html' %}
       {% endif %}
 
       <div class="row">
