@@ -30,3 +30,4 @@ class Page:
     registration = make('registration')
     vote = make('vote')
     votings_list = make('votings_list')
+    edit_vote = make('edit_vote')
