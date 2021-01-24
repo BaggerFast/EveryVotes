@@ -173,3 +173,7 @@ h3 {
 .bg-black {
   background-color: black;
 }
+
+table a {
+  text-decoration: none;
+}
