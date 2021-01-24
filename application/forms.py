@@ -87,7 +87,7 @@ class VotingForm(forms.Form):
             raise ValidationError('Нельзя указывать дату в прошлом')
         if cleaned_data.get('end_time') < cleaned_data.get('start_time'):
             raise ValidationError('Start time > End time, trying self-repair...')
-        if Voting.objects.filter(title=cleaned_data.get('title', closed=True)).exists():
+        if Voting.objects.filter(title=cleaned_data.get('title'), closed=False).exists():
             raise ValidationError('Post with same title already exists!')
 
 

@@ -30,11 +30,13 @@ class CreateEdiVoteView(View):
         self.context['navbar'] = get_navbar(request)
         if 'Vote variant 1' not in request.POST:
             form = VotingForm(request.POST)
+            self.context['form'] = form
             if form.is_valid():
-                self.context['form'] = form
                 current_vote = Voting.objects.get(id=cur_id)
                 current_variants = list(VoteVariant.objects.filter(voting_id=current_vote))
                 self.context['vote_variants'] = VoteForm.create(VoteForm(), len(current_variants), current_variants)
+            else:
+                messages.error(request, 'There is an error in the form!', extra_tags='danger')
         else:
             current_vote = Voting.objects.get(id=cur_id)
             current_variant = list(VoteVariant.objects.filter(voting_id=current_vote))
@@ -46,12 +48,10 @@ class CreateEdiVoteView(View):
                 current_vote.publish_at = form.data['start_time']
                 current_vote.finish_at = form.data['end_time']
                 current_vote.save()
-            for i in range(len(current_variant)):
-                current_variant[i].remake(vote_variants.data[f'Vote variant {i+1}'])
-            messages.success(request, 'A vote has been changed!')
-            return redirect(reverse('main'))
-        '''else:
-            messages.error(request, 'There is an error in the form!', extra_tags='danger')
-        VoteForm.create(form_of_votes, len(current_variant))
-        self.context['vote_variants'] = form_of_votes'''
+                for i in range(len(current_variant)):
+                    current_variant[i].remake(vote_variants.data[f'Vote variant {i + 1}'])
+                messages.success(request, 'A vote has been changed!')
+                return redirect(reverse('main'))
+            else:
+                messages.error(request, 'There is an error in the form!', extra_tags='danger')
         return render(request,  Page.edit_vote, self.context)
