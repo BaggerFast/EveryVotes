@@ -24,10 +24,8 @@ class CreateVoteView(View):
             form = VotingForm(request.POST)
             if form.is_valid():
                 self.context['count'] = int(form.data['variant_count'])
-                form_of_votes = VoteForm()
-                VoteForm.create(form_of_votes, self.context['count'])
                 self.context['form'] = form
-                self.context['vote_variants'] = form_of_votes
+                self.context['vote_variants'] = VoteForm.create(VoteForm(), self.context['count'])
             else:
                 messages.error(request, 'There is an error in the form!', extra_tags='danger')
         else:

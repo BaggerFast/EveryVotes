@@ -118,6 +118,7 @@ class VoteForm(forms.Form):
         if data:
             for i in range(len(data)):
                 form.fields[f'Vote variant {i + 1}'].initial=data[i].description
+        return form
 
     def clean(self):
         fields_keys = [key for key in self.data.keys() if key.startswith('Vote variant')]
