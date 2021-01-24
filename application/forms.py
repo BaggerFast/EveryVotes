@@ -124,4 +124,3 @@ class VoteForm(forms.Form):
         for key in fields_keys:
             if 3 > len(self.data.get(key)) or 20 < len(self.data.get(key)):
                 raise ValidationError('Слишком длинный голос')
-

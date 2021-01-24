@@ -17,9 +17,10 @@
   {% else %}
   <form id="app" ref="form" @submit="checkForm" method="post">
     {% csrf_token %}
+    {% for item in form %}
+               {{ item.as_hidden }}
+      {% endfor %}
         {% for vote in vote_variants %}
-      <input type="hidden" value="{{ id }}" name="id">
-      <input type="hidden" value="{{ count }}" name="count">
          <div class="mb-3">
         <label class="form-label">{{ vote.label }}</label>
               {{ vote }}

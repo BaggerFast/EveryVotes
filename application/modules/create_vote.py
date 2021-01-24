@@ -20,23 +20,23 @@ class CreateVoteView(View):
 
     def post(self, request):
         self.context['navbar'] = get_navbar(request)
-        if 'start_time' in request.POST:
+        if 'Vote variant 1' not in request.POST:
             form = VotingForm(request.POST)
             if form.is_valid():
                 self.context['count'] = int(form.data['variant_count'])
-                self.make_post(form, request)
                 form_of_votes = VoteForm()
                 VoteForm.create(form_of_votes, self.context['count'])
+                self.context['form'] = form
                 self.context['vote_variants'] = form_of_votes
-                self.context['id'] = self.post.id
             else:
                 messages.error(request, 'There is an error in the form!', extra_tags='danger')
         else:
             form_of_votes = VoteForm(request.POST)
+            form = VotingForm(request.POST)
             if form_of_votes.is_valid():
-                vote = Voting(id=int(request.POST['id']))
-                for i in range(int(request.POST['count'])):
-                    VoteVariant.objects.create(voting=vote, description=form_of_votes.data[f'Vote variant {i + 1}'])
+                self.make_post(form, request)
+                for i in range(int(request.POST['variant_count'])):
+                    VoteVariant.objects.create(voting=self.post, description=form_of_votes.data[f'Vote variant {i + 1}'])
                 messages.success(request, 'A new post has been created!')
                 return redirect(reverse('main'))
             else:
