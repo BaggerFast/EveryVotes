@@ -2,7 +2,8 @@ import datetime
 
 from django import forms
 from django.core.exceptions import ValidationError
-from django.utils import timezone, dateformat
+from application.models import Voting
+from django.utils import timezone
 
 
 class FormTemplates:
@@ -86,6 +87,8 @@ class VotingForm(forms.Form):
             raise ValidationError('Нельзя указывать дату в прошлом')
         if cleaned_data.get('end_time') < cleaned_data.get('start_time'):
             raise ValidationError('Start time > End time, trying self-repair...')
+        if Voting.objects.filter(title=cleaned_data.get('title', closed=True)).exists():
+            raise ValidationError('Post with same title already exists!')
 
 
 class RegistrationForm(forms.Form):
