@@ -31,3 +31,4 @@ class Page:
     vote = make('vote')
     votings_list = make('votings_list')
     edit_vote = make('edit_vote')
+    user_list = make('user_list')

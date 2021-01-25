@@ -6,18 +6,18 @@
       <p class="text-center" style="margin-bottom: 32px; font-size: 20px; color: white;">
         {{ vote.description }}
       </p>
-      {% for variant in variants %}
-      {% if variant != cur_var.0.variant %}
+      {% for obj in data  %}
+      {% if obj.0 != cur_var.0.variant %}
       <a class="btn btn-primary w-100 gradient-background"
          style="
          margin-bottom: 16px; font-size: 20px; border: none; color: #ff6347"
-         href="">
-        {{variant.description}}
+         href="{% url 'user_list' obj.1%}">
+        {{obj.0.description}}
         {%else%}
             <a class="btn btn-primary w-100 gradient-background"
           style="margin-bottom: 16px; font-size: 20px; border: none; color: #33cc33"
-          href="{% url 'create_vote'%}">
-           {{variant.description }}
+          href="{% url 'user_list' obj.1%}">
+           {{obj.0.description }}
             </a>
         {%endif%}
       {%endfor%}

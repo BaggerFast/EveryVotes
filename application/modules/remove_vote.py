@@ -13,5 +13,5 @@ class RemoveVotePage(View):
         vote = get_object_or_404(Voting, id=id)
         vote.closed = True
         vote.save()
-        messages.success(request, 'The vote remove!')
+        messages.success(request, f'The vote {vote.title} remove!')
         return redirect(reverse('own_voting_list'))

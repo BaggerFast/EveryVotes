@@ -16,9 +16,7 @@ class Voting(models.Model):
 
     def check_settings(self):
         if self.finish_at < timezone.now():
-            return False
-        else:
-            return True
+            self.closed = True
 
 
 class VoteVariant(models.Model):

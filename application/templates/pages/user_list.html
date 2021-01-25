@@ -1,0 +1,21 @@
+{% extends 'app.html' %}
+{% block content %}
+{% if data %}
+    <h1 class="gradient-text title-with-padding">Global vote</h1>
+    <table border="1px" class="table table-striped table-dark table-bordered">
+      <tr>
+          <td>User</td>
+      </tr>
+      {% for obj in data %}
+        <tr>
+          <td><a href=""></a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  {%else%}
+  нету ничего
+{%endif%}
+    {% endblock %}
+
+
+
