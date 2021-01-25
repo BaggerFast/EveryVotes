@@ -177,3 +177,32 @@ h3 {
 table a {
   text-decoration: none;
 }
+
+.to-the-top {
+  position: fixed;
+  right: 0;
+  bottom: 100px;
+  width: 70px;
+  height: 125px;
+  border-radius: 5px 0 0 5px;
+  text-align: center;
+  font-size: 100px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  transition: all 0.5s;
+  overflow: hidden;
+}
+
+.to-the-top p {
+  margin-top: -26px;
+}
+
+.hidden-ttt {
+  right: -70px;
+  opacity: 0%;
+}
+
+.visible-ttt {
+  opacity: 75%;
+}
