@@ -23,7 +23,7 @@
           {% for voting in active_votings %}
             <tr>
               <td>
-                <a href="{% url 'edit_vote' voting.id %}">
+                <a href="{% url 'remove_vote' voting.id %}">
                   <button type="submit" name="value" class="btn btn-primary gradient-background" style="border: none;">Remove</button>
                 </a>
               </td>

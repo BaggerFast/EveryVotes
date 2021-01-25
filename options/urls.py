@@ -31,5 +31,6 @@ urlpatterns = [
     path('own_voting_list/', login_required(OwnVoteListView.as_view()), name='own_voting_list'),
     path('edit_vote/<int:cur_id>/', login_required(CreateEdiVoteView.as_view()), name='edit_vote'),
     path('vote/<int:id>/', login_required(VotePage.as_view()), name='vote'),
+    path('remove_vote/<int:id>/', login_required(RemoveVotePage.as_view()), name='remove_vote'),
 ]
 

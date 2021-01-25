@@ -6,3 +6,4 @@ from application.modules.registration import RegistrationView
 from application.modules.votings_list import VoteListView
 from application.modules.edit_vote import CreateEdiVoteView
 from application.modules.own_vote_list import OwnVoteListView
+from application.modules.remove_vote import RemoveVotePage
