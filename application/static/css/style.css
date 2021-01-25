@@ -115,6 +115,14 @@ h3 {
   background: linear-gradient(to right, rgba(6, 99, 132, 0.8) 0%, rgb(67, 133, 151) 100%);
 }
 
+.gradient-background-red {
+  background: linear-gradient(to right, rgba(130, 30, 30, 0.8) 0%, rgb(130, 50, 50) 100%);
+}
+
+.gradient-background-green {
+  background: linear-gradient(to right, rgba(20, 130, 20, 0.8) 0%, rgb(40, 130, 40) 100%);
+}
+
 .main_text_block {
   margin: auto;
   text-align: center;
