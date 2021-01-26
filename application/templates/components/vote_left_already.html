@@ -1,21 +1,30 @@
 {% block empty_votes %}
     <div class="mx-auto" style="width: 591px; padding: 24px; background-color: black;">
 
-      <h1 class="text-center text-primary gradient-text" style="margin-bottom: 32px; font-size: 48px;">You have already vote</h1>
-      <h1 class="text-center text-primary gradient-text" style="margin-bottom: 32px; font-size: 48px;">{{ vote.title }}</h1>
-      <p class="text-center" style="margin-bottom: 32px; font-size: 20px; color: white;">
+    <div style="margin-top: 20px;">
+      <div v-for="error in errors" class="alert alert-danger alert-dismissible fade-show" role="alert">
+        You have already voted!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        </button>
+      </div>
+    </div>
+
+<!--      <h1 class="text-center text-primary gradient-text" style="margin-bottom: 32px; font-size: 48px;">You have already voted</h1>-->
+<!--      <hr>-->
+      <h1 class="text-center text-primary gradient-text" style="margin: 32px 0; font-size: 48px;">{{ vote.title }}</h1>
+      <p class="text-center" style="margin-bottom: 32px; font-size: 25px; color: white;">
         {{ vote.description }}
       </p>
       {% for obj in data  %}
       {% if obj.0 != cur_var.0.variant %}
-      <a class="btn btn-primary w-100 gradient-background"
+      <a class="btn btn-primary w-100 gradient-background-red"
          style="
-         margin-bottom: 16px; font-size: 20px; border: none; color: #ff6347"
+         margin-bottom: 16px; font-size: 20px; border: none;"
          href="{% url 'user_list' obj.1%}">
           {{obj.0.description}}
         {%else%}
-            <a class="btn btn-primary w-100 gradient-background"
-          style="margin-bottom: 16px; font-size: 20px; border: none; color: #33cc33"
+            <a class="btn btn-primary w-100 gradient-background-green"
+          style="margin-bottom: 16px; font-size: 20px; border: none;"
           href="{% url 'user_list' obj.1%}">
            {{obj.0.description }}
             </a>
