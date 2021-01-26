@@ -43,7 +43,7 @@ footer span {
     margin-top: 50px;
     width: 74%;
   }
-  .main_text_block {
+  .main-text-block {
     width: 74%;
     padding: 10px;
   }
@@ -79,6 +79,7 @@ h1 {
   font-size: 3.9em;
   /*text-transform: capitalize;*/
   position: relative;
+  overflow-wrap: break-word;
 }
 
 .title-with-padding {
@@ -100,19 +101,31 @@ h3 {
   margin-right: auto;
   margin-bottom: 0.8em;
   font-size: 3em;
-  background: linear-gradient(to right, rgba(6, 99, 132, 0.8) 0%, rgb(67, 133, 151) 100%);
+  background: linear-gradient(to right, #28cbff 0%, #438597 100%) /*linear-gradient(to right, rgba(6, 99, 132, 0.8) 0%, rgb(67, 133, 151) 100%)*/;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-text {
-  background: linear-gradient(to right, rgba(6, 99, 132, 0.8) 0%, rgb(67, 133, 151) 100%);
+  background: linear-gradient(to right, #28cbff 0%, #438597 100%) /*linear-gradient(to right, rgba(6, 99, 132, 0.8) 0%, rgb(67, 133, 151) 100%)*/;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-link {
+  background: linear-gradient(to right, #0d6efd 0%, #4288ed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-red {
+  background: linear-gradient(to right, rgba(150, 30, 30, 0.8) 0%, rgb(150, 50, 50) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-background {
-  background: linear-gradient(to right, rgba(6, 99, 132, 0.8) 0%, rgb(67, 133, 151) 100%);
+  background: linear-gradient(to right, #28cbff 0%, #438597 100%)  /*linear-gradient(to right, rgba(6, 99, 132, 0.8) 0%, rgb(67, 133, 151) 100%)*/;
 }
 
 .gradient-background-red {
@@ -123,7 +136,11 @@ h3 {
   background: linear-gradient(to right, rgba(20, 130, 20, 0.8) 0%, rgb(40, 130, 40) 100%);
 }
 
-.main_text_block {
+.light-hr {
+  opacity: 80%;
+}
+
+.main-text-block {
   margin: auto;
   text-align: center;
   font-size: 1.2em;
@@ -184,4 +201,9 @@ h3 {
 
 table a {
   text-decoration: none;
+}
+
+.btn:not(.btn-exception) {
+  border: none;
+  text-shadow: 2px 2px 2px black;
 }

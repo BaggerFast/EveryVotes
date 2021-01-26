@@ -14,7 +14,7 @@
       {% for voting in votings %}
         <tr>
           <td>{{ voting.author }}</td>
-          <td><a href="{% url 'vote' voting.id %}">{{ voting.title }}</a></td>
+          <td><a href="{% url 'vote' voting.id %}" class="gradient-text-link">{{ voting.title }}</a></td>
           <td>{{ voting.publish_at }}</td>
           <td>{{ voting.finish_at }}</td>
         </tr>
