@@ -1,10 +1,12 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from application.forms import VotingForm, VoteForm
 from application.models import VoteVariant, Voting
 from application.views import *
 
 
-class CreateEdiVoteView(View):
+class CreateEdiVoteView(LoginRequiredMixin, View):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.context = {
@@ -18,12 +20,15 @@ class CreateEdiVoteView(View):
         variants_count = VoteVariant.objects.filter(voting_id=current_vote).count()
         self.context['title'] = 'Edit vote'
         self.context['btn'] = 'Edit'
-        self.context['form'] = VotingForm(initial={
-            'title': current_vote.title,
-            'description': current_vote.description,
-            'variant_count': variants_count,
-            'start_time': current_vote.publish_at.strftime("%Y-%m-%dT%H:%M"),
-            'end_time': current_vote.finish_at.strftime("%Y-%m-%dT%H:%M")})
+        self.context['form'] = VotingForm(
+            initial={
+                'title': current_vote.title,
+                'description': current_vote.description,
+                'variant_count': variants_count,
+                'start_time': current_vote.publish_at.strftime("%Y-%m-%dT%H:%M"),
+                'end_time': current_vote.finish_at.strftime("%Y-%m-%dT%H:%M")
+            }
+        )
         return render(request,  Page.edit_vote, self.context)
 
     def post(self, request, cur_id):
