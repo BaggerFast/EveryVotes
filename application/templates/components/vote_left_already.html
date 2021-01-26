@@ -10,13 +10,13 @@
       {% if obj.0 != cur_var.0.variant %}
       <a class="btn btn-primary w-100 gradient-background-red"
          style="margin-bottom: 16px; font-size: 20px; border: none;"
-         href="{% url 'user_list' obj.1%}">
-          {{obj.0.description}}
+         href="{% url 'user_list'  obj.0.id%}">
+          {{obj.0.description}} ({{obj.1}})
         {%else%}
             <a class="btn btn-primary w-100 gradient-background-green"
           style="margin-bottom: 16px; font-size: 20px; border: none;"
-          href="{% url 'user_list' obj.1%}">
-           {{obj.0.description }}
+          href="{% url 'user_list' obj.0.id%}">
+           {{obj.0.description }} ({{obj.1}})
             </a>
         {%endif%}
       {%endfor%}

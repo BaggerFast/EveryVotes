@@ -1,0 +1,19 @@
+{% extends 'app.html' %}
+{% block content %}
+{% if data %}
+    <h1 class="gradient-text title-with-padding">Users of {{data.0.variant.description }}</h1>
+    <table border="1px" class="table table-striped table-dark table-bordered">
+       <tr>
+          <td>Users</td>
+      </tr>
+      {%for obj in data%}
+        <tr>
+          <td><a href="{% url 'user_votes' obj.author.id %}">{{obj.author}}</a></td>
+        </tr>
+      {%endfor%}
+     </table>
+{%endif%}
+      {% endblock %}
+
+
+

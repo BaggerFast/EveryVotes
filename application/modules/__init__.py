@@ -7,4 +7,5 @@ from application.modules.votings_list import VoteListView
 from application.modules.edit_vote import CreateEdiVoteView
 from application.modules.own_vote_list import OwnVoteListView
 from application.modules.remove_vote import RemoveVotePage
-from application.modules.user_list import UserList
+from application.modules.user_votes import UserVotesList
+from application.modules.users_list import UsersList
