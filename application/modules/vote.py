@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 
@@ -7,7 +8,7 @@ from application.models import Voting, VoteVariant, VoteFact
 from application.views import *
 
 
-class VotePage(View):
+class VotePage(LoginRequiredMixin, View):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.context = {}

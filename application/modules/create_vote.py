@@ -1,10 +1,12 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from application.forms import VotingForm, VoteForm
 from application.models import Voting, VoteVariant
 from application.views import *
 
 
-class CreateVoteView(View):
+class CreateVoteView(LoginRequiredMixin, View):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.context = {

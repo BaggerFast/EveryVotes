@@ -1,8 +1,10 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from application.models import VoteFact
 from application.views import *
 
 
-class UserList(View):
+class UserList(LoginRequiredMixin, View):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.context = {}

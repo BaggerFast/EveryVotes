@@ -14,16 +14,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 from application.modules import *
 from application.additional_url import vote_urls as vote
 
 urlpatterns = [
-    path('',              MainView.as_view(),                   name='main'),
-    path('admin/',        admin.site.urls,                      name='admin'),
-    path('login/',        LoginView.as_view(),                  name='login'),
-    path('logout/',       login_required(LogoutView.as_view()), name='logout'),
-    path('registration/', RegistrationView.as_view(),           name='registration'),
-    path('vote/',         include(vote)),
+    path('', MainView.as_view(), name='main'),
+    path('admin/', admin.site.urls, name='admin'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', login_required(LogoutView.as_view()), name='logout'),
+    path('registration/', RegistrationView.as_view(), name='registration'),
+    path('vote/', include(vote)),
 ]
-

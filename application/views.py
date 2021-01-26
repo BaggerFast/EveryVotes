@@ -4,7 +4,9 @@ from django.views import View
 
 
 def get_navbar(request):
-    navbar = [{'url': 'main', 'label': 'Home'}]
+    navbar = [
+        {'url': 'main', 'label': 'Home'}
+    ]
     if request.user.is_authenticated:
         navbar += [
             {'url': 'create_vote', 'label': 'Create vote'},
@@ -13,13 +15,19 @@ def get_navbar(request):
             {'url': 'logout', 'label': "Logout"},
         ]
     else:
-        navbar += [{'url': 'login', 'label': 'Login'},
-                   {'url': 'registration', 'label': 'Registration'}]
+        navbar += [
+            {'url': 'login', 'label': 'Login'},
+            {'url': 'registration', 'label': 'Registration'}
+        ]
+
+    for menuitem in navbar:
+        menuitem['active'] = request.path != reverse(menuitem['url'])
+
     return navbar
 
 
 def make(page):
-        return 'pages/' + page + '.html'
+    return 'pages/' + page + '.html'
 
 
 class Page:
