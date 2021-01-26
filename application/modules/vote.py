@@ -17,11 +17,6 @@ class VotePage(View):
         variants = list(VoteVariant.objects.filter(voting=vote))
         self.context['variants'] = variants
         data = []
-        if self.context['cur_var']:
-            for var in variants:
-                a = VoteFact.objects.filter(variant=var).count()
-                data.append((var, a))
-        self.context['data'] = data
         variant_id = request.GET.get('vid', None)
         if variant_id:
             fact_variant = get_object_or_404(VoteVariant, id=variant_id)
@@ -32,4 +27,8 @@ class VotePage(View):
                 messages.error(request, 'User has already made a choice.', extra_tags='danger')
             if fact_variant.voting.id != id:
                 messages.error(request, 'Wrong variant has passed.', extra_tags='danger')
+        for var in variants:
+            a = VoteFact.objects.filter(variant=var).count()
+            data.append((var, a))
+        self.context['data'] = data
         return render(request, Page.vote, self.context)
