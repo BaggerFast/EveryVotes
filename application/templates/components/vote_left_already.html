@@ -1,7 +1,7 @@
 {% block empty_votes %}
     <div class="mx-auto" style="width: 591px; padding: 24px; background-color: black;">
-      <h1 class="text-center text-primary gradient-text" style="margin-bottom: 32px; font-size: 48px;">You have already voted</h1>
-      <hr>
+      <h1 class="text-center text-primary gradient-text-red" style="margin-bottom: 32px; font-size: 48px;">You have already voted</h1>
+      <hr class="light-hr">
       <h1 class="text-center text-primary gradient-text" style="margin: 32px 0; font-size: 48px;">{{ vote.title }}</h1>
       <p class="text-center" style="margin-bottom: 32px; font-size: 25px; color: white;">
         {{ vote.description }}
@@ -14,7 +14,7 @@
           {{obj.0.description}} ({{obj.1}})
         {%else%}
             <a class="btn btn-primary w-100 gradient-background-green"
-          style="margin-bottom: 16px; font-size: 20px; border: none;"
+          style="margin-bottom: 16px; font-size: 20px;"
           href="{% url 'user_list' obj.0.id%}">
            {{obj.0.description }} ({{obj.1}})
             </a>
