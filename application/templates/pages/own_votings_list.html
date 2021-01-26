@@ -15,8 +15,7 @@
           <tr style="border-top: 0;">
             <td>Remove</td>
             <td>Title</td>
-            <td>Date start</td>
-            <td>Date Finished</td>
+            <td>Time</td>
             <td>State</td>
           </tr>
 
@@ -28,8 +27,12 @@
                 </a>
               </td>
               <td><a href="{% url 'vote' voting.id %}">{{ voting.title }}</a></td>
-              <td>{{ voting.publish_at }}</td>
-              <td>{{ voting.finish_at }}</td>
+              <td>
+                <div title="{{ voting.publish_at }}, {{ voting.finish_at }}" class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: {{ voting.progress }}%" aria-valuenow="voting.progress" aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
+              </td>
               <td style="color: #20bf20;">Open</td>
             </tr>
           {% endfor %}
@@ -51,8 +54,7 @@
           <tr style="border-top: 0;">
             <td>Edit</td>
             <td>Title</td>
-            <td>Date start</td>
-            <td>Date Finished</td>
+            <td>Time</td>
             <td>State</td>
           </tr>
         {% for voting in closed_votings %}
@@ -63,8 +65,12 @@
               </a>
             </td>
             <td><a href="{% url 'vote' voting.id %}">{{ voting.title }}</a></td>
-            <td>{{ voting.publish_at }}</td>
-            <td>{{ voting.finish_at }}</td>
+            <td>
+              <div title="{{ voting.publish_at }}, {{ voting.finish_at }}" class="progress">
+                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ voting.progress }}%" aria-valuenow="voting.progress" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+            </td>
             <td style="color: #bf2020;">Closed</td>
           </tr>
         {% endfor %}
