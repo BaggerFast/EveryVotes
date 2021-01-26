@@ -10,5 +10,5 @@ urlpatterns = [
     path('pvt_list/',          login_required(OwnVoteListView.as_view()),   name='own_voting_list'),
     path('edit/<int:cur_id>/', login_required(CreateEdiVoteView.as_view()), name='edit_vote'),
     path('remove/<int:id>/',   login_required(RemoveVotePage.as_view()),    name='remove_vote'),
-    path('user/<int:id>/',     login_required(UserList.as_view()),    name='user_list')
+    path('user/<int:author_id>/',     login_required(UserList.as_view()),    name='user_list')
 ]

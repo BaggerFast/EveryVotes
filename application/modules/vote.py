@@ -24,10 +24,11 @@ class VotePage(View):
 
         for i in range(len(variants)):
             if VoteFact.objects.filter(variant=variants[i]).exists():
-                user_data.append(variants[i].id)
+                user_data.append(variants[i].voting.id)
             else:
                 user_data.append(0)
             data.append((variants[i], user_data[i]))
+        print(data)
 
         self.context['data'] = data
         variant_id = request.GET.get('vid', None)
@@ -37,7 +38,6 @@ class VotePage(View):
             fact_count = VoteFact.objects.filter(variant__voting=vote, author=request.user).count()
             fact = VoteFact(variant=fact_variant, author=request.user)
             fact.save()
-
             if fact_count > 0:
                 messages.error(request, 'User has already made a choice.', extra_tags='danger')
             if fact_variant.voting.id != id:
