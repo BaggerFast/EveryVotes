@@ -79,7 +79,7 @@ DATABASES = {
     'default': {
      'ENGINE': 'django.db.backends.sqlite3',
      'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-}
+    }
 }
 
 # Password validation
@@ -129,7 +129,3 @@ STATIC_URL = '/static/'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
-
-if SECRET_KEY == 'Insert secret key here and uncomment this variable':
-    raise RuntimeError('Insert the secret key in settings.py')

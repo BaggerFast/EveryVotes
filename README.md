@@ -1,24 +1,35 @@
-# Проект "Simple votings"
+# Project SimpleVotings
 
-## Цель
-Предоставить пользователю сервис, на котором можно быстро создать голосование и собрать мнения пользователей касательно какого-либо вопроса
+[![Language](https://img.shields.io/badge/Language-Python-yellow.svg?style=flat)]()
+[![Framework](https://img.shields.io/badge/Framework-Django-g.svg?style=flat)](https://docs.djangoproject.com/en/4.0/)
+[![Platform](https://img.shields.io/badge/Platform-WebSite-red.svg?style=flat)]()
 
-## Технологический стек:
-- Python 3.6+
-- Vue.js 2.x
-- Django 3.1+
+## The purpose
+Give the user an open source web service where you can quickly create votes, then receive and analyze the opinions of other users
 
-## Инструкция по настройке проекта:
-1. Склонировать проект
-2. Открыть проект в PyCharm с наcтройками по умолчанию
-3. Создать виртуальное окружение (`settings` -> `project` -> `interpreter`)
-4. Открыть терминал в PyCharm, проверить, что виртуальное окружение активировано
-5. Обновить pip:
+## Technology stack:
+- **Languages:**
+  - Python 3.9+ (main)
+  - Hmtl 
+  - Css 
+  - JavaScript
+- **Libraries/Frameworks:**
+  - Django 
+
+## Quick setup:
+1. Clone project
+2. Open a project in PyCharm with default settings
+3. Create a virtual venv(`settings` -> `project` -> `interpreter`)
+4. Update pip:
    ```bash
    pip install --upgrade pip
    ```
-6. Установить в виртуальное окружение необходимые пакеты: 
+5. Install the required libraries: 
    ```bash
    pip install -r requirements.txt
    ```
-7. Создать конфигурацию запуска в PyCharm (файл `manage.py`, опция `runserver`)
+6. Migrate database:
+    ```bash
+   python3 manage.py migrate
+   ```
+7. Create run configuration in PyCharm(file `manage.py`, option `runserver`)
