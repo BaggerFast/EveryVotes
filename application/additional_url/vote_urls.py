@@ -1,4 +1,3 @@
-from django.contrib.auth.decorators import login_required
 from django.urls import path
 from application.modules import *
 from application.modules.create_vote import CreateVoteView

@@ -1,8 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.views import View
 from application.forms import RegistrationForm
-from application.views import *
+from application.views import get_navbar, Page
 
 
 class RegistrationView(View):

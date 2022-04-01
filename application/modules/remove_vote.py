@@ -1,8 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
+from django.views import View
+
 from application.models import Voting
-from application.views import *
 
 
 class RemoveVotePage(LoginRequiredMixin, View):

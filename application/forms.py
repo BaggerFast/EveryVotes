@@ -106,7 +106,7 @@ class AuthenticateForm(forms.Form):
 
 class VoteForm(forms.Form):
     @staticmethod
-    def create(form, count, data=[]):
+    def create(form, count, data: list = None):
         for i in range(count):
             form.fields[f'Vote variant {i + 1}'] = forms.CharField(
                 max_length=20,
@@ -120,7 +120,7 @@ class VoteForm(forms.Form):
             )
         if data:
             for i in range(len(data)):
-                form.fields[f'Vote variant {i + 1}'].initial=data[i].description
+                form.fields[f'Vote variant {i + 1}'].initial = data[i].description
         return form
 
     def clean(self):

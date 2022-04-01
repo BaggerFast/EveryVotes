@@ -1,7 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
+from django.views import View
 
-from application.views import *
 from application.models import Voting
+from application.views import get_navbar, Page
 
 
 class OwnVoteListView(LoginRequiredMixin, View):

@@ -1,4 +1,6 @@
-from application.views import *
+from django.shortcuts import render
+from django.views import View
+from application.views import get_navbar, Page
 
 
 class MainView(View):

@@ -2,13 +2,17 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.views import View
 
 from application.forms import VotingForm, VoteForm
 from application.models import Voting, VoteVariant
-from application.views import *
+from application.views import get_navbar, Page
 
 
 class CreateVoteView(LoginRequiredMixin, View):
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.context = {

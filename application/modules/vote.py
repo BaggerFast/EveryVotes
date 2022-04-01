@@ -1,11 +1,9 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse
-
+from django.shortcuts import get_object_or_404, render
+from django.views import View
 from application.models import Voting, VoteVariant, VoteFact
-from application.views import *
+from application.views import get_navbar, Page
 
 
 class VotePage(LoginRequiredMixin, View):

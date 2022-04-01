@@ -1,9 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.views import View
 
 from application.forms import VotingForm, VoteForm
 from application.models import VoteVariant, Voting
-from application.views import *
+from application.views import get_navbar, Page
 
 
 class CreateEdiVoteView(LoginRequiredMixin, View):
@@ -46,7 +49,7 @@ class CreateEdiVoteView(LoginRequiredMixin, View):
             current_vote = Voting.objects.get(id=cur_id)
             current_variant = list(VoteVariant.objects.filter(voting_id=current_vote))
             form = VotingForm(request.POST)
-            vote_variants= VoteForm(request.POST)
+            vote_variants = VoteForm(request.POST)
             if form.is_valid() and vote_variants.is_valid():
                 current_vote.title = form.data['title']
                 current_vote.description = form.data['description']
