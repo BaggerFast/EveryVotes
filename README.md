@@ -1,7 +1,7 @@
 # Project EveryVotes
 
-[![Language](https://img.shields.io/badge/Language-Python3.9-yellow.svg?style=flat)]()
-[![Platform](https://img.shields.io/badge/Platform-WebSite-red.svg?style=flat)]()
+![Language](https://img.shields.io/badge/Language-Python3.9-yellow.svg?style=flat)
+![Platform](https://img.shields.io/badge/Platform-WebSite-red.svg?style=flat)
 
 ### Clickable:
 [![Documentation](https://img.shields.io/badge/Documentation-Latest-blue.svg?style=flat)](https://everyvotes.readthedocs.io/en/latest/)
@@ -38,3 +38,16 @@ Give the user an open source web service where you can quickly create votes, the
    python3 manage.py migrate
    ```
 7. Create run configuration in PyCharm(file `manage.py`, option `runserver`)
+
+
+## Build documentation:
+```
+cd docs
+make html
+cd 
+```
+
+## Codestyle:
+```
+ DJANGO_SETTINGS_MODULE=options.settings pylint application options
+```

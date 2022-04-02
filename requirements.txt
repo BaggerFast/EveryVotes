@@ -4,3 +4,10 @@ Django
 # Docs
 Sphinx
 sphinx-rtd-theme
+
+# Debug
+django-debug-toolbar
+
+# Codestyle
+pylint
+pylint-django
