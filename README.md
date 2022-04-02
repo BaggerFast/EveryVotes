@@ -4,6 +4,7 @@
 [![Platform](https://img.shields.io/badge/Platform-WebSite-red.svg?style=flat)]()
 
 ### Clickable:
+[![Documentation](https://img.shields.io/badge/Documentation-Latest-blue.svg?style=flat)](https://everyvotes.readthedocs.io/en/latest/)
 [![Framework](https://img.shields.io/badge/Framework-Django-g.svg?style=flat)](https://docs.djangoproject.com/en/4.0/)
 
 ## The purpose
