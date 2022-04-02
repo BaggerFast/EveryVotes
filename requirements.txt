@@ -1,2 +1,6 @@
+# Engine
 Django
-dnspython == 2.0.0
+
+# Docs
+Sphinx
+sphinx-rtd-theme

@@ -4,6 +4,14 @@ from django.utils import timezone
 
 
 class Voting(models.Model):
+    """
+    Base voting model
+
+    :param author: creator of Voting :class: 'int'
+    :param title: header of Voting
+    :param publish_at: the date of start Voting
+    :param finished_at: the date of end Voting
+    """
     author = models.ForeignKey(to=User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=255)

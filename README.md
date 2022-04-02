@@ -1,20 +1,24 @@
-# Project SimpleVotings
+# Project EveryVotes
 
-[![Language](https://img.shields.io/badge/Language-Python-yellow.svg?style=flat)]()
-[![Framework](https://img.shields.io/badge/Framework-Django-g.svg?style=flat)](https://docs.djangoproject.com/en/4.0/)
+[![Language](https://img.shields.io/badge/Language-Python3.9-yellow.svg?style=flat)]()
 [![Platform](https://img.shields.io/badge/Platform-WebSite-red.svg?style=flat)]()
+
+### Clickable:
+[![Framework](https://img.shields.io/badge/Framework-Django-g.svg?style=flat)](https://docs.djangoproject.com/en/4.0/)
 
 ## The purpose
 Give the user an open source web service where you can quickly create votes, then receive and analyze the opinions of other users
 
 ## Technology stack:
 - **Languages:**
-  - Python 3.9+ (main)
+  - Python 3.9 (main)
   - Hmtl 
   - Css 
   - JavaScript
 - **Libraries/Frameworks:**
   - Django 
+- **Docs:**
+  - Sphinx
 
 ## Quick setup:
 1. Clone project
