@@ -18,8 +18,10 @@ Give the user an open source web service where you can quickly create votes, the
   - Hmtl 
   - Css (Bootstrap)
   - JavaScript
-- **Libraries/Frameworks:**
+- **Frameworks:**
   - Django 
+- **Code Analyzers:**
+  - Pylint
 - **Docs:**
   - Sphinx
 
@@ -53,3 +55,6 @@ cd ..
 ```
  DJANGO_SETTINGS_MODULE=options.settings pylint application options
 ```
+
+## If django-debug-toolbar don't work:
+[View problem solution](https://www.youtube.com/watch?v=1LrWRY_buxE)
