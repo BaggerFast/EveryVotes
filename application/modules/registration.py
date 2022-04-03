@@ -34,8 +34,7 @@ class RegistrationView(View):
                     login(request, user)
                     messages.success(request, 'New user has been registered successfully!')
                     return redirect(reverse('main'))
-                else:
-                    messages.error(request, 'A user with this username already exists.', extra_tags='danger')
+                messages.error(request, 'A user with this username already exists.', extra_tags='danger')
             else:
                 messages.error(request, 'Passwords are not the same', extra_tags='danger')
         else:

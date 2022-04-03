@@ -12,12 +12,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LogoutView
 from django.urls import path, include
-from application.modules import *
+
+from application.modules import MainView, LoginView, RegistrationView
 from application.additional_url import vote_urls as vote
+
+from options import settings
 
 urlpatterns = [
     path('', MainView.as_view(), name='main'),
@@ -27,3 +31,10 @@ urlpatterns = [
     path('registration/', RegistrationView.as_view(), name='registration'),
     path('vote/', include(vote)),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ]

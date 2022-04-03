@@ -20,4 +20,3 @@ class VoteListView(LoginRequiredMixin, View):
             item[i].check_settings()
         self.context['votings'] = Voting.objects.filter(closed=False).order_by("-created_at")
         return render(request, Page.votings_list, self.context)
-

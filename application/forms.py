@@ -2,8 +2,9 @@ import datetime
 
 from django import forms
 from django.core.exceptions import ValidationError
-from application.models import Voting
 from django.utils import timezone
+
+from application.models import Voting
 
 
 class FormTemplates:

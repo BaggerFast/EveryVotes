@@ -22,5 +22,3 @@ class OwnVoteListView(LoginRequiredMixin, View):
         self.context['active_votings'] = Voting.objects.filter(author=request.user, closed=False).order_by("-created_at")
         self.context['closed_votings'] = Voting.objects.filter(author=request.user, closed=True).order_by("-created_at")
         return render(request, Page.own_votings_list, self.context)
-
-

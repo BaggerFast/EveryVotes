@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'application',
+
+    'debug_toolbar',
+
+    'application.apps.MainConfig',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +52,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'options.urls'
@@ -121,10 +126,13 @@ USE_TZ = True
 
 STATIC_URL = 'application/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, STATIC_URL)
-]
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, STATIC_URL),
+)
 
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'

@@ -45,8 +45,7 @@ class CreateVoteView(LoginRequiredMixin, View):
                                                description=form_of_votes.data[f'Vote variant {i + 1}'])
                 messages.success(request, 'A new post has been created!')
                 return redirect(reverse('main'))
-            else:
-                messages.error(request, 'There is an error in the form!', extra_tags='danger')
+            messages.error(request, 'There is an error in the form!', extra_tags='danger')
         return render(request, Page.create_vote, self.context)
 
     def make_post(self, form: VotingForm, request: WSGIRequest) -> None:

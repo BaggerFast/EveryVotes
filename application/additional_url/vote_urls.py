@@ -1,5 +1,5 @@
 from django.urls import path
-from application.modules import *
+from application.modules import VotePage, CreateEdiVoteView, RemoveVotePage, VoteListView, OwnVoteListView, UserList
 from application.modules.create_vote import CreateVoteView
 
 urlpatterns = [

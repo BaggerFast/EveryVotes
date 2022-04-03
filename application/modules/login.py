@@ -31,8 +31,7 @@ class LoginView(View):
                 login(request, user)
                 messages.success(request, 'You have successfully logged in!')
                 return redirect(reverse('main'))
-            else:
-                messages.error(request, 'Invalid username and password pair.', extra_tags='danger')
+            messages.error(request, 'Invalid username and password pair.', extra_tags='danger')
         else:
             messages.error(request, 'Invalid username and password pair.', extra_tags='danger')
         self.context['form'] = AuthenticateForm(data)
