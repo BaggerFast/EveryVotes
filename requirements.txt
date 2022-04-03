@@ -11,3 +11,6 @@ django-debug-toolbar
 # Codestyle
 pylint
 pylint-django
+
+# Oher
+# Pillow - if we will save Images

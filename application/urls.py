@@ -1,6 +1,6 @@
 from django.urls import path
-from application.modules import VotePage, CreateEdiVoteView, RemoveVotePage, VoteListView, OwnVoteListView, UserList
-from application.modules.create_vote import CreateVoteView
+from .modules import VotePage, CreateEdiVoteView, RemoveVotePage, VoteListView, OwnVoteListView, UserList
+from .modules.create_vote import CreateVoteView
 
 urlpatterns = [
     path('<int:id>/', VotePage.as_view(), name='vote'),

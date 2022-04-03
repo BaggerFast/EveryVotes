@@ -17,11 +17,9 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LogoutView
 from django.urls import path, include
-
 from application.modules import MainView, LoginView, RegistrationView
-from application.additional_url import vote_urls as vote
-
 from options import settings
+
 
 urlpatterns = [
     path('', MainView.as_view(), name='main'),
@@ -29,12 +27,12 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', login_required(LogoutView.as_view()), name='logout'),
     path('registration/', RegistrationView.as_view(), name='registration'),
-    path('vote/', include(vote)),
+    path('vote/', include('application.urls')),
 ]
 
 if settings.DEBUG:
     import debug_toolbar
+    from django.conf.urls.static import static
 
-    urlpatterns += [
-        path('__debug__/', include(debug_toolbar.urls)),
-    ]
+    urlpatterns += [path('__debug__/', include(debug_toolbar.urls))]
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
