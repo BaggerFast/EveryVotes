@@ -23,3 +23,5 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
+    - name: Run Pylint
+      run: DJANGO_SETTINGS_MODULE=options.settings pylint application options --fail-under 7.5
