@@ -1,4 +1,4 @@
-name: DjangoCI
+name: Ci
 
 on:
   push:
