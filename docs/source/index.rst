@@ -8,13 +8,6 @@ Welcome to EveryVotes's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Documentation for developers:
 
-   code.rst
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   voting_app.rst

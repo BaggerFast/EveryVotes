@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'debug_toolbar',
 
     'application.apps.MainConfig',
+    'main_app.apps.MainAppConfig',
+    'voting_app.apps.VotingAppConfig',
+
 ]
 
 MIDDLEWARE = [
