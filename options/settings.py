@@ -41,7 +41,6 @@ INSTALLED_APPS = [
 
     'debug_toolbar',
 
-    'application.apps.MainConfig',
     'main_app.apps.MainAppConfig',
     'voting_app.apps.VotingAppConfig',
 
@@ -113,7 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 LANGUAGE_CODE = 'ru'
-# LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Europe/Moscow'
 
