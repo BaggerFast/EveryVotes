@@ -16,7 +16,7 @@ class Voting(models.Model):
 
     author = models.ForeignKey(to=get_user_model(), on_delete=models.CASCADE, verbose_name='Автор')
     title = models.CharField(max_length=25, verbose_name='Заголовок')
-    description = models.CharField(max_length=100, verbose_name='Описание')
+    description = models.TextField(max_length=100, verbose_name='Описание')
     closed = models.BooleanField(default=False, verbose_name='Закрыто')
     date_created = models.DateTimeField(default=timezone.now, verbose_name='Дата создания')
 
@@ -53,11 +53,13 @@ class UserVote(models.Model):
 
     Which voice did the user choose in the voting
 
-    :param vote_variant: selected VoteVariant of user :type int
+    :param vote_variant: selected VoteVariant of user
     :param user: the user who voted
+    :param date_voted: the date when the user voted in the voting
     """
     vote_variant = models.ForeignKey(to=VoteVariant, on_delete=models.CASCADE, verbose_name='Вариант голосования')
     user = models.ForeignKey(to=get_user_model(), on_delete=models.CASCADE, verbose_name='Проголосовавший пользователь')
+    date_voted = models.DateTimeField(default=timezone.now, verbose_name='Дата голосования')
 
     class Meta:
         verbose_name = 'Голос пользователя'

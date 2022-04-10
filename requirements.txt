@@ -9,5 +9,5 @@ sphinx-rtd-theme
 django-debug-toolbar
 
 # Codestyle
-pylint
+pylint==2.13.5
 pylint-django
