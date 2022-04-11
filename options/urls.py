@@ -20,8 +20,8 @@ from options import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
-    path('', include('main_app.urls')),
-    path('vote', include('voting_app.urls'))
+    path('', include('apps.main_app.urls')),
+    path('vote', include('apps.voting_app.urls'))
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,15 @@
+{% extends "main_app/base.html" %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    {% for f in form %}
+      <div title="{{ f.help_text  }}">{{ f.label }}</div>
+      {% if f.field.required %}*{% endif %}: {{ f }}
+      <div> {{ f.errors }}</div>
+    {% endfor %}
+    <button>Регистрация</button>
+  </form>
+{% endblock %}
+
+

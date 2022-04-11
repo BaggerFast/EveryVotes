@@ -1,14 +1,16 @@
-<html lang="">
+{% extends "main_app/base.html" %}
+
+{% block content %}
   {% if request.user.is_authenticated %}
-  <li> {{ user.username }} | <a href="{%  url 'logout' %}">Выйти</a></li>
+    <li> {{ user.username }} | <a href="{%  url 'logout' %}">Выйти</a></li>
   {% else %}
   <form method="post">
     {% csrf_token %}
     <div>{{ form.non_field_errors }}</div>
     {% for f in form %}
-      <p>{{ f.label }}: {{ f }}</p>
+      <p>{{ f.label }}{% if f.field.required %}*{% endif %}: {{ f }}</p>
     {% endfor %}
     <button>Войти</button>
   </form>
   {% endif %}
-</html>
+{% endblock %}

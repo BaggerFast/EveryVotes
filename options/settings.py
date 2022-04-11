@@ -41,8 +41,8 @@ INSTALLED_APPS = [
 
     'debug_toolbar',
 
-    'main_app.apps.MainAppConfig',
-    'voting_app.apps.VotingAppConfig',
+    'apps.main_app.apps.MainAppConfig',
+    'apps.voting_app.apps.VotingAppConfig',
 
 ]
 
@@ -63,7 +63,7 @@ ROOT_URLCONF = 'options.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'apps')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,6 +141,5 @@ INTERNAL_IPS = ('127.0.0.1',)
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
