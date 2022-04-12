@@ -1,0 +1,25 @@
+{% load static %}
+<section class="header">
+  <div class="container header__container">
+    <a href="" class="header__logo">
+      <img src="{% static 'img/Logo.svg' %}" alt="Логотип">
+    </a>
+    <div class="header__inner">
+      <nav class="nav">
+        <ul class="header__list">
+          <li class="header__item"><a href="" class="header__link">Главная</a></li>
+          <li class="header__item"><a href="" class="header__link">Регистрация</a></li>
+          <li class="header__item"><a href="" class="header__link">Авторизация</a></li>
+          <li class="header__item dropdown">
+            <button class="dropbtn">Голосование</button>
+            <div class="dropdown-content">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</section>
