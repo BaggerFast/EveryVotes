@@ -3,5 +3,5 @@ from django.apps import AppConfig
 
 class VotingAppConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = "apps.voting_app"
+    name = "backend.voting"
     verbose_name = 'Голосование'

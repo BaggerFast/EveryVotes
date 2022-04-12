@@ -9,15 +9,15 @@ from .forms import UserRegistrationForm
 
 
 def index_view(request: WSGIRequest):
-    return render(request, 'main_app/templates/main_app/index.html')
+    return render(request, 'main/index.html')
 
 
 class UserRegistrationView(CreateView):
     form_class = UserRegistrationForm
-    template_name = 'main_app/templates/main_app/registration.html'
+    template_name = 'main/registration.html'
     success_url = reverse_lazy('index')
 
 
 class UserLoginView(LoginView):
     form_class = AuthenticationForm
-    template_name = 'main_app/templates/main_app/login.html'
+    template_name = 'main/login.html'

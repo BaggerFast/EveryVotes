@@ -41,8 +41,8 @@ INSTALLED_APPS = [
 
     'debug_toolbar',
 
-    'apps.main_app.apps.MainAppConfig',
-    'apps.voting_app.apps.VotingAppConfig',
+    'backend.main.apps.MainAppConfig',
+    'backend.voting.apps.VotingAppConfig',
 
 ]
 
@@ -58,12 +58,12 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-ROOT_URLCONF = 'options.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'apps')],
+        'DIRS': [os.path.join(BASE_DIR, 'frontend/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'options.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
@@ -126,9 +126,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-STATICFILES_DIRS = []
+STATIC_DIR = os.path.join(BASE_DIR, 'frontend/static')
+STATICFILES_DIRS = [STATIC_DIR]
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

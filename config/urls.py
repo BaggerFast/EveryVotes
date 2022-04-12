@@ -15,13 +15,13 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from options import settings
+from config import settings
 
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
-    path('', include('apps.main_app.urls')),
-    path('vote', include('apps.voting_app.urls'))
+    path('', include('backend.main.urls')),
+    path('vote', include('backend.voting.urls'))
 ]
 
 if settings.DEBUG:

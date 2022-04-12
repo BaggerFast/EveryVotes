@@ -6,5 +6,5 @@ Voting App
 Models in database
 ******************
 
-.. automodule:: voting_app.models
+.. automodule:: backend.voting.models
     :members:
