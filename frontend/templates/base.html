@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 {% load static %}
-
 <html lang="ru">
-
 <head>
-  <title></title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <title> {{title}}</title>
 </head>
-
 <body>
-  {% block content %}
-  <a href="" class="html__link">Somehting</a>
-  {% endblock %}
-</body>
+  <div class="preloader">
+    <div class="preloader__row">
+      <div class="preloader__item"></div>
+      <div class="preloader__item"></div>
+    </div>
+  </div>
+  <!-- header -->
+  {% include 'header.html' %}
+  <!-- header-end -->
 
+  {% block content %}
+
+  {% endblock content %}
+
+  <!-- footer -->
+  {% include 'footer.html' %}
+
+  <!-- js -->
+  <script src="{% static 'js/preloader.js' %}"></script>
+</body>
 </html>
