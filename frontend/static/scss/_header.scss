@@ -1,0 +1,32 @@
+@import '_dropdown.scss';
+
+ul {
+  padding: 0;
+}
+
+.header {
+  font-family: Montserrat;
+  height: 100px;
+  background-color: #E5E5E5;
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.header__list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.header__link {
+  color: #1d1d1f;
+}
+
+.header__item:not(:last-child) {
+  margin-right: 85px;
+}
