@@ -1,32 +1,102 @@
-@import '_dropdown.scss';
-
-ul {
-  padding: 0;
-}
-
 .header {
-  font-family: Montserrat;
-  height: 100px;
-  background-color: #E5E5E5;
+  &__wrapper{    
+    background: linear-gradient(252.91deg, #E3E7F6 3.68%, rgba(227, 231, 246, 0) 97.82%);
+  }
 }
 
-.header__container {
+.logo {
+  max-width: 250px;
+}
+
+.navbar {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
+  padding: 24px 0;
 }
 
 
-.header__list {
+.menu {
   display: flex;
+  justify-self: center;
   align-items: center;
-  list-style: none;
+		&__item {
+      margin-left: 60px;
+		}
+
+		&__item-link {
+      font-size: 18px;
+      line-height: 24px;
+      color: #646a89;
+      &:hover {
+        color: $redColor;
+        transition: color .3s ease;
+      }
+		}
+
+    &__btn {
+      color: $whiteColor;
+    }
 }
 
-.header__link {
-  color: #1d1d1f;
-}
 
-.header__item:not(:last-child) {
-  margin-right: 85px;
+.section {
+
+  &__hero {
+    padding: 129px 0 210px 0;
+    position: relative;
+  }
+}
+.container {
+}
+.hero {
+  display: flex;
+  &__item {
+    flex: 0 1 60%;
+  }
+
+  &__img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  &__item-title {
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 62px;
+    color: $greyColor;
+  }
+
+  &__item-text {
+    font-size: 22px;
+    line-height: 33px;
+    color: $blueColor;
+    margin-top: 32px;
+  }
+
+  &__item-buttons {
+    margin-top: 40px;
+  }
+
+  &__btn {
+    line-height: 24px;
+    font-weight: 600;
+    &:first-child {
+      margin-right: 16px;
+    }
+
+    &_second {
+      background-color: transparent;
+      color: $redColor;
+      border: 1px solid $redColor;
+      &:hover {
+        background-color: $redColor;
+        color: white;
+      }
+    }
+  }
+}
+.btn {
 }
