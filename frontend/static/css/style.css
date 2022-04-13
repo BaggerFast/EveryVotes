@@ -420,21 +420,12 @@ select {
   }
 }
 
-a {
-  text-decoration: none;
-}
-
 ul {
   list-style: none;
 }
 
-button {
-  padding: 0;
-  border: none;
-  font: inherit;
-  color: inherit;
-  background-color: transparent;
-  cursor: pointer;
+a {
+  text-decoration: none;
 }
 
 body {
