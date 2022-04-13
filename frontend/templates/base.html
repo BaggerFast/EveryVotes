@@ -10,19 +10,14 @@
   <title> {{title}}</title>
 </head>
 <body>
-  <div class="preloader">
-    <div class="preloader__row">
-      <div class="preloader__item"></div>
-      <div class="preloader__item"></div>
-    </div>
+  <span id="main_preload"></span>
+  <div id="wrapper">
+    {% include 'main/_header.html' %}
+    {% block content %}
+    {% endblock content %}
+    <!-- footer -->
+    {% include 'main/_footer.html' %}
   </div>
-  <!-- header -->
-  {% include 'main/_header.html' %}
-  <!-- header-end -->
-  {% block content %}
-  {% endblock content %}
-  <!-- footer -->
-  {% include 'main/_footer.html' %}
   <script src="{% static 'js/preloader.js' %}"></script>
 </body>
 </html>
