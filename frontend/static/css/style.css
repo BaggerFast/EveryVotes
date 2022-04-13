@@ -472,10 +472,14 @@ body {
   color: #b9b9b9 !important;
 }
 
+.header {
+  border-bottom: 1px solid #1A2578;
+}
+
 .logo {
   max-width: 250px;
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   margin-right: auto;
   background-image: url(../img/header__logo.png);
   background-position: center center;
@@ -490,7 +494,6 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 24px 0;
 }
 
 .menu {
@@ -593,7 +596,7 @@ body {
 
 .hero__img {
   position: absolute;
-  bottom: 0;
+  bottom: -5%;
   right: 0;
 }
 
