@@ -476,6 +476,10 @@ body {
   border-bottom: 1px solid #1A2578;
 }
 
+.header__container {
+  padding: 12px 0;
+}
+
 .logo {
   max-width: 250px;
   height: 60px;
@@ -545,8 +549,7 @@ body {
 .dropbtn {
   background-color: transparent;
   color: #484C63;
-  padding: 14px 32px;
-  padding-left: 0;
+  padding: 0px 12px;
   padding-right: 20px;
   border-radius: 6px;
   background-image: url(../img/list.svg);
