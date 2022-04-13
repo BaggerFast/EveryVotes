@@ -8,6 +8,6 @@ from .views import index_view, UserRegistrationView, UserLoginView
 urlpatterns = [
     path('',  index_view, name='index'),
     path('logout/', login_required(LogoutView.as_view()), name='logout'),
-    path('register/',  UserRegistrationView.as_view(), name='registration'),
+    path('register/',  UserRegistrationView.as_view(), name='register'),
     path('login/', UserLoginView.as_view(), name='login')
 ]

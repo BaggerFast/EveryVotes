@@ -6,10 +6,11 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from .forms import UserRegistrationForm
+from ..utils import Navbar
 
 
 def index_view(request: WSGIRequest):
-    return render(request, 'main/index.html')
+    return render(request, 'main/index.html', {'navbar': Navbar(request).get})
 
 
 class UserRegistrationView(CreateView):
