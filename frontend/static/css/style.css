@@ -487,18 +487,21 @@ body {
   border-radius: 6px;
 }
 
-/* Links inside the dropdown */
-.dropdown-content a {
+.dropdown__link {
   text-align: center;
   color: #484C63;
   padding: 12px 16px;
+  border-radius: 6px;
   text-decoration: none;
+  font-weight: 600;
   display: block;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #ddd;
+.dropdown__link:hover {
+  background-color: #ffd8d8;
+  -webkit-transition: .3s all ease;
+  transition: .3s all ease;
+  color: #bf0830;
 }
 
 /* Show the dropdown menu on hover */

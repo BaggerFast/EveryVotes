@@ -24,17 +24,23 @@
   border-radius: 6px;
 }
 
-/* Links inside the dropdown */
-.dropdown-content a {
+.dropdown__link {
   text-align: center;
   color: $blueColor;
   padding: 12px 16px;
+  border-radius: 6px;
   text-decoration: none;
+  font-weight: 600;
   display: block;
-}
+  &:hover {
+    background-color: rgb(255, 216, 216);
+    transition: .3s all ease;
+    color: $redColor;
+  }
+} 
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
