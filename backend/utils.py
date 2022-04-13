@@ -25,6 +25,7 @@ class Navbar:
         for menu_item in self.__nav:
             if isinstance(menu_item, Field):
                 for field in menu_item.nested_fields:
+                    print(self.__request.path)
                     field.active = self.__request.path != reverse_lazy(field.url)
             else:
                 menu_item.active = self.__request.path != reverse_lazy(menu_item.url)

@@ -10,7 +10,7 @@ from ..utils import Navbar
 
 
 def index_view(request: WSGIRequest):
-    return render(request, 'main/index.html', {'navbar': Navbar(request).get})
+    return render(request, 'main/index.html')
 
 
 class UserRegistrationView(CreateView):

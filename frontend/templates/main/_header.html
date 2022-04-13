@@ -1,4 +1,6 @@
 {% load static %}
+{% load menu_tags %}
+
 <div class="header__wrapper">
   <header class="header">
     <nav>
@@ -6,18 +8,19 @@
         <div class="navbar">
           <div class="logo"></div>
           <ul class="menu">
+          {%  get_menu request as navbar%}
             {% for item in navbar %}
               {% if item.nested_fields %}
                  <li class="menu__item dropdown">
                 <button class="dropbtn">{{ item.label }}</button>
                 <div class="dropdown-content" style="left:0;">
                   {% for nested in item.nested_fields %}
-                    <a href="{% url nested.url %}" class="dropdown__link disabled">{{ nested.label }}</a>
+                    <a href="{% url nested.url %}" class="dropdown__link {% if not nested.active%}disabled{% endif %}">{{ nested.label }}</a>
                   {% endfor %}
                 </div>
               </li>
               {% else %}
-                <li class="menu__item"><a href="{% url item.url %}" class="menu__item-link disabled">{{ item.label }}</a></li>
+                <li class="menu__item"><a href="{% url item.url %}" class="menu__item-link {% if not item.active%}disabled{% endif %}">{{ item.label }}</a></li>
              {% endif %}
             {% endfor %}
           </ul>
