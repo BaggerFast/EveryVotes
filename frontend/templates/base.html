@@ -7,11 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="icon" href="{% static 'img/header__logo.png' %}">
+  <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
+  <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
   <title> {{title}}</title>
 </head>
 <body>
   <span id="main_preload"></span>
   <div id="wrapper">
+    <div data-simplebar class="customScroll"></div>
     {% include 'main/_header.html' %}
     {% block content %}
     {% endblock content %}
