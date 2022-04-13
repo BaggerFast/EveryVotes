@@ -1,19 +1,18 @@
-@import '_dropdown.scss';
 
-.header {
-  &__wrapper{    
-    background: linear-gradient(252.91deg, #E3E7F6 3.68%, rgba(227, 231, 246, 0) 97.82%);
-  }
-}
 
 .logo {
   max-width: 250px;
+  height: 80px;
+  width: 80px;
+  margin-right: auto;
+  background-image: url(../img/header__logo.png);
+  background-position: center center;
+  background-size: cover;
 }
 
 .navbar {
   display: flex;
   width: 100%;
-  justify-content: space-between;
   align-items: center;
   padding: 24px 0;
 }
@@ -42,63 +41,47 @@
     }
 }
 
-
-.section {
-
-  &__hero {
-    padding: 129px 0 210px 0;
-    position: relative;
+.dropdown__link {  
+  color: $blueColor;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  &:hover {
+    background-color: rgb(243, 216, 216);
+    border-radius: 6px;
+    color: $redColor;
+    transition: .3s all ease;
   }
 }
-.container {
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: transparent;
+  color: $blueColor;
+  padding: 14px 32px;
+  min-width: 150px;
+  padding-right: 20px;
+  border-radius: 6px;
+  background-image: url(../img/list.svg);
+  background-repeat: no-repeat;
+  background-position: right center;
+  transition: .3s all ease;
 }
-.hero {
-  display: flex;
-  &__item {
-    flex: 0 1 60%;
-  }
 
-  &__img {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-  }
-
-  &__item-title {
-    font-weight: bold;
-    font-size: 48px;
-    line-height: 62px;
-    color: $greyColor;
-  }
-
-  &__item-text {
-    font-size: 22px;
-    line-height: 33px;
-    color: $blueColor;
-    margin-top: 32px;
-  }
-
-  &__item-buttons {
-    margin-top: 40px;
-  }
-
-  &__btn {
-    line-height: 24px;
-    font-weight: 600;
-    &:first-child {
-      margin-right: 16px;
-    }
-
-    &_second {
-      background-color: transparent;
-      color: $redColor;
-      border: 1px solid $redColor;
-      &:hover {
-        background-color: $redColor;
-        color: white;
-      }
-    }
-  }
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
 }
-.btn {
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 140px;
+  z-index: 1;
+  border-radius: 6px;
 }
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}

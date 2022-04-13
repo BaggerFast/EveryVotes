@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="icon" href="{% static 'img/header__logo.png' %}">
   <title> {{title}}</title>
 </head>
 <body>
@@ -18,14 +19,10 @@
   <!-- header -->
   {% include 'main/_header.html' %}
   <!-- header-end -->
-
   {% block content %}
   {% endblock content %}
-
   <!-- footer -->
   {% include 'main/_footer.html' %}
-
-  <!-- js -->
   <script src="{% static 'js/preloader.js' %}"></script>
 </body>
 </html>

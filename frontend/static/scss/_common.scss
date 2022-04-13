@@ -5,8 +5,8 @@
 
 body {
   font-family: Montserrat;
+  background: linear-gradient(252.91deg, #E3E7F6 3.68%, rgba(227, 231, 246, 0) 97.82%);
 }
-
 // Container
 .container {
   max-width: ($containerWidth + $containerPadding) + px;
@@ -24,4 +24,10 @@ body {
     background: #d30834;
     transition: .3s all ease;
   }
+}
+
+.disabled {
+  pointer-events: none; 
+  cursor: default; 
+  color: rgb(185, 185, 185) !important;
 }
