@@ -9,17 +9,17 @@
   <link rel="icon" href="{% static 'img/header__logo.png' %}">
   <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
   <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
-  <title> {{title}}</title>
+  <title> {{title}} </title>
 </head>
 <body>
   <span id="main_preload"></span>
   <div id="wrapper">
     <div data-simplebar class="customScroll"></div>
-    {% include 'main/_header.html' %}
+    {% include 'components/_header.html' %}
     {% block content %}
     {% endblock content %}
     <!-- footer -->
-    {% include 'main/_footer.html' %}
+    {% include 'components/_footer.html' %}
   </div>
   <script src="{% static 'js/preloader.js' %}"></script>
 </body>

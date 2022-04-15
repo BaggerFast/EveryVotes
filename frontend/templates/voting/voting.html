@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <table border="2">
+    <tr>
+      <th>Автор</th>
+      <th>Название</th>
+      <th>Описание</th>
+    </tr>
+    <tr>
+      <td>{{ voting.author }}</td>
+      <td>{{ voting.title }} </td>
+      <td>{{ voting.description }}</td>
+    </tr>
+  </table>
+{% endblock content %}

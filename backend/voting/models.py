@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 
@@ -26,6 +27,9 @@ class Voting(models.Model):
 
     def __str__(self):
         return f'{self.title}({self.id})'
+
+    def get_absolute_url(self):
+        return reverse('voting', kwargs={'pk': self.pk})
 
 
 class VoteVariant(models.Model):

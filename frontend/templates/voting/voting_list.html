@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div>
+  <table border="2">
+    <tr>
+      <th>Автор</th>
+      <th>Название</th>
+      <th>Описание</th>
+    </tr>
+    {% for vote in votings %}
+    <tr>
+      <td>{{ vote.author }}</td>
+      <td><a href="{{ vote.get_absolute_url }}">{{ vote.title }}</a> </td>
+      <td>{{ vote.description }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  </div>
+{% endblock content %}
