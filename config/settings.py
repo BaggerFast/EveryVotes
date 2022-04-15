@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -26,7 +27,9 @@ SECRET_KEY = 'kfk=ab9pao74zox)hm4v)9*1pna343vjhfz!7@amx5o!7a-ro+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = (
+    '127.0.0.1',
+)
 
 
 # Application definition
@@ -38,8 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'debug_toolbar',
 
     'backend.main.apps.MainAppConfig',
     'backend.voting.apps.VotingAppConfig',
@@ -55,9 +56,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-if DEBUG:
-    MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
 
 
 ROOT_URLCONF = 'config.urls'
@@ -84,12 +82,17 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-     'ENGINE': 'django.db.backends.sqlite3',
-     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if DEBUG:
+    DATABASES = {
+        'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+
+    MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+    INSTALLED_APPS.append('debug_toolbar')
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -128,8 +131,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_DIR = os.path.join(BASE_DIR, 'frontend/static')
-STATICFILES_DIRS = [STATIC_DIR]
+STATIC_ROOT = 'static'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'frontend/static'),
+)
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
