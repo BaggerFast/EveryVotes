@@ -39,6 +39,7 @@ class Navbar:
             self.__nav += [
                 Field(label='Голосования', nested_fields=(
                     NestedField(url='votings', label='Список'),
+                    NestedField(url='create_voting', label='Создать'),
                 )),
                 Field(label='Профиль', nested_fields=(
                     NestedField(url='logout', label="Выйти"), ))]

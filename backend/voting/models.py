@@ -24,6 +24,7 @@ class Voting(models.Model):
     class Meta:
         verbose_name = 'Голосование'
         verbose_name_plural = 'Голосования'
+        ordering = ('-date_created', )
 
     def __str__(self):
         return f'{self.title}({self.id})'
