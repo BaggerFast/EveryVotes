@@ -4,9 +4,9 @@
   {% if request.user.is_authenticated %}
     <li> {{ user.username }} | <a href="{%  url 'logout' %}">Выйти</a></li>
   {% else %}
+
   <form method="post">
     {% csrf_token %}
-    <div>{{ form.non_field_errors }}</div>
     {% for f in form %}
       <p>{{ f.label }}{% if f.field.required %}*{% endif %}: {{ f }}</p>
     {% endfor %}

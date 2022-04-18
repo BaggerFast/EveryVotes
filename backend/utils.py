@@ -3,11 +3,9 @@ from typing import NamedTuple
 from django.urls import reverse_lazy
 
 
-@dataclass
-class NestedField:
+class NestedField(NamedTuple):
     url: str
     label: str
-    active: bool = False
 
 
 class Field(NamedTuple):
@@ -21,18 +19,8 @@ class Navbar:
         self.__request = request
         self.__nav = []
 
-    def __off_current(self):
-        for menu_item in self.__nav:
-            if isinstance(menu_item, NestedField):
-                menu_item.active = self.__request.path != reverse_lazy(menu_item.url)
-                continue
-            for field in menu_item.nested_fields:
-                field.active = self.__request.path != reverse_lazy(field.url)
-
     def __static_point(self):
-        self.__nav += [
-            NestedField(url='index', label='Главная')
-        ]
+        self.__nav.append(NestedField(url='index', label='Главная'))
 
     def __auth_point(self):
         if self.__request.user.is_authenticated:
@@ -43,12 +31,12 @@ class Navbar:
                 )),
                 Field(label='Профиль', nested_fields=(
                     NestedField(url='logout', label="Выйти"), ))]
-        else:
-            self.__nav += [
-                Field(label='Авторизация', nested_fields=(
-                    NestedField(url='login', label='Войти'),
-                    NestedField(url='register', label='Зарегистрироваться')))
-            ]
+            return
+        self.__nav += [
+            Field(label='Авторизация', nested_fields=(
+                NestedField(url='login', label='Войти'),
+                NestedField(url='register', label='Зарегистрироваться')))
+        ]
 
     def get(self) -> list:
         """
@@ -56,5 +44,4 @@ class Navbar:
         """
         self.__static_point()
         self.__auth_point()
-        self.__off_current()
         return self.__nav

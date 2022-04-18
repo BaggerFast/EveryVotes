@@ -10,8 +10,8 @@
     </tr>
     {% for vote in votings %}
     <tr>
-      <td>{{ vote.author }}</td>
-      <td><a href="{{ vote.get_absolute_url }}">{{ vote.title }}</a> </td>
+      <td>{{ vote.author__username }}</td>
+      <td><a href="{% url "voting" vote.id %}">{{ vote.title }}</a> </td>
       <td>{{ vote.description }}</td>
     </tr>
     {% endfor %}

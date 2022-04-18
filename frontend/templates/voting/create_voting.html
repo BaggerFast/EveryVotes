@@ -1,13 +1,29 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
  <form method="post">
     {% csrf_token %}
     {% for f in form %}
-      <div title="{{ f.help_text  }}">{{ f.label }}</div>
-      {% if f.field.required %}*{% endif %}: {{ f }}
-      <div> {{ f.errors }}</div>
+      {%  if f.name != "vote_variants" %}
+        <div title="{{ f.help_text  }}">{{ f.label }}</div>
+        {% if f.field.required %}*{% endif %}: {{ f }}
+      {% endif %}
     {% endfor %}
-    <button>Регистрация</button>
-  </form>
+    <select name="vote_variants" title="" id="post_vote_variants" multiple="" hidden></select>
+    <div>
+      <label for="variantInput"></label>
+      <input class="form-control" type="text" maxlength="50" id="voteVariantInput">
+      <input type="button" value="Add" id="addVoteVariantBtn">
+    </div>
+    <div>
+      <ul id="voteVariantsList"></ul>
+    </div>
+    <button type="submit">Регистрация</button>
+ </form>
 {% endblock content %}
+
+
+{% block js_scripts %}
+    <script src="{% static 'js/add_vote.js' %}"></script>
+{% endblock js_scripts %}

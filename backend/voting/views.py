@@ -1,11 +1,10 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView
 
 from .forms import VotingForm
-from .models import Voting
+from .models import Voting, VoteVariant
 
 
 class VotingsView(LoginRequiredMixin, ListView):
@@ -15,7 +14,8 @@ class VotingsView(LoginRequiredMixin, ListView):
     extra_context = {'title': "Голосования"}
 
     def get_queryset(self):
-        return self.model.objects.filter(closed=False)
+        return Voting.objects.select_related('author').filter(closed=False).values('title', 'id', 'description',
+                                                                                   'author__username')
 
 
 class VotingView(LoginRequiredMixin, DetailView):
@@ -30,8 +30,10 @@ class CreateVotingView(LoginRequiredMixin, CreateView):
     extra_context = {'title': f"Создать"}
 
     def form_valid(self, form: VotingForm) -> HttpResponseRedirect:
-        obj: Voting = form.save(commit=False)
-        obj.author = self.request.user
-        obj.save()
+        voting: Voting = form.save(commit=False)
+        voting.author = self.request.user
+        voting.save()
+        for variant_text in form.cleaned_data['vote_variants']:
+            VoteVariant(voting=voting, title=variant_text).save()
         return HttpResponseRedirect(reverse_lazy('votings'))
 

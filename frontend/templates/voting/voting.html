@@ -12,5 +12,8 @@
       <td>{{ voting.title }} </td>
       <td>{{ voting.description }}</td>
     </tr>
+  {% for vote in voting.votevariant_set.all%}
+    <p>{{  vote.title }}</p>
+  {% endfor %}
   </table>
 {% endblock content %}
