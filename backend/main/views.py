@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -17,21 +18,17 @@ def index_view(request: WSGIRequest):
 class UserRegistrationView(CreateView):
     form_class = UserRegistrationForm
     template_name = 'main/registration.html'
+    success_message = 'Вы успешно зарегистрировались!'
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
-        form.save()
-        user = authenticate(username=form.data.get('username'), password=form.data.get('password2'))
+        user = form.save()
         login(self.request, user)
-        messages.success(self.request, 'Вы успешно зарегистрировались!')
+        messages.success(self.request, self.success_message)
         return redirect(self.success_url)
 
 
-class UserLoginView(LoginView):
+class UserLoginView(SuccessMessageMixin, LoginView):
     form_class = AuthenticationForm
     template_name = 'main/login.html'
-
-    def form_valid(self, form):
-        success_url = super().form_valid(form)
-        messages.success(self.request, 'Вы успешно авторизовались!')
-        return success_url
+    success_message = 'Вы успешно авторизовались!'

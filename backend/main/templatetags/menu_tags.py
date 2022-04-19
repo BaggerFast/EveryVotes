@@ -12,7 +12,7 @@ def get_menu(request):
 
 
 @register.simple_tag
-def off_current_url(request, url):
+def off_current_url(request, url) -> str:
     if request.path == reverse_lazy(url):
         return 'disabled'
     return ''

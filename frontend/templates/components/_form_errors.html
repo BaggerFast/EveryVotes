@@ -1,9 +1,7 @@
-{% block errors %}
-  {% if form %}
-    {% for field, errors in form.errors.items %}
-      {% for error in errors %}
-        <p>{{ error }}</p>
-      {% endfor %}
+{% if form %}
+  {% for field, errors in form.errors.items %}
+    {% for error in errors %}
+      <p>{{ error }}</p>
     {% endfor %}
-  {% endif %}
-{% endblock %}
+  {% endfor %}
+{% endif %}
