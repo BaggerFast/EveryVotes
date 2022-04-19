@@ -137,6 +137,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'frontend/static'),
 )
 
+AUTH_USER_MODEL = 'main.User'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
