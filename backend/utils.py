@@ -1,6 +1,4 @@
-from dataclasses import dataclass
 from typing import NamedTuple
-from django.urls import reverse_lazy
 
 
 class NestedField(NamedTuple):

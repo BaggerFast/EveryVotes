@@ -4,18 +4,17 @@ from backend.voting.models import Voting
 
 class CreateVariantsField(MultipleChoiceField):
 
-    def validate(self, vote_variants: list):
-        if len(vote_variants) > 6:
+    def validate(self, value: list):
+        if len(value) > 6:
             raise ValidationError('Очень много вариантов голосований')
-        if all(len(i) <= 20 for i in vote_variants):
+        if all(len(i) <= 20 for i in value):
             return
         raise ValidationError('Кол-во символов в голосовании <= 20')
 
 
 class VotingForm(ModelForm):
-
     vote_variants = CreateVariantsField()
 
     class Meta:
         model = Voting
-        exclude = ('author', 'date_created', 'closed')
+        fields = ('title', 'description')

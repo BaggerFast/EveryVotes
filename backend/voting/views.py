@@ -36,4 +36,3 @@ class CreateVotingView(LoginRequiredMixin, CreateView):
         for variant_text in form.cleaned_data['vote_variants']:
             VoteVariant(voting=voting, title=variant_text).save()
         return HttpResponseRedirect(reverse_lazy('votings'))
-

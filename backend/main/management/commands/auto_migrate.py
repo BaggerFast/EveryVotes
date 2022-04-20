@@ -16,5 +16,4 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         call_command('makemigrations')
         call_command('migrate')
-        self.stdout.write(self.style.SUCCESS(f'SUCCESS'))
-
+        self.stdout.write(self.style.SUCCESS('SUCCESS'))

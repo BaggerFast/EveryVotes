@@ -27,7 +27,7 @@ cd ..
 
 ## Codestyle:
 ```
-DJANGO_SETTINGS_MODULE=config.settings pylint *_app config --fail-under 7.5
+DJANGO_SETTINGS_MODULE=config.settings pylint backend config
 ```
 
 ## If django-debug-toolbar don't work:
