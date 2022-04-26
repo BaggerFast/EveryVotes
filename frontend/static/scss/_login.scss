@@ -67,7 +67,7 @@ form .txt_field{
 }
 .txt_field input:focus ~ label,
 .txt_field input:valid ~ label{
-  top: -5px;
+  top: -7px;
   color: #2691d9;
 }
 .txt_field input:focus ~ span::before,
