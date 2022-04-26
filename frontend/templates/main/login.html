@@ -1,18 +1,22 @@
 {% extends "base.html" %}
+{% load menu_tags %}
+
 {% block content %}
     <div class="login__wrapper">
       <form method="post" class="login__form">
-        <h1> <a href="" class="login__link">Вход</a> / <a href="" class="login__link underline">Регистрация</a></h1>
-        <div class="txt_field">
-          <input type="text" required>
-          <span></span>
-          <label>Логин</label>
-        </div>
-        <div class="txt_field">
-          <input type="password" required>
-          <span></span>
-          <label>Пароль</label>
-        </div>
+        <h1>
+          {% compare_urls  request 'login' as underline %}
+          <a href="{% url 'login' %}" class="login__link {% if underline %} underline {% endif %}">Вход</a> /
+          {% compare_urls  request 'register' as underline %}
+          <a href="{% url 'register' %}" class="login__link {% if underline %} underline {% endif %}">Регистрация</a></h1>
+          {% csrf_token %}
+          {% for f in form %}
+            <div class="txt_field">
+              {{ f }}
+              <span></span>
+              <label>{{ f.label }}</label>
+            </div>
+          {% endfor %}
         <div class="pass">Забыли пароль?</div>
         <input type="submit" value="Зарегестрироваться">
       </form>

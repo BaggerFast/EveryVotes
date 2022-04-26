@@ -16,3 +16,8 @@ def off_current_url(request, url) -> str:
     if request.path == reverse_lazy(url):
         return 'disabled'
     return ''
+
+
+@register.simple_tag
+def compare_urls(request, url_name):
+    return request.path == reverse_lazy(url_name)
