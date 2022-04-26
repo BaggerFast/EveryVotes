@@ -1,13 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="login__wrapper">
-      <form action="#" class="login__form" method="post">
-        <h1>Вход / Регистрация</h1>
-        {% csrf_token %}
-        {% for f in form %}
-          <p>{{ f.label }}{% if f.field.required %}*{% endif %}: {{ f }}</p>
-        {% endfor %}
-        <button type="submit">Зарегестрироваться</button>
+      <form method="post" class="login__form">
+        <h1> <a href="" class="login__link">Вход</a> / <a href="" class="login__link underline">Регистрация</a></h1>
+        <div class="txt_field">
+          <input type="text" required>
+          <span></span>
+          <label>Логин</label>
+        </div>
+        <div class="txt_field">
+          <input type="password" required>
+          <span></span>
+          <label>Пароль</label>
+        </div>
+        <div class="pass">Забыли пароль?</div>
+        <input type="submit" value="Зарегестрироваться">
       </form>
     </div>
 {% endblock %}

@@ -22,3 +22,9 @@ body {
   // background: rgb(40,39,177);
   // background: linear-gradient(60deg, rgba(194,77,255,1) 0%, rgba(40,39,177,1) 35%, rgba(50,10,142,1) 55%, rgba(194,77,255,1) 100%);
 }
+
+.underline {
+  display: inline-block;
+  padding-bottom: 1px;
+  border-bottom: 2px solid black;
+}
