@@ -1,10 +1,6 @@
-$containerWidth:1108;
+$containerWidth: 1300;
 $containerPadding: 40;
-$containerSidePadding: 20;
-
-
-// colors
-$greyColor: #1A2578;
-$blueColor: #484C63;
-$whiteColor: #ffffff;
-$redColor: #bf0830;
+$containerPadding: 20;
+$breakpoint992: 991.98 + px;
+$breakpoint768: 767.98 + px;
+$breakpoint480: 479.98 + px;

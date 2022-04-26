@@ -1,0 +1,22 @@
+@import "_reset.scss";
+@import "_vars.scss";
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+.container {
+  max-width: ($containerWidth + $containerPadding) + px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 $containerPadding + px;
+  @media (max-width: $breakpoint992) {
+    max-width: 970px;
+  }
+  @media (max-width: $breakpoint768) {
+    max-width: 750px;
+  }
+  @media (max-width: $breakpoint480) {
+    max-width: none;
+  }
+}
+
+body {
+  font-family: Montserrat;
+}

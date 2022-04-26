@@ -7,31 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="icon" href="{% static 'img/header__logo.png' %}">
-  <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
-  <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
   <title> {{title}} </title>
 </head>
-
-{% block messages %}
-  {% include 'components/_messages.html' %}
-  {% include 'components/_form_errors.html' %}
-{% endblock messages%}
-
-{% block form_errors %}
-{% endblock form_errors %}
-
 <body>
-  <span id="main_preload"></span>
-  <div id="wrapper">
-    <div data-simplebar class="customScroll"></div>
-    {% include 'components/_navbar.html' %}
-    {% block content %}
-    {% endblock content %}
+  <div class="main__wrapper">
+    {% include 'main/index.html' %}
   </div>
-
-  {% block js_scripts %}
-  {% endblock js_scripts %}
-  <script src="{% static 'js/preloader.js' %}"></script>
-
 </body>
 </html>
