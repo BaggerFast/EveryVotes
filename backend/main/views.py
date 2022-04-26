@@ -17,8 +17,9 @@ def index_view(request: WSGIRequest):
 
 class UserRegistrationView(CreateView):
     form_class = UserRegistrationForm
-    template_name = 'main/registration.html'
+    template_name = 'main/login.html'
     success_message = 'Вы успешно зарегистрировались!'
+    extra_context = {"btn_name": 'Зарегистрироваться'}
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
@@ -31,4 +32,5 @@ class UserRegistrationView(CreateView):
 class UserLoginView(SuccessMessageMixin, LoginView):
     form_class = AuthenticationForm
     template_name = 'main/login.html'
+    extra_context = {"btn_name": 'Авторизироваться'}
     success_message = 'Вы успешно авторизовались!'

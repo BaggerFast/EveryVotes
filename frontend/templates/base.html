@@ -10,8 +10,12 @@
   <title> {{title}} </title>
 </head>
 <body>
-  <div class="main__wrapper">
-    {% include 'main/index.html' %}
-  </div>
+    {% block messages %}
+      {% include 'components/_messages.html' %}
+      {% include 'components/_form_errors.html' %}
+    {% endblock messages%}
+
+    {% block content %}
+    {% endblock content %}
 </body>
 </html>

@@ -1,0 +1,27 @@
+@import '_vars.scss';
+.login__wrapper {
+    background: rgb(99,204,255);
+    background: linear-gradient(180deg, rgba(99,204,255,1) 0%, rgba(170,240,232,1) 100%);
+    height: 100vh;
+    background-size: 400%;
+    -webkit-animation: animate 10s linear infinite;
+          animation: animate 10s linear infinite;
+}
+
+@-webkit-keyframes animate {
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 400%;
+    }
+  }
+  
+  @keyframes animate {
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 400%;
+    }
+  }
