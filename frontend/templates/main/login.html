@@ -5,10 +5,10 @@
     <div class="login__wrapper">
       <form method="post" class="login__form">
         <h1>
-          {% compare_urls  request 'login' as underline %}
-          <a href="{% url 'login' %}" class="login__link {% if underline %} underline {% endif %}">Вход</a> /
-          {% compare_urls  request 'register' as underline %}
-          <a href="{% url 'register' %}" class="login__link {% if underline %} underline {% endif %}">Регистрация</a></h1>
+          {% compare_urls  request 'login' as login_underline %}
+          <a href="{% url 'login' %}" class="login__link {% if login_underline %} underline disabled {% endif %}">Вход</a> /
+          {% compare_urls  request 'register' as register_underline %}
+          <a href="{% url 'register' %}" class="login__link {% if register_underline %} underline disabled {% endif %}">Регистрация</a></h1>
           {% csrf_token %}
           {% for f in form %}
             <div class="txt_field">
@@ -17,8 +17,10 @@
               <label>{{ f.label }}</label>
             </div>
           {% endfor %}
-        <div class="pass">Забыли пароль?</div>
-        <input type="submit" value="Зарегестрироваться">
+          {% if login_underline  %}
+            <div class="pass">Забыли пароль?</div>
+          {% endif %}
+          <input type="submit" value="Зарегестрироваться">
       </form>
     </div>
 {% endblock %}

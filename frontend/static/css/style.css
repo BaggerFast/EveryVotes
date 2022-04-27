@@ -265,3 +265,9 @@ input[type="submit"]:hover {
     background-position: 400%;
   }
 }
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: #b9b9b9 !important;
+}
