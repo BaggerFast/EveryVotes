@@ -28,3 +28,9 @@ body {
   padding-bottom: 1px;
   border-bottom: 2px solid black;
 }
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: #b9b9b9 !important;
+}

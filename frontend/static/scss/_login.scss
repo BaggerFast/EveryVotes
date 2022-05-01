@@ -82,22 +82,28 @@ form .txt_field{
 .pass:hover{
   text-decoration: underline;
 }
-input[type="submit"]{
+.login__btn{
   width: 100%;
   height: 50px;
-  border: 1px solid;
+  display: inline-block;
   background: #00cdff;
   border-radius: 25px;
   font-size: 24px;
   color: #e9f4fb;
   font-weight: 700;
+  box-shadow: 0 5px 0px #2691d9;
   cursor: pointer;
   outline: none;
+  position: relative;
+  border-color: transparent;
+  -webkit-transition: all 0.3s ease 0s;
 }
-input[type="submit"]:hover{
-  border-color: #00cdff;
-  transition: .5s;
+.login__btn:hover{
+  top: 2px;
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 #2691d9;
 }
+
 
 .login__link {
   color: black;
