@@ -278,3 +278,9 @@ form .txt_field {
     background-position: 400%;
   }
 }
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: #b9b9b9 !important;
+}
